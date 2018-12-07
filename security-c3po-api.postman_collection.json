@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "edbff5c3-6e98-4823-853f-662cc2401a3b",
+		"name": "security-c3po-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Security Tests",
+			"item": [
+				{
+					"name": "getAllTests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tests",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTestByTestNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tests/OTG-SESS-001",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tests",
+								"OTG-SESS-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTestsByCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tests?category=SESS",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tests"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "SESS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "getAllProjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProjectById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								"076d9bb2-0c23-4cfe-b6cf-5122e76138df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createNewProject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"client\": \"E Corp\",\n\t\"title\": \"API (v2.0) Scan\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProjectById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects/98804470-cb07-4f72-902d-c3d1e350105c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								"98804470-cb07-4f72-902d-c3d1e350105c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Results",
+			"item": [
+				{
+					"name": "addTestResultToProject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"testId\": \"OTG-INFO-002\",\n\t\"checked\": true,\n\t\"comment\": \"Some other comment ...\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								"076d9bb2-0c23-4cfe-b6cf-5122e76138df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTestResultFromProject",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df/results/32a6a170-7d21-47cd-a58b-bacc9c6266e3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								"076d9bb2-0c23-4cfe-b6cf-5122e76138df",
+								"results",
+								"32a6a170-7d21-47cd-a58b-bacc9c6266e3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTestResultForProject",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"checked\": true,\n\t\"comment\": \"Some other comment ...\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df/results/e2f5e6cb-74f2-488b-80f5-6ad495e7ff7c",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"projects",
+								"076d9bb2-0c23-4cfe-b6cf-5122e76138df",
+								"results",
+								"e2f5e6cb-74f2-488b-80f5-6ad495e7ff7c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dXNlcjp1c2Vy",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"pass\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "46a2f1c7-176c-45b8-a56e-a0011f7017e0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ad974b3e-1fd2-4396-99ca-9f65446a888b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

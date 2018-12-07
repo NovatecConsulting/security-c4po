@@ -1,0 +1,428 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is the Java backend for the **security-c3po** (security testing protocol tool based on OWASP Testing Guide v4).
+    You can find the source code at [https://github.com/nt-ca-aqe/security-c3po](https://github.com/nt-ca-aqe/security-c3po).
+    For this sample, you can use the api key `special-key` to test the authorization filters.
+  version: 0.0.1
+  title: security-c3po
+  #termsOfService: 'http://swagger.io/terms/'
+  #contact:
+  #  email: apiteam@swagger.io
+  license:
+    name: GPL-3.0
+    url: 'https://github.com/nt-ca-aqe/security-c3po/blob/master/LICENSE'
+host: localhost:8443
+basePath: /api/v1
+tags:
+  - name: tests
+    description: 'security tests taken from **OWASP Testing Guide v4** (*read-only*)'
+  - name: projects
+    description: 'security testing projects for different clients'
+  - name: results
+    description: 'results of performed tests'
+schemes:
+  - https
+#  - http
+security:
+  - basic: []
+paths:
+  '/tests':
+    get:
+      tags:
+        - tests
+      summary: 'get all tests (by category)'
+      description: >-
+        The tests returned are all tests you can find in OWASP Testing Guide v4.
+        There should be exactly **90** tests.
+      operationId: getAllTests
+      parameters:
+        - in: query
+          name: category
+          type: string
+          description: 'supply category (ex: SESS, AUTHN, CONFIG, ...)'
+          required: false
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'return all 90 tests'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SecurityTest'
+  '/tests/{testNumber}':
+    get:
+      tags:
+        - tests
+      summary: 'get specific test'
+      produces: 
+        - application/json
+      parameters:
+          - name: testNumber
+            in: path
+            description: 'test id (ex: OTG-INPVAL-001)'
+            required: true
+            type: string
+            format: string
+      responses:
+        '200':
+          description: 'return 1 test'
+          schema:
+            $ref: '#/definitions/SecurityTest'
+        '404':
+          description: 'test number does not exist'
+  '/projects':
+    get:
+      tags:
+        - projects
+      summary: 'get all projects'
+      description: 'some description'
+      operationId: getAllProjects
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 'found and returned'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Project'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'test number does not exist'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+    post:
+      tags:
+        - projects
+      summary: 'create new project'
+      description: ''
+      operationId: addProject
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: 'project body'
+          required: true
+          schema:
+            $ref: '#/definitions/ProjectNew'
+      responses:
+        '200':
+          description: 'ok'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+  '/projects/{projectId}':
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        type: string
+        format: uuid
+      - name: api_key
+        in: header
+        required: false
+        type: string
+    get:
+      tags:
+        - projects
+      summary: 'get existing project with all current results'
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Project'
+          description: 'ok'
+        '404':
+          description: 'not found'
+      security:
+        - api_key: []
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+    delete:
+      tags:
+        - projects
+      summary: 'delete existing project'
+      responses:
+        '200':
+          description: 'ok'
+      security:
+        - api_key: []
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+  '/projects/{projectId}/results':
+    post:
+      tags:
+        - results
+      summary: 'add new result to existing project'
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        type: string
+        format: uuid
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/TestResultNew'
+      responses:
+        '200':
+          description: 'ok'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+  '/projects/{projectId}/results/{resultsId}/uploadScreenshot':
+    post:
+      tags:
+        - results
+      summary: uploads a screenshot
+      description: ''
+      operationId: uploadFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: projectId
+          in: path
+          description: 'id of project that result is contained in'
+          required: true
+          type: string
+          format: uuid
+        - name: resultsId
+          in: path
+          required: true
+          type: string
+          format: uuid
+        - name: additionalMetadata
+          in: formData
+          description: Additional data to pass to server
+          required: false
+          type: string
+        - name: file
+          in: formData
+          description: file to upload
+          required: false
+          type: file
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ApiResponse'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+  '/projects/{projectId}/results/{resultsId}':
+    parameters:
+      - name: projectId
+        in: path
+        required: true
+        type: string
+        format: uuid
+      - name: resultsId
+        in: path
+        required: true
+        type: string
+        format: uuid
+    get:
+      tags:
+        - results
+      summary: 'get result'
+      responses:
+        '200':
+          description: 'ok'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+    put:
+      tags:
+      - results
+      summary: 'modify test result'
+      operationId: modifyResult
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+      - in: body
+        name: body
+        description: 'Test results object needs to be supplied'
+        required: true
+        schema:
+          $ref: '#/definitions/TestResultNew'
+      responses:
+        '200':
+          description: 'ok'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+    delete:
+      tags:
+      - results
+      summary: 'delete test result from project'
+      responses:
+        '200':
+          description: 'ok'
+      security:
+        - oauth2:
+          - 'write:projects'
+          - 'read:projects'
+securityDefinitions:
+  basic:
+    type: basic
+  oauth2:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:projects': modify projects
+      'read:projects': read projects
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  SecurityTest:
+    type: object
+    properties:
+      id:
+        type: string
+        format: string
+        example: 'OTG-INPVAL-010'
+      category:
+        type: string
+        format: string
+        example: 'Input Validation Testing'
+      title:
+        type: string
+        format: string
+        example: 'Testing for XPath Injection'
+      description:
+        type: string
+        format: string
+      link:
+        type: string
+        format: uri
+  TestResult:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      testId:
+        type: string
+        format: string
+        example: 'OTG-INPVAL-010' 
+      projectId:
+        type: string
+        format: uuid
+      checked:
+        type: boolean
+        default: false
+        description: 'Indicates if the test has been performed yet.'
+      comment:
+        type: string
+        format: string
+        example: 'The application is vulnerable for XPath injection under the following url ...'
+      created:
+        type: string
+        format: date-time
+  TestResultNew:
+    type: object
+    properties:
+      testId:
+        type: string
+        format: string
+        example: 'OTG-INPVAL-010' 
+      checked:
+        type: boolean
+      comment:
+        type: string
+        format: string
+        example: 'The application is vulnerable for XPath injection under the following url ...'
+  Project:
+    type: object
+    required:
+      - client
+      - title
+    properties:
+      id:
+        type: string
+        format: uuid
+      client:
+        type: string
+        format: string
+      title:
+        type: string
+        format: string
+      created:
+        type: string
+        format: date-time
+      testResults:
+        type: array
+        items:
+          $ref: '#/definitions/TestResult'
+      accessLinks:
+        type: array
+        items:
+          $ref: '#/definitions/AccessLink'
+  AccessLink:
+    type: object
+    required:
+      - password
+      - active
+      - permissions
+    properties:
+      id:
+        type: string
+        format: uuid
+      password:
+        type: string
+        format: password
+      active:
+        type: boolean
+        default: true
+      created:
+        type: string
+        format: date-time
+      permissions:
+        type: string
+        description: ''
+        enum:
+          - read-only
+          - comment
+        default: read-only
+  ProjectNew:
+    type: object
+    properties:
+      client:
+        type: string
+        example: 'E Corp'
+      title:
+        type: string
+        example: 'API Scan - CreditCash App (v2.1)'
+  ApiResponse:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string      
+externalDocs:
+  description: README
+  url: 'https://github.com/nt-ca-aqe/security-c3po/blob/master/README.md'
