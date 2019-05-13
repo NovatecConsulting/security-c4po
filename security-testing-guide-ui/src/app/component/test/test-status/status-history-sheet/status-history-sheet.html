@@ -1,0 +1,16 @@
+<ng-container *ngIf="testStatusService.testStatus$ | async as testStatuses">
+  <mat-list *ngFor="let historyItem of testStatuses">
+    <mat-list-item>
+      <div style="width: 50%;">
+        <b>{{historyItem.testProgress}}</b>
+      </div>
+      <div style="width: 40%;">
+        <a style="float: right;">({{historyItem.created}})</a>
+      </div>
+      <div class="delete-button" style="width: 10%;">
+        <button mat-icon-button style="float: right;" (click)="deleteStatus(historyItem.id)"><i
+          class="fa fa-lg fa-trash warn"></i></button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</ng-container>

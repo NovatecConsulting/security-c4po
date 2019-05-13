@@ -1,0 +1,9 @@
+<div class="row justify-content-center">
+  <div class="col-12">
+    <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" *ngFor="let category of categories; let i = index;">
+      <li class="nav-item" [ngClass]="{'active': category.active}" [class.active]="index === i">
+      <a class="nav-link" data-toggle="pill" role="tab" [routerLink]="" (click)="setCategory(category); setIndex(i);">{{categoryMap.get(category)}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

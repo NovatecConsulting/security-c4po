@@ -1,0 +1,9 @@
+<ng-container *ngIf="findingService.findings$ | async as findings">
+  <h4>Findings ({{findings.length}})</h4>
+  <ul class="list-group">
+    <li *ngFor="let finding of findings" class="list-group-item" (click)="editFinding(finding.id)">
+        <b>{{finding.title}}</b>
+        <h4 style="margin-bottom: 0;"><span class="badge badge-secondary">{{finding.severity}}</span></h4>
+    </li>
+  </ul>
+</ng-container>

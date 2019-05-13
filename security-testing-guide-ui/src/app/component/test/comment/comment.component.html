@@ -1,0 +1,8 @@
+<ng-container *ngIf="commentService.comments$ | async as comments">
+  <h4>Comments ({{comments.length}})</h4>
+  <ul>
+    <li *ngFor="let comment of comments">
+      <b>{{comment.id}}</b>
+    </li>
+  </ul>
+</ng-container>

@@ -1,0 +1,89 @@
+@import '~src/_variables.scss';
+
+.dialogTitle {
+  margin: 0;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: space-around;
+  min-height: 0;
+  margin-bottom: -8px;
+  padding: 0;
+}
+
+.mat-flat-button {
+  font-weight: 700;
+}
+
+.fixActionRow {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+hr {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.list-group-item {
+  font-family: Roboto Condensed, sans-serif;
+  font-size: inherit;
+  height: 50px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-group-item .mat-icon-button {
+  visibility: hidden;
+}
+
+.list-group-item:hover .mat-icon-button {
+  visibility: visible;
+}
+
+.add-url:hover {
+  background: #E5E5E5;
+  cursor: pointer;
+}
+
+.fa-trash {
+  color: $warn;
+}
+
+.fa-plus {
+  color: $accent;
+}
+
+/deep/ .mat-select-value {
+  color: $accent;
+  font-weight: 700;
+}
+
+// hover color
+///deep/ .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+//  color: $accent;
+//}
+
+// active color
+/deep/ .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $accent;
+}
+
+.affected-urls-label {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  color: $accent;
+}
+
+.full-width {
+  width: 100%;
+}

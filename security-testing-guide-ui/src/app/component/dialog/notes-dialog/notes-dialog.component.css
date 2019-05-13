@@ -1,0 +1,9 @@
+.spacer {
+  /*justify-content: space-around;*/
+  /*flex: 0 1 auto;*/
+  margin: 15px;
+}
+
+mat-form-field {
+  width: 100%;
+}

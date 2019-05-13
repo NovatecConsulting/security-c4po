@@ -1,0 +1,11 @@
+<h1 mat-dialog-title class="dialogTitle">{{item.title}}<button mat-mini-fab color="primary" (click)="openLink(item.link)"><i class="fa fa-external-link"></i></button></h1>
+<div mat-dialog-content>
+  <ul>
+    <li *ngFor="let i of list">
+      {{ i }}
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-flat-button color="accent" [matDialogClose]="item" (click)="onOkClick()">Ok</button>
+</div>

@@ -1,0 +1,21 @@
+@import "~src/_variables.scss";
+
+.frame {
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 25px;
+  //box-sizing: border-box;
+}
+
+.center {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pad-left {
+  padding-left: 10px;
+}
+
+.mat-flat-button {
+  font-weight: 700;
+}

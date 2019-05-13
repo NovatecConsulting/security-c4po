@@ -1,0 +1,39 @@
+@import "../../../../variables";
+
+mat-card {
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  color: $primary;
+  font-weight: 700;
+}
+
+mat-card-content {
+  font-size: 16px;
+}
+
+mat-card-header {
+  justify-content: center;
+  /*background-color: #80deea;*/
+}
+
+.fa {
+  padding-left: 10px;
+}
+
+.create-button {
+  font-weight: 700;
+  color: white;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-content {
+  width:80%;
+  margin-left: auto;
+  margin-right: auto;
+}

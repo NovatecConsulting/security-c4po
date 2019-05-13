@@ -1,0 +1,13 @@
+@import '~src/_variables.scss';
+
+.mat-list-item .delete-button {
+  visibility: hidden;
+}
+
+.mat-list-item:hover .delete-button {
+  visibility: visible;
+}
+
+.warn {
+  color: $warn;
+}

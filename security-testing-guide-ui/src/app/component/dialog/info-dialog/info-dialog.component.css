@@ -1,0 +1,11 @@
+.mat-dialog-title {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.dialogTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

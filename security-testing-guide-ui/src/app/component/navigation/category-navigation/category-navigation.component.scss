@@ -1,0 +1,45 @@
+@import "~src/_variables";
+
+button {
+  width: 100%;
+  text-align: left;
+}
+
+mat-button-toggle-group {
+  width: 100%;
+  text-align: left;
+}
+
+mat-button-toggle {
+  text-align: left;
+}
+
+.nav-link {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  width: 100%;
+}
+
+//.nav-pills > a.active,
+//.nav-pills > a:hover,
+//.nav-pills > a:focus {
+//  color:white;
+//  background-color: $accent;
+//}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: white;
+  background-color: $accent;
+}
+
+.nav-pills > li > a {
+  color: $accent;
+}
+
+.nav-pills > li > a:hover {
+  background-color: #E5E5E5;
+}

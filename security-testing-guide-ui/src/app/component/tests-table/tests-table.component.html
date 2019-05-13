@@ -1,0 +1,110 @@
+<div class="align-content-center" *ngIf="isLoading">
+  <mat-spinner color="accent" [diameter]="24" style="margin:0 auto;"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="testNumber"> {{element.id}} </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.statuses !== undefined">
+          <ng-container *ngIf="element.statuses.length == 0">
+            <div class="status">OPEN</div>
+          </ng-container>
+          <ng-container *ngIf="element.statuses.length > 0">
+            <div class="status"> {{element.statuses[element.statuses.length - 1].testProgress}} </div>
+          </ng-container>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="findings">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Findings</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.findings !== undefined">
+          <i *ngIf="element.findings.length > 0" class="fa fa-exclamation-triangle fa-lg red pad-left">
+            <a
+              style="font-family: Roboto Condensed, sans-serif; font-size: 18px; padding-left: 6px; font-weight: 700;">{{element.findings.length}}</a>
+          </i>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- ############################### UNUSED ################################ -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No.</th>
+      <td mat-cell class="bold" *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight</th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol</th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description</th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checked">
+      <th mat-header-cell *matHeaderCellDef> Checked</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox color="accent" class="custom-checkbox" [(ngModel)]=element.checked
+                      (change)="checkTest(element)"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef> Notes</th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="element.comment.length > 0" mat-stroked-button color="accent"
+                (click)="editNotes(element.testNumber)"><i class="fa fa-comment-o"></i></button>
+        <button *ngIf="element.comment.length == 0" mat-stroked-button (click)="editNotes(element.testNumber)"><i
+          class="fa fa-comment-o"></i></button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="info">
+      <th mat-header-cell *matHeaderCellDef> Info</th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="element.description.length > 0" mat-stroked-button color="accent"
+                (click)="showInfo(element.testNumber)"><i class="fa fa-info"></i></button>
+        <button *ngIf="element.description.length == 0" mat-stroked-button disabled><i class="fa fa-info"></i></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="testClicked(row)"></tr>
+  </table>
+</div>

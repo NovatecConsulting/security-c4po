@@ -1,0 +1,37 @@
+<mat-card class="example-card mat-elevation-z6">
+  <mat-card-header>
+    <!--<div mat-card-avatar class="example-header-image"></div>-->
+    <mat-card-title class="title">New Project</mat-card-title>
+    <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
+  </mat-card-header>
+  <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+
+  <form [formGroup]="projectForm" autocomplete="off" novalidate (ngSubmit)="createProject()" fxLayout="column wrap"
+        fxLayoutAlign="center center" fxLayoutGap="10px">
+
+    <mat-card-content>
+      <section class="info-section">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" placeholder="Client" formControlName="clientName" id="clientName">
+          <!--<mat-hint align="end">Not more then 60 characters long.</mat-hint>-->
+          <mat-error *ngIf="hasError('clientName', 'required')">Client name is required</mat-error>
+        </mat-form-field>
+      </section>
+      <br>
+      <section class="info-section">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" placeholder="Project title" formControlName="titleName" id="titleName">
+          <mat-hint align="end">Example: "myApi (v1.2) Audit"</mat-hint>
+          <mat-error *ngIf="hasError('titleName', 'required')">Project title is required</mat-error>
+        </mat-form-field>
+      </section>
+
+    </mat-card-content>
+
+    <mat-card-actions align="center">
+      <button mat-flat-button class="create-button" color="accent" [disabled]="!projectForm.valid">CREATE<i class="fa fa-plus"></i></button>
+    </mat-card-actions>
+
+  </form>
+
+</mat-card>

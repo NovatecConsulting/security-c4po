@@ -1,0 +1,126 @@
+@import '~src/_variables.scss';
+
+//.fixActionRow {
+//  height: 100%;
+//  display: flex;
+//  flex-direction: column;
+//}
+
+//.card-fix-container {
+//  box-sizing: border-box;
+//  height: 100%;
+//  display: flex;
+//  flex-direction: column;
+//
+//  .mat-card-content {
+//    flex: 1;
+//  }
+//
+//  & > .mat-card-actions:last-child {
+//    margin-bottom: -16px;
+//    padding-bottom: 0;
+//  }
+//}
+
+.navbar-custom {
+  background: #E5E5E5;
+}
+
+.navbar {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.navbar-collapse {
+  height: 50px;
+}
+
+#navbar > ul {
+  display: table-row;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  /*height: 40px;*/
+}
+
+#navbar > ul > li {
+  display: table-cell;
+  float: none;
+  vertical-align: middle;
+}
+
+/deep/ .mat-checkbox-layout {
+  margin-bottom: 0;
+}
+
+/*--------------------------------------*/
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+mat-card-header {
+  justify-content: center;
+  /*background-color: #80deea;*/
+}
+
+mat-card-content {
+  font-size: 16px;
+}
+
+mat-card img {
+  object-fit: scale-down;
+  height: 200px;
+}
+
+.badge {
+  font-size: 16px;
+}
+
+.example-card {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.info-section {
+  display: flex;
+  /*justify-content: center;*/
+  flex-direction: column;
+  align-content: center;
+  /*align-items: center;*/
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.example-margin {
+  //margin: 0 10px;
+  text-align: left;
+}
+
+.left-right-align {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-button {
+  height: 38px;
+  width: 105px;
+}

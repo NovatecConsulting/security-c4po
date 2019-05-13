@@ -1,0 +1,98 @@
+@import "~src/_variables.scss";
+
+.project {
+  padding-top: 25px;
+}
+
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: relative;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 15px;
+}
+
+/* Control the left side */
+.left {
+  position: relative;
+  left: 0;
+  width: 50%;
+  /*background-color: #111;*/
+}
+
+/* Control the right side */
+.right {
+  position: relative;
+  right: 0;
+  width: 50%;
+  /*background-color: red;*/
+}
+
+.tests {
+  padding-left: 25px;
+}
+
+.info-section {
+  display: flex;
+  //margin-top: 16px;
+  //align-content: center;
+  //height: 80px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.my-badges-align {
+  flex: 0 0 auto;
+}
+
+ul {
+  padding-left: 16px;
+}
+
+.pad-left {
+  padding-left: 10px;
+}
+
+.align-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.info-section {
+  display: flex;
+  justify-content: center;
+  //vertical-align: middle;
+}
+
+.primary {
+  //color: #00c853;
+  color: $primary;
+}
+
+.red {
+  color: $warn;
+}
+
+.accent {
+  color: $accent;
+}
+
+.mat-expansion-panel-header.mat-expanded,
+.mat-expansion-panel-header.mat-expanded:hover,
+.mat-expansion-panel-header.mat-expanded:focus {
+  //background-color: #E7E7E7;
+  background: $accent;
+  color: white !important;
+  //background: $primary;
+}
+
+.small-spinner {
+  color: $accent;
+  width: 24px;
+  height: 24px;
+}

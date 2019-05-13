@@ -1,0 +1,25 @@
+@import '../../../../variables';
+
+/deep/ .mat-step-header .mat-step-icon-selected {
+  background: $accent !important;
+}
+
+/deep/ .mat-bottom-sheet-container {
+  min-width: 512px !important;
+}
+
+.center {
+  display: flex;
+  justify-content: space-around;
+}
+
+/deep/ .mat-horizontal-content-container {
+  display: none !important;
+}
+
+/deep/ .mat-step-icon {
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 25% !important;
+  background: $primary !important;
+}

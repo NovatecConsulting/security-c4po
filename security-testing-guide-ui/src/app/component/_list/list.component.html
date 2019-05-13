@@ -1,0 +1,54 @@
+<!--<mat-accordion>-->
+
+  <mat-expansion-panel *ngFor="let category of categoryMapKeys" class="my-headers-align">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class="category">{{categoryMap.get(category)}}</div>
+      </mat-panel-title>
+      <mat-panel-description class="my-badges-align">
+        <h6><span *ngIf="countUnchecked(category) > 0" class="badge badge-dark">{{countChecked(category)}} / {{dataSourceMap.get(category).data.length}}</span></h6>
+        <h6><span *ngIf="countUnchecked(category) == 0" class="badge badge-cyan">{{countChecked(category)}} / {{dataSourceMap.get(category).data.length}}</span></h6>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <table mat-table [dataSource]=dataSourceMap.get(category) matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let element"> <div class="testNumber">{{element.id}}</div> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="checked">
+        <th mat-header-cell *matHeaderCellDef> Checked </th>
+        <td mat-cell *matCellDef="let element"> <mat-checkbox color="accent" class="custom-checkbox" [(ngModel)]=element.checked (change)="checkTest(element)"></mat-checkbox> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef> Notes </th>
+        <td mat-cell *matCellDef="let element">
+          <button *ngIf="element.comment.length > 0" mat-stroked-button color="accent" (click)="editNotes(element.testNumber)"><i class="fa fa-comment-o"></i></button>
+          <button *ngIf="element.comment.length == 0" mat-stroked-button (click)="editNotes(element.testNumber)"><i class="fa fa-comment-o"></i></button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="info">
+        <th mat-header-cell *matHeaderCellDef> Info </th>
+        <td mat-cell *matCellDef="let element">
+          <button *ngIf="element.description.length > 0" mat-stroked-button color="accent" (click)="showInfo(element.testNumber)"><i class="fa fa-info"></i></button>
+          <button *ngIf="element.description.length == 0" mat-stroked-button disabled><i class="fa fa-info"></i></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </mat-expansion-panel>
+
+<!--</mat-accordion>-->

@@ -1,0 +1,65 @@
+@import "~src/_variables";
+
+.title {
+  padding-left: 15px;
+}
+
+.accent {
+  color: $accent;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.navbar-brand div {
+  width: 100%;
+  display: block;
+  text-align: right;
+}
+
+.navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//.navbar .navbar-nav {
+//  display: inline-block;
+//  float: none;
+//  vertical-align: top;
+//}
+//
+//.navbar .navbar-collapse {
+//  text-align: center;
+//}
+
+.navbar {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.login {
+  float: right;
+}
+
+.fa {
+  padding-left: 10px;
+}
+
+li {
+  margin-left: 25px;
+}
+
+.role {
+  color: $accent;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 35px;
+}

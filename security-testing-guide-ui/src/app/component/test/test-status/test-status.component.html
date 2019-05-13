@@ -1,0 +1,16 @@
+<div style="display: flex;">
+  <div style="width: 90%; float: left; display: flex; justify-content: center;">
+    <mat-horizontal-stepper labelPosition="bottom" [selectedIndex]="selectedIndex"
+                            (selectionChange)="selectionChange($event)" #stepper>
+
+      <mat-step *ngFor="let testProgress of testProgressSteps" [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>{{testProgress}}</ng-template>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+  </div>
+
+  <div style="width: 10%; display: flex; align-items: center; justify-content: center;">
+    <button mat-mini-fab color="primary" (click)="showStatusHistory()"><i class="fa fa-lg fa-history"></i></button>
+  </div>
+</div>

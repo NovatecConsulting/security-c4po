@@ -1,0 +1,42 @@
+@import "~src/_variables.scss";
+
+.navbar-custom {
+  background: #E5E5E5;
+}
+
+.navbar {
+  font-family: Roboto Condensed, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+#navbar > ul {
+  display: table-row;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  /*height: 40px;*/
+}
+
+#navbar > ul > li {
+  display: table-cell;
+  float: none;
+  vertical-align: middle;
+}
+
+.description {
+  margin-left: 25px;
+  //padding-left: 25px;
+}
+
+.description {
+  margin-left: 25px;
+}
+
+.navbar-collapse {
+  height: 50px;
+}

@@ -1,0 +1,23 @@
+<app-test-navigation></app-test-navigation>
+
+<div class="mat-elevation-z8 frame">
+  <app-test-status></app-test-status>
+  <hr>
+  <i> Some info ...</i>
+  <hr>
+  <app-findings-collection></app-findings-collection>
+  <div class="align-content-center">
+    <mat-spinner color="accent" [diameter]="24" style="margin:0 auto;" *ngIf="!findingsLoaded"></mat-spinner>
+  </div>
+  <hr>
+  <app-comment></app-comment>
+  <div class="align-content-center">
+    <mat-spinner color="accent" [diameter]="24" style="margin:0 auto;" *ngIf="!commentsLoaded"></mat-spinner>
+  </div>
+  <hr>
+  <div class="center">
+    <button mat-flat-button disabled color="accent" (click)="addComment()">ADD COMMENT
+      <i class="fa fa-plus pad-left"></i></button>
+    <button mat-flat-button color="warn" (click)="addFinding()">ADD FINDING<i class="fa fa-plus pad-left"></i></button>
+  </div>
+</div>

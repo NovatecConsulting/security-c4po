@@ -1,0 +1,81 @@
+<div class="fixActionRow">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <h1 mat-dialog-title class="dialogTitle"><b>{{finding?.title}}</b></h1>
+      <h6 style="font-size: 0.75em; color: gray;">{{finding?.id}} - <b>{{finding?.testId}}</b></h6>
+    </div>
+    <!--<div style="width: 10%;">-->
+    <mat-form-field color="accent">
+      <mat-select [(ngModel)]="finding.severity" disableRipple>
+        <mat-option *ngFor="let severityLevel of severityLevels" [value]="severityLevel">{{severityLevel}}</mat-option>
+      </mat-select>
+      <mat-hint>Severity</mat-hint>
+    </mat-form-field>
+    <!--</div>-->
+  </div>
+
+  <hr>
+
+  <div mat-dialog-content>
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Description"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5">{{finding.description}}</textarea>
+    </mat-form-field>
+    <!-- Impact -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Impact</mat-label>
+      <textarea matInput placeholder="Impact"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5">{{finding.impact}}</textarea>
+    </mat-form-field>
+    <!-- Affected URLs -->
+    <div style="padding-bottom: 25px;">
+      <div style="padding-bottom: 10px;"><a class="affected-urls-label">Affected URLs</a></div>
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let url of urls">
+            <div>{{url}}</div>
+            <button mat-icon-button (click)="deleteUrl(url)"><i
+              class="fa fa-lg fa-trash warn"></i></button>
+          </li>
+          <li class="list-group-item add-url" style="display: flex; justify-content: center;" (click)="addUrl()">
+            <i class="fa fa-lg fa-plus"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Mitigation -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mitigation</mat-label>
+      <textarea matInput placeholder="Mitigation"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5">{{finding.mitigation}}</textarea>
+    </mat-form-field>
+    <!-- Reproduction -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Reproduction</mat-label>
+      <textarea matInput placeholder="Reproduction"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5">{{finding.reproduction}}</textarea>
+    </mat-form-field>
+  </div>
+  <div class="spacer"></div>
+  <hr>
+  <div mat-dialog-actions class="dialog-buttons">
+    <button mat-button color="warn" (click)="onDeleteClick()"><i class="fa fa-trash fa-lg"></i></button>
+    <button mat-flat-button color="primary" (click)="onCancelClick()">CANCEL</button>
+    <button mat-flat-button color="accent" [mat-dialog-close]="finding.title" (click)="onOkClick()">SAVE</button>
+  </div>
+
+</div>
