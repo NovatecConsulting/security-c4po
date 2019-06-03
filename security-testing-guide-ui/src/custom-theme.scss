@@ -17,7 +17,7 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent);
 @include angular-material-theme($custom-theme);
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Roboto Condensed'
+  $font-family: '"Roboto Condensed", sans-serif'
 );
 
 @include angular-material-typography($custom-typography);

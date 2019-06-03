@@ -16,7 +16,6 @@ public class ProjectTest {
         Project project = new Project();
         String result = new ObjectMapper().writeValueAsString(project);
         assertThat(result, containsString("selectedLogoTester"));
-
     }
 
 }

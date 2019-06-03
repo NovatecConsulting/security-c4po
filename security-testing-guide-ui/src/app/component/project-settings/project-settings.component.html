@@ -113,7 +113,7 @@
         <mat-card-content>
           <!--<mat-card-content>-->
 
-          <ng-container *ngIf="projectService.project$ | async as project">
+          <ng-container *ngIf="projectService.projectDetails$ | async as project">
             <section class="info-section" style="padding-bottom: 0;">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Project name" [(ngModel)]="project.title"
@@ -123,7 +123,7 @@
 
             <section class="info-section" style="flex-direction: column;">
               <div class="left-right-align">
-                Created on <b>{{project.created}}</b>
+                Created on <b>{{project.createdAt}}</b>
               </div>
               <div class="left-right-align">
                 Last modified on <b>{{now | date : 'dd MMM yyyy - HH:mm:ss'}}</b>

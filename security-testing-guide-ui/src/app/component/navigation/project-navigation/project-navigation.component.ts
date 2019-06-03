@@ -16,7 +16,7 @@ export class ProjectNavigationComponent implements OnInit {
               private store: GlobalStore,
               private router: Router,
               private sharedService: SharedService,
-              private projectService: ProjectService) { }
+              public projectService: ProjectService) { }
 
   ngOnInit() {
   }

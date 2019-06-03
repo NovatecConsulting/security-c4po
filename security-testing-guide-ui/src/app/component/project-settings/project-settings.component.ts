@@ -65,7 +65,7 @@ export class ProjectSettingsComponent implements OnInit {
               private apiService: ApiService,
               private router: Router,
               public dashboardService: DashboardService,
-              private projectService: ProjectService) {
+              public projectService: ProjectService) {
   }
 
   ngOnInit() {

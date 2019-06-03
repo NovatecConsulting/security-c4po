@@ -76,7 +76,7 @@ export class TestStatusComponent implements OnInit {
 })
 export class StatusHistorySheetComponent {
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: TestStatus[],
-              private testStatusService: TestStatusService) {
+              public testStatusService: TestStatusService) {
   }
 
   deleteStatus(id: string) {

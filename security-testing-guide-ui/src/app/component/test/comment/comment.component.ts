@@ -8,7 +8,7 @@ import {CommentService} from './comment.service';
 })
 export class CommentComponent implements OnInit {
 
-  constructor(private commentService: CommentService) { }
+  constructor(public commentService: CommentService) { }
 
   ngOnInit() {
   }

@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   projectsLoaded = false;
 
-  constructor(private dashboardService: DashboardService,
+  constructor(public dashboardService: DashboardService,
               private router: Router) {
   }
 

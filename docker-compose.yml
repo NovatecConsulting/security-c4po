@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  api:
+    build: './security-testing-guide-api'
+    ports:
+      - '8443:8443'
+  ui:
+    build: './security-testing-guide-ui'
+    ports:
+      - '443:443'
