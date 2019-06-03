@@ -6,6 +6,7 @@ import {ProjectSettingsComponent} from './component/project-settings/project-set
 import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {ProjectComponent} from './component/project/project.component';
 import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
+import {OktaCallbackComponent} from '@okta/okta-angular';
 
 const appRoutes: Routes = [
   {
@@ -40,6 +41,10 @@ const appRoutes: Routes = [
   {
     path: 'projects/:id',
     component: ProjectComponent
+  },
+  {
+    path: 'implicit/callback',
+    component: OktaCallbackComponent
   },
   {
     path: '**',

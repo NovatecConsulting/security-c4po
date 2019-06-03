@@ -11,7 +11,8 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto" *ngIf="currentUser">
+    <ul class="navbar-nav mr-auto" *ngIf="user">
+      <a style="color: white">{{user.email}}</a>
       <!--<li class="nav-item">
         <button mat-stroked-button color="accent" routerLink="/manage" style="border-color: #80deea;">MANAGE<i class="fa fa-cog"></i></button>
       </li>-->
@@ -29,13 +30,14 @@
       <!--</li>-->
     </ul>
     <ul class="nav navbar-nav pull-right">
-      <li class="role" *ngIf="currentUser">
-        <a>Role: {{currentUser.role}}</a>
+<!--      <a style="color: white">{{user.email}}</a>-->
+      <li class="role" *ngIf="user">
+        <a>Role: {{user.role}}</a>
         <!--<a>Project: {{currentProject}}</a>-->
       </li>
       <li class="login">
-        <!--<a *ngIf="!currentUser" class="nav-link" routerLink="/login"><button type="button" class="btn btn-outline-light">LOGIN</button></a>-->
-        <a *ngIf="currentUser" class="nav-link" (click)="logout()" style="padding: 0;">
+        <!--<a *ngIf="!user" class="nav-link" routerLink="/login"><button type="button" class="btn btn-outline-light">LOGIN</button></a>-->
+        <a *ngIf="isAuthenticated" class="nav-link" (click)="logout()" style="padding: 0;">
           <button type="button" class="btn btn-outline-light">LOGOUT</button>
         </a>
       </li>

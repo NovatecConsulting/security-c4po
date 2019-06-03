@@ -26,6 +26,8 @@ import {CommentComponent} from './component/test/comment/comment.component';
 import {TestsTableComponent} from './component/tests-table/tests-table.component';
 import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
 import {TestNavigationComponent} from './component/navigation/test-navigation/test-navigation.component';
+import {FindingComponent} from './component/test/finding/finding.component';
+import {OktaAuthModule, OktaCallbackComponent} from '@okta/okta-angular';
 // Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatBottomSheetModule, MatButtonModule, MatCheckboxModule} from '@angular/material';
@@ -58,7 +60,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
-import { FindingComponent } from './component/test/finding/finding.component';
+
+const config = {
+  issuer: 'https://dev-308298.okta.com/oauth2/default',
+  redirectUri: 'https://localhost/implicit/callback',
+  clientId: '0oao3vimbi880l92d356'
+};
 
 @NgModule({
   declarations: [
@@ -124,7 +131,8 @@ import { FindingComponent } from './component/test/finding/finding.component';
     MatPaginatorModule,
     MatBadgeModule,
     ReactiveFormsModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    OktaAuthModule.initAuth(config)
   ],
   providers: [
     {

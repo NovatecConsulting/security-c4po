@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DashboardService} from './dashboard.service';
+import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,15 @@ import {DashboardService} from './dashboard.service';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   projectsLoaded = false;
+  accessToken: String;
 
   constructor(public dashboardService: DashboardService,
-              private router: Router) {
+              private router: Router,
+              private oktaAuth: OktaAuthService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.accessToken = await this.oktaAuth.getAccessToken();
     this.dashboardService.getAllProjects().then(successful => {
       this.projectsLoaded = successful;
     });

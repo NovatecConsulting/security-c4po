@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../component/alert/alert.service';
+import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({
   selector: 'app-login',
@@ -17,29 +18,54 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
+  isAuthenticated: boolean;
+
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private loginService: LoginService,
-              private alertService: AlertService) {
-    if (this.loginService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+              private alertService: AlertService,
+              public oktaAuth: OktaAuthService) {
+
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    );
+
+    // if (this.loginService.currentUserValue) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
-  ngOnInit() {
-    localStorage.clear();
+  async ngOnInit() {
+
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+
+    // localStorage.clear();
+    /*if (localStorage.getItem('username')) {
+    }
     this.loginForm = this.formBuilder.group({
       username: ['user', Validators.required],
       password: ['user', Validators.required]
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    */
   }
+
 
   get f() {
     return this.loginForm.controls;
   }
 
+
+  login() {
+    this.oktaAuth.loginRedirect('/dashboard');
+  }
+
+  onSubmit() {
+    /* remove */
+  }
+
+  /*
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -56,5 +82,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
       });
   }
+  */
 
 }
