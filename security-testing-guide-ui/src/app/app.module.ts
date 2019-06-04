@@ -12,6 +12,7 @@ import {Routing} from './app.routing';
 import {ProjectSettingsComponent} from './component/project-settings/project-settings.component';
 import {NotesDialogComponent} from './component/dialog/notes-dialog/notes-dialog.component';
 import {InfoDialogComponent} from './component/dialog/info-dialog/info-dialog.component';
+import {HelpDialogComponent} from './component/dialog/help-dialog/help-dialog.component';
 import {GlobalStore} from './store/global.store';
 import {AlertComponent} from './component/alert/alert.component';
 import {NewProjectComponent} from './component/dashboard/new-project/new-project.component';
@@ -61,10 +62,11 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
 
-const config = {
+const oktaConfig = {
   issuer: 'https://dev-308298.okta.com/oauth2/default',
-  redirectUri: 'https://localhost/implicit/callback',
-  clientId: '0oao3vimbi880l92d356'
+  redirectUri: 'https://localhost:4200/implicit/callback',
+  clientId: '0oao3vimbi880l92d356',
+  scope: 'openid email profile'
 };
 
 @NgModule({
@@ -74,6 +76,7 @@ const config = {
     ProjectSettingsComponent,
     NotesDialogComponent,
     InfoDialogComponent,
+    HelpDialogComponent,
     LoginComponent,
     ProjectSettingsComponent,
     AlertComponent,
@@ -90,7 +93,8 @@ const config = {
     TestFrameComponent,
     TestNavigationComponent,
     StatusHistorySheetComponent,
-    FindingComponent
+    FindingComponent,
+    HelpDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +136,7 @@ const config = {
     MatBadgeModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
-    OktaAuthModule.initAuth(config)
+    OktaAuthModule.initAuth(oktaConfig)
   ],
   providers: [
     {
@@ -146,6 +150,7 @@ const config = {
     TestFrameComponent,
     NotesDialogComponent,
     InfoDialogComponent,
+    HelpDialogComponent,
     StatusHistorySheetComponent,
     FindingComponent
   ],

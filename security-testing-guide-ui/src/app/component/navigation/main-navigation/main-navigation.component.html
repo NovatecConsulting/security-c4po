@@ -1,42 +1,32 @@
+<mat-toolbar>
+  <a class="navbar-brand" href="#">
+    <i class="swg swg-c3po-3 swg-2x accent"></i>
+    <a class="accent title">Security C-3PO</a>
+  </a>
+  <button mat-icon-button color="accent" (click)="showHelp()"><mat-icon>help</mat-icon></button>
+  <span class="fill-remaining-space"></span>
+  <span *ngIf="isAuthenticated" style="color: white; margin-right: 35px; font-size: 16px;">{{user?.name}}</span>
+  <span *ngIf="isAuthenticated" class="role">{{user?.role}}</span>
+  <button *ngIf="isAuthenticated" type="button" class="btn btn-outline-light" (click)="logout()">LOGOUT</button>
+</mat-toolbar>
+
+<!--
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">
-      <!--<i class="fa fa-eye accent"></i>-->
       <i class="swg swg-c3po-3 swg-2x accent"></i>
       <span class="accent title">Security C-3PO</span>
     </a>
   </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
-          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto" *ngIf="user">
       <a style="color: white">{{user.email}}</a>
-      <!--<li class="nav-item">
-        <button mat-stroked-button color="accent" routerLink="/manage" style="border-color: #80deea;">MANAGE<i class="fa fa-cog"></i></button>
-      </li>-->
-      <!--<li class="nav-item">
-        <button mat-stroked-button color="accent" routerLink="/new" style="border-color: #80deea;">NEW<i class="fa fa-plus"></i></button>
-      </li>-->
-      <!--<li class="nav-item">
-        <button mat-stroked-button color="accent" routerLink="/tests" style="border-color: #80deea;">TESTS<i class="fa fa-user-secret"></i></button>
-      </li>
-      <li class="nav-item">
-        <button mat-stroked-button color="accent" routerLink="/share" style="border-color: #80deea;">SHARE<i class="fa fa-share"></i></button>
-      </li>-->
-      <!--<li class="nav-item">-->
-      <!--<button mat-stroked-button color="accent" routerLink="/projects" style="border-color: #80deea;">PROJECTS</button>-->
-      <!--</li>-->
     </ul>
     <ul class="nav navbar-nav pull-right">
-<!--      <a style="color: white">{{user.email}}</a>-->
       <li class="role" *ngIf="user">
         <a>Role: {{user.role}}</a>
-        <!--<a>Project: {{currentProject}}</a>-->
       </li>
       <li class="login">
-        <!--<a *ngIf="!user" class="nav-link" routerLink="/login"><button type="button" class="btn btn-outline-light">LOGIN</button></a>-->
         <a *ngIf="isAuthenticated" class="nav-link" (click)="logout()" style="padding: 0;">
           <button type="button" class="btn btn-outline-light">LOGOUT</button>
         </a>
@@ -44,3 +34,4 @@
     </ul>
   </div>
 </nav>
+-->

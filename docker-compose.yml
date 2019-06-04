@@ -8,4 +8,4 @@ services:
   ui:
     build: './security-testing-guide-ui'
     ports:
-      - '443:443'
+      - '4200:443'

@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
+    if (!await this.oktaAuth.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.accessToken = await this.oktaAuth.getAccessToken();
     this.dashboardService.getAllProjects().then(successful => {
       this.projectsLoaded = successful;

@@ -49,6 +49,12 @@ export class LoginComponent implements OnInit {
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     */
+
+    if (this.isAuthenticated === true) {
+      console.log(this.isAuthenticated)
+      this.router.navigate(['/dashboard']);
+    }
+
   }
 
 

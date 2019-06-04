@@ -1,4 +1,4 @@
 export enum Role {
-  TESTER,
-  VIEWER
+  Tester = 'TESTER',
+  Viewer = 'VIEWER'
 }

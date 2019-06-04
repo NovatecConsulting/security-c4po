@@ -1,16 +1,16 @@
 @import "~src/_variables";
 
+mat-toolbar {
+  background-color: #343a40 !important;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
 .title {
   padding-left: 15px;
 }
 
-.accent {
-  color: $accent;
-}
-
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
+.fill-remaining-space {
   flex: 1 1 auto;
 }
 
@@ -24,40 +24,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-//.navbar .navbar-nav {
-//  display: inline-block;
-//  float: none;
-//  vertical-align: top;
-//}
-//
-//.navbar .navbar-collapse {
-//  text-align: center;
-//}
-
-.navbar {
-  font-family: Roboto Condensed, sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  border-radius: 5px;
-}
-
-.login {
-  float: right;
+  text-decoration: none;
+  color: $accent;
 }
 
 .fa {
   padding-left: 10px;
 }
 
-li {
-  margin-left: 25px;
-}
-
 .role {
   color: $accent;
   font-weight: 500;
+  font-size: 16px;
+  font-style: italic;
   display: flex;
   justify-content: center;
   flex-direction: column;
