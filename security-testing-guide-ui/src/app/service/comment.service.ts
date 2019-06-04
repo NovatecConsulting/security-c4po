@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Model, ModelFactory} from '@angular-extensions/model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {SharedService} from '../../../service/shared.service';
-import {Comment} from './comment';
+import {SharedService} from './shared.service';
+import {Comment} from '../model/security-test/comment';
 
 @Injectable({
   providedIn: 'root'

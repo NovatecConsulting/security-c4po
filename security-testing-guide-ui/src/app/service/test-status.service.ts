@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Model, ModelFactory} from '@angular-extensions/model';
-import {TestStatus} from './test-status';
+import {TestStatus} from '../model/security-test/test-status';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 

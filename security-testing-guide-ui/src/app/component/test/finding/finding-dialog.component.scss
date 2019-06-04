@@ -1,5 +1,12 @@
 @import '~src/_variables.scss';
 
+.input-label{
+  background:rgba(0,0,0,0);
+  border:none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .dialogTitle {
   margin: 0;
 }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Model, ModelFactory} from '@angular-extensions/model';
 import {Observable} from 'rxjs';
-import {Project} from '../project/project';
+import {Project} from '../model/project';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 

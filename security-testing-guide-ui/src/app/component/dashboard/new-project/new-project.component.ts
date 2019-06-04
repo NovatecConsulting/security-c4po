@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../../service/api.service';
-import {Project} from '../../project/project';
-import {DashboardService} from '../dashboard.service';
+import {Project} from '../../../model/project';
+import {DashboardService} from '../../../service/dashboard.service';
 
 @Component({
   selector: 'app-new',

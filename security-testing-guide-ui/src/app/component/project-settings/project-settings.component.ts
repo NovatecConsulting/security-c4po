@@ -4,8 +4,8 @@ import {GlobalStore} from '../../store/global.store';
 import {Location} from '@angular/common';
 import {ApiService} from '../../service/api.service';
 import {Router} from '@angular/router';
-import {DashboardService} from '../dashboard/dashboard.service';
-import {ProjectService} from '../project/project.service';
+import {DashboardService} from '../../service/dashboard.service';
+import {ProjectService} from '../../service/project.service';
 
 @Component({
   selector: 'app-share',

@@ -6,8 +6,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {MainNavigationComponent} from './component/navigation/main-navigation/main-navigation.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {LoginComponent} from './login/login.component';
-import {AuthInterceptor} from './service/auth-interceptor';
+import {LoginComponent} from './component/login/login.component';
+import {AuthInterceptor} from './interceptor/auth-interceptor';
 import {Routing} from './app.routing';
 import {ProjectSettingsComponent} from './component/project-settings/project-settings.component';
 import {NotesDialogComponent} from './component/dialog/notes-dialog/notes-dialog.component';
@@ -27,7 +27,7 @@ import {CommentComponent} from './component/test/comment/comment.component';
 import {TestsTableComponent} from './component/tests-table/tests-table.component';
 import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
 import {TestNavigationComponent} from './component/navigation/test-navigation/test-navigation.component';
-import {FindingComponent} from './component/test/finding/finding.component';
+import {FindingDialogComponent} from './component/test/finding/finding-dialog.component';
 import {OktaAuthModule, OktaCallbackComponent} from '@okta/okta-angular';
 // Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -93,7 +93,7 @@ const oktaConfig = {
     TestFrameComponent,
     TestNavigationComponent,
     StatusHistorySheetComponent,
-    FindingComponent,
+    FindingDialogComponent,
     HelpDialogComponent
   ],
   imports: [
@@ -152,7 +152,7 @@ const oktaConfig = {
     InfoDialogComponent,
     HelpDialogComponent,
     StatusHistorySheetComponent,
-    FindingComponent
+    FindingDialogComponent
   ],
   bootstrap: [AppComponent]
 })

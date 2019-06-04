@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SharedService} from '../../service/shared.service';
-import {ProjectService} from './project.service';
+import {ProjectService} from '../../service/project.service';
 
 @Component({
   selector: 'app-project',

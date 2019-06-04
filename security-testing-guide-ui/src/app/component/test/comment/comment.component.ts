@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CommentService} from './comment.service';
+import {CommentService} from '../../../service/comment.service';
 
 @Component({
   selector: 'app-comment',

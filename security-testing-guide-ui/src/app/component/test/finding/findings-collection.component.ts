@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Severity} from '../../../model/severity.enum';
+import {Severity} from '../../../model/security-test/severity.enum';
 import {SharedService} from '../../../service/shared.service';
-import {FindingService} from './finding.service';
-import {Finding} from './finding';
-import {FindingComponent} from './finding.component';
+import {FindingService} from '../../../service/finding.service';
+import {Finding} from '../../../model/security-test/finding';
+import {FindingDialogComponent} from './finding-dialog.component';
 import {MatDialog} from '@angular/material';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-findings-collection',
@@ -13,8 +12,6 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./findings-collection.component.scss']
 })
 export class FindingsCollectionComponent implements OnInit {
-
-  subscription: Subscription;
 
   constructor(public findingService: FindingService,
               private sharedService: SharedService,
@@ -24,20 +21,12 @@ export class FindingsCollectionComponent implements OnInit {
   ngOnInit() {
   }
 
-  addFinding() {
-    const finding = new Finding();
-    finding.title = 'MOCK-TITLE';
-    finding.testId = 'OTG-INFO-001';
-    finding.severity = Severity.LOW;
-    this.findingService.addFinding(finding);
-  }
-
   editFinding(id: string) {
     this.findingService.findings$.subscribe(
       (findings) => {
         const finding = findings.find(f => f.id === id);
-        console.log(finding);
-        const dialogRef = this.dialog.open(FindingComponent, {
+        console.log('finding', finding);
+        const dialogRef = this.dialog.open(FindingDialogComponent, {
           width: '1110px',
           height: '750px',
           disableClose: true,

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {DashboardService} from './dashboard.service';
+import {DashboardService} from '../../service/dashboard.service';
 import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({

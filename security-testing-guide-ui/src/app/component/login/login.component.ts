@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
+import { LoginService } from '../../service/login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
-import {AlertService} from '../component/alert/alert.service';
+import {AlertService} from '../../service/alert.service';
 import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({

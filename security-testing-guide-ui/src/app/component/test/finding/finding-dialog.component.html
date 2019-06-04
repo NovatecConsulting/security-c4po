@@ -1,7 +1,12 @@
 <div class="fixActionRow">
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <div>
-      <h1 mat-dialog-title class="dialogTitle"><b>{{finding?.title}}</b></h1>
+      <!--<h1 mat-dialog-title class="dialogTitle"><b>{{finding?.title}}</b></h1>-->
+      <h1 mat-dialog-title class="dialogTitle">
+        <input [(ngModel)]="finding.title" type="text" class="input-label" size="64" tabindex="-1" />
+      </h1>
+
+      <h6 style="color: gray;"><b>Created: </b>{{finding?.created}}</h6>
       <h6 style="font-size: 0.75em; color: gray;">{{finding?.id}} - <b>{{finding?.testId}}</b></h6>
     </div>
     <!--<div style="width: 10%;">-->
@@ -24,7 +29,7 @@
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding.description}}</textarea>
+                cdkAutosizeMaxRows="5">{{finding?.description}}</textarea>
     </mat-form-field>
     <!-- Impact -->
     <mat-form-field appearance="outline" class="full-width">
@@ -33,14 +38,14 @@
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding.impact}}</textarea>
+                cdkAutosizeMaxRows="5">{{finding?.impact}}</textarea>
     </mat-form-field>
     <!-- Affected URLs -->
     <div style="padding-bottom: 25px;">
       <div style="padding-bottom: 10px;"><a class="affected-urls-label">Affected URLs</a></div>
       <div>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let url of urls">
+          <li class="list-group-item" *ngFor="let url of dummyUrls">
             <div>{{url}}</div>
             <button mat-icon-button (click)="deleteUrl(url)"><i
               class="fa fa-lg fa-trash warn"></i></button>
@@ -58,7 +63,7 @@
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding.mitigation}}</textarea>
+                cdkAutosizeMaxRows="5">{{finding?.mitigation}}</textarea>
     </mat-form-field>
     <!-- Reproduction -->
     <mat-form-field appearance="outline" class="full-width">
@@ -67,7 +72,7 @@
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding.reproduction}}</textarea>
+                cdkAutosizeMaxRows="5">{{finding?.reproduction}}</textarea>
     </mat-form-field>
   </div>
   <div class="spacer"></div>
@@ -75,7 +80,7 @@
   <div mat-dialog-actions class="dialog-buttons">
     <button mat-button color="warn" (click)="onDeleteClick()"><i class="fa fa-trash fa-lg"></i></button>
     <button mat-flat-button color="primary" (click)="onCancelClick()">CANCEL</button>
-    <button mat-flat-button color="accent" [mat-dialog-close]="finding.title" (click)="onOkClick()">SAVE</button>
+    <button mat-flat-button color="accent" [mat-dialog-close]="finding.title" (click)="onSaveClick()">SAVE</button>
   </div>
 
 </div>

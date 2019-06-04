@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {ListComponent} from './component/_list/list.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './component/login/login.component';
 import {AuthGuard} from './guard/auth.guard';
 import {ProjectSettingsComponent} from './component/project-settings/project-settings.component';
 import {DashboardComponent} from './component/dashboard/dashboard.component';

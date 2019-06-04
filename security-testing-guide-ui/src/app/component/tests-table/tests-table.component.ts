@@ -1,13 +1,13 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Category} from '../../model/security-test/category.enum';
-import {Finding} from '../test/finding/finding';
+import {Finding} from '../../model/security-test/finding';
 import {MatSort, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
 import {SecurityTestService} from '../../service/security-test.service';
 import {forkJoin, Observable, observable, Subscription} from 'rxjs';
-import {FindingService} from '../test/finding/finding.service';
-import {TestStatus} from '../test/test-status/test-status';
-import {TestStatusService} from '../test/test-status/test-status.service';
+import {FindingService} from '../../service/finding.service';
+import {TestStatus} from '../../model/security-test/test-status';
+import {TestStatusService} from '../../service/test-status.service';
 
 @Component({
   selector: 'app-tests-table',

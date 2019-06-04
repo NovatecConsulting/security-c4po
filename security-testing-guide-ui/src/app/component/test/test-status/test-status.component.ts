@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {TestStatusService} from './test-status.service';
+import {TestStatusService} from '../../../service/test-status.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TestStatus} from './test-status';
-import {TestProgress} from './test-progress.enum';
+import {TestStatus} from '../../../model/security-test/test-status';
+import {TestProgress} from '../../../model/security-test/test-progress.enum';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from '@angular/material';
 
 @Component({

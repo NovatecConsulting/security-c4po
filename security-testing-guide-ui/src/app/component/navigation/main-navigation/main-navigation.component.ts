@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginService} from '../../../login/login.service';
-import {User} from '../../../model/user';
+import {LoginService} from '../../../service/login.service';
 import {OktaAuthService} from '@okta/okta-angular';
 import {Role} from '../../../model/role.enum';
 import {MatDialog} from '@angular/material';
@@ -38,6 +37,7 @@ export class MainNavigationComponent implements OnInit {
 
   logout() {
     this.oktaAuth.logout('/');
+    this.router.navigate(['/dashboard']);
   }
 
   async getUserRole() {

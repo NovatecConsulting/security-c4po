@@ -1,44 +1,49 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {FindingService} from './finding.service';
-import {Finding} from './finding';
-import {Severity} from '../../../model/severity.enum';
+import {FindingService} from '../../../service/finding.service';
+import {Finding} from '../../../model/security-test/finding';
+import {Severity} from '../../../model/security-test/severity.enum';
 
 @Component({
   selector: 'app-finding',
-  templateUrl: './finding.component.html',
-  styleUrls: ['./finding.component.scss']
+  templateUrl: './finding-dialog.component.html',
+  styleUrls: ['./finding-dialog.component.scss']
 })
-export class FindingComponent implements OnInit {
+export class FindingDialogComponent implements OnInit {
 
   severityLevels = Object.keys(Severity).filter(key => typeof Severity[key as any] === 'number');
 
-  urls = [
+  dummyUrls = [
     '[DUMMY]https://aftermath.example.com/?attack=arm&bomb=book#basin',
     '[DUMMY]http://attack.example.org/badge/belief?airport=branch',
     '[DUMMY]https://addition.example.com/sample.htm?beds=aunt&bike=believe'
   ];
 
-  constructor(public dialogRef: MatDialogRef<FindingComponent>,
+  constructor(public dialogRef: MatDialogRef<FindingDialogComponent>,
               private findingService: FindingService,
               @Inject(MAT_DIALOG_DATA) public finding: Finding) {
   }
 
   ngOnInit() {
-    // this.getInfo();
+    console.log('finding', this.finding);
   }
 
   onCancelClick(): void {
     this.dialogRef.close();
   }
 
-  onOkClick(): void {
-    const finding = new Finding();
-    finding.title = '[myTitle]-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 12);
-    finding.testId = localStorage.getItem('testId');
-    finding.description = '(added from dialog button)';
-    finding.severity = Severity.MEDIUM;
-    this.findingService.addFinding(finding);
+  onSaveClick(): void {
+    console.log('saving finding:', this.finding);
+    if (this.finding.id === undefined) {
+      this.findingService.addFinding(this.finding);
+    } else {
+      this.findingService.updateFinding(this.finding);
+    }
+    // finding.title = '[myTitle]-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 12);
+    // finding.testId = localStorage.getItem('testId');
+    // finding.description = '(added from dialog button)';
+    // finding.severity = Severity.MEDIUM;
+    //
     this.dialogRef.close();
   }
 

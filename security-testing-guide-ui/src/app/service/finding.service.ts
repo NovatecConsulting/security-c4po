@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Model, ModelFactory} from '@angular-extensions/model';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {SharedService} from '../../../service/shared.service';
-import {Finding} from './finding';
+import {SharedService} from './shared.service';
+import {Finding} from '../model/security-test/finding';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +60,17 @@ export class FindingService {
     const findings = this.model.get();
     this.http.post<Finding>(this.PROJECTS_URL + '/' + this.sharedService.projectId + '/findings', finding).subscribe(
       (res) => {
+        findings.push(res);
+        this.model.set(findings);
+      }
+    );
+  }
+
+  updateFinding(finding: Finding) {
+    const findings = this.model.get();
+    this.http.patch<Finding>(this.PROJECTS_URL + '/' + this.sharedService.projectId + '/findings/' + finding.id, finding).subscribe(
+      (res) => {
+        findings.splice(findings.findIndex(f => f.id === finding.id), 1);
         findings.push(res);
         this.model.set(findings);
       }
