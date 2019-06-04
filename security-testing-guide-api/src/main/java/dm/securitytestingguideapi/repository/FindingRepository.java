@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface FindingRepository extends CrudRepository<Finding, UUID> {
 
+    @Query("select * from finding where project_id = :projectId")
     List<Finding> findAllByProjectId(UUID projectId);
 
     @Query("select * from finding where project_id = :projectId and test_id = :testId")

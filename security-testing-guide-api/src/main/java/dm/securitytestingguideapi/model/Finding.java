@@ -1,6 +1,7 @@
 package dm.securitytestingguideapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -36,6 +37,7 @@ public class Finding {
 
     private String affectedUrls;
 
+    @JsonIgnore
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(pattern="dd MMM yyyy - HH:mm:ss")
     private LocalDateTime created;

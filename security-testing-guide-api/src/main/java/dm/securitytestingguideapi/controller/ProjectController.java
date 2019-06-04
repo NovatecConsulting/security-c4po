@@ -1,6 +1,7 @@
 package dm.securitytestingguideapi.controller;
 
 import dm.securitytestingguideapi.model.Finding;
+import dm.securitytestingguideapi.model.Severity;
 import dm.securitytestingguideapi.model.TestStatus;
 import dm.securitytestingguideapi.model.project.Project;
 import dm.securitytestingguideapi.model.project.ProjectUpdateDTO;
@@ -146,6 +147,25 @@ public class ProjectController {
         newFinding.setTitle(body.getTitle());
 
         return findingRepository.save(newFinding);
+    }
+
+    @PatchMapping("/{projectId}/findings/{findingId}")
+    public Finding updateFinding(
+            @RequestBody Finding body,
+            @PathVariable("projectId") UUID projectId,
+            @PathVariable("findingId") UUID findingId
+    ) {
+        log.info("[+] Updating finding {} in project {}: {}", findingId, projectId, body.toString());
+        var project = projectRepository.findById(projectId).orElseThrow();
+        var finding = findingRepository.findById(findingId).get();
+        finding.setTitle(body.getTitle());
+        finding.setSeverity(body.getSeverity());
+        finding.setDescription(body.getDescription());
+        finding.setReproduction(body.getReproduction());
+        finding.setImpact(body.getImpact());
+        finding.setMitigation(body.getMitigation());
+        finding.setAffectedUrls(body.getAffectedUrls());
+        return findingRepository.save(finding);
     }
 
     @DeleteMapping("/{projectId}/findings/{findingId}")

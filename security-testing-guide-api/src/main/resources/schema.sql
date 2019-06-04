@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS FINDING (
     TEST_ID VARCHAR(255) NOT NULL,
     PROJECT_ID VARCHAR(255) NOT NULL,
     TITLE VARCHAR(255),
-    SEVERITY INTEGER,
+    SEVERITY VARCHAR(255),
     DESCRIPTION TEXT,
     REPRODUCTION TEXT,
     IMPACT TEXT,
@@ -58,4 +58,9 @@ CREATE TABLE IF NOT EXISTS SECURITY_TEST_PERFORMED (
 );
 
 -- TODO: Why does this only work here and not in test-data.sql?
-INSERT INTO PROJECT VALUES('c02d0059-326f-4013-a2b1-0954e308bd00', 'E Corp', 'Some Mock API (v1.3) Scanning', parsedatetime('13-12-2018 17:04:18', 'dd-MM-yyyy hh:mm:ss'), 'NovaTester', 1, 2);
+INSERT INTO PROJECT VALUES('c02d0059-326f-4013-a2b1-0954e308bd00', 'E Corp', 'Some Mock API (v1.3) Scanning', parsedatetime('13-12-2018 17:04:18', 'dd-MM-yyyy hh:mm:ss'), 'Nova Tester', 1, 2);
+
+INSERT INTO FINDING VALUES('71578254-9851-45cc-82f6-98e53d6ed27b', 'OTG-INFO-002', 'c02d0059-326f-4013-a2b1-0954e308bd00',
+'Webserver reveals Apache version', 'INFO', '', 'Run the following command in a terminal: \"nc <ip> 80\"',
+'An attacker could run exploits against the server more easily, if the current version is outdated and revealed.',
+'Hide version (Apache config)', '-', parsedatetime('02-05-2019 11:03:11', 'dd-MM-yyyy hh:mm:ss'));
