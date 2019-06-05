@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import dm.securitytestingguideapi.model.project.Project;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -12,7 +13,7 @@ import org.springframework.data.annotation.Id;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class Finding {
 
@@ -37,8 +38,7 @@ public class Finding {
 
     private String affectedUrls;
 
-    @JsonIgnore
-    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(pattern="dd MMM yyyy - HH:mm:ss")
     private LocalDateTime created;
 

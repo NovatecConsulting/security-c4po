@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+//    @Autowired
     private CustomAuthenticationProvider authProvider;
 
     @Override
@@ -35,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
+            .httpBasic()
+                .and()
             .logout()
                 .permitAll()
                 .and()
@@ -43,14 +45,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.authenticationProvider(authProvider);
-
         auth
             .inMemoryAuthentication()
-            .withUser("user")
-            .password(passwordEncoder().encode("user"))
-            .roles("USER");
+            .withUser("viewer")
+            .password(passwordEncoder().encode("viewer"))
+            .roles("VIEWER");
     }
 
     @Bean

@@ -61,6 +61,16 @@ CREATE TABLE IF NOT EXISTS SECURITY_TEST_PERFORMED (
 INSERT INTO PROJECT VALUES('c02d0059-326f-4013-a2b1-0954e308bd00', 'E Corp', 'Some Mock API (v1.3) Scanning', parsedatetime('13-12-2018 17:04:18', 'dd-MM-yyyy hh:mm:ss'), 'Nova Tester', 1, 2);
 
 INSERT INTO FINDING VALUES('71578254-9851-45cc-82f6-98e53d6ed27b', 'OTG-INFO-002', 'c02d0059-326f-4013-a2b1-0954e308bd00',
-'Webserver reveals Apache version', 'INFO', '', 'Run the following command in a terminal: \"nc <ip> 80\"',
+'Webserver reveals Apache version', 'LOW', '', 'Run the following command in a terminal: \"nc <ip> 80\"',
 'An attacker could run exploits against the server more easily, if the current version is outdated and revealed.',
 'Hide version (Apache config)', '-', parsedatetime('02-05-2019 11:03:11', 'dd-MM-yyyy hh:mm:ss'));
+
+INSERT INTO FINDING VALUES('c02d0059-326f-4013-a2b1-0954e308bd00', 'OTG-INFO-002', 'c02d0059-326f-4013-a2b1-0954e308bd00',
+'HTTPS certificate will run out in less than 10 days', 'INFO', '', 'Click on lock in browser and show certificate',
+'The website might not be accessible if the cert is invalid',
+'Create new certificate', 'https://wwww.myexample.local', parsedatetime('02-05-2019 11:03:11', 'dd-MM-yyyy hh:mm:ss'));
+
+INSERT INTO FINDING VALUES('bb457cd5-87d2-487c-929a-9394883f3b52', 'OTG-INFO-002', 'c02d0059-326f-4013-a2b1-0954e308bd00',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' ||
+ 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'CRITICAL', '', '',
+ '', '', '', parsedatetime('04-05-2019 01:18:34', 'dd-MM-yyyy hh:mm:ss'));

@@ -9,7 +9,8 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoderJwkSupport;
 import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
+//TODO: unused
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private final JwtDecoder jwtDecoder = new NimbusJwtDecoderJwkSupport("https://dev-308298.okta.com/oauth2/default/v1/keys");
