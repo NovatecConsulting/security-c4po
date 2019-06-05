@@ -12,8 +12,8 @@ import {DashboardService} from '../../../service/dashboard.service';
 export class NewProjectComponent implements OnInit {
 
   projectForm = new FormGroup({
-    clientName: new FormControl('TestClientName', [Validators.required]),
-    titleName: new FormControl('TestProjectTitle', Validators.required)
+    clientName: new FormControl('My cool client', [Validators.required]),
+    titleName: new FormControl('Some project title', Validators.required)
   });
 
   constructor(private apiService: ApiService,

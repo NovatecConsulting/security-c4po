@@ -1,16 +1,16 @@
 <mat-toolbar>
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="/">
     <i class="swg swg-c3po-3 swg-2x accent"></i>
     <a class="accent title">Security C-3PO</a>
   </a>
   <button mat-icon-button color="accent" (click)="showHelp()"><mat-icon>help</mat-icon></button>
   <span class="fill-remaining-space"></span>
-  <span *ngIf="isAuthenticated" style="color: white; margin-right: 35px; font-size: 16px;">{{user?.name}}</span>
+  <span *ngIf="isAuthenticated" style="color: white; margin-right: 35px; font-size: 16px;">{{user?.claims?.name}}</span>
   <span *ngIf="isAuthenticated" class="role">{{user?.role}}</span>
   <button *ngIf="isAuthenticated" type="button" class="btn btn-outline-light" (click)="logout()">LOGOUT</button>
 </mat-toolbar>
 
-<!--
+<!-- LEGACY (with Bootstrap navbar)
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">

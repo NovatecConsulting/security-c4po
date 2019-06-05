@@ -1,13 +1,13 @@
-<div class="fixActionRow">
+<div class="fix-action-row">
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <div>
       <!--<h1 mat-dialog-title class="dialogTitle"><b>{{finding?.title}}</b></h1>-->
       <h1 mat-dialog-title class="dialogTitle">
-        <input [(ngModel)]="finding.title" type="text" class="input-label" size="64" tabindex="-1" />
+        <input [(ngModel)]="finding.title" type="text" class="input-label" size="64" tabindex="-1"/>
       </h1>
-
-      <h6 style="color: gray;"><b>Created: </b>{{finding?.created}}</h6>
-      <h6 style="font-size: 0.75em; color: gray;">{{finding?.id}} - <b>{{finding?.testId}}</b></h6>
+      <br>
+      <h6 style="font-size: 0.75em; color: gray;"><b *ngIf="finding.created">Created: </b>{{finding?.created}}</h6>
+      <!--      <h6 style="font-size: 0.75em; color: gray;">{{finding?.id}} - <b>{{finding?.testId}}</b></h6>-->
     </div>
     <!--<div style="width: 10%;">-->
     <mat-form-field color="accent">
@@ -25,54 +25,84 @@
     <!-- Description -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Description"
+      <textarea matInput
+                class="fix-textarea-scrollbar"
+                placeholder="What exactly is the problem?"
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding?.description}}</textarea>
+                cdkAutosizeMaxRows="5"
+                [(ngModel)]="finding.description">
+        <!-- TODO: due to Angular bug: https://github.com/angular/components/issues/12070 -->
+        <!--{{finding?.description}}-->
+      </textarea>
     </mat-form-field>
     <!-- Impact -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Impact</mat-label>
-      <textarea matInput placeholder="Impact"
+      <textarea matInput
+                class="fix-textarea-scrollbar"
+                placeholder="What is the worst that can happen if the vulnerability is exploited?"
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding?.impact}}</textarea>
+                cdkAutosizeMaxRows="5"
+                [(ngModel)]="finding.impact">
+        <!--{{finding?.impact}}-->
+      </textarea>
     </mat-form-field>
     <!-- Affected URLs -->
     <div style="padding-bottom: 25px;">
       <div style="padding-bottom: 10px;"><a class="affected-urls-label">Affected URLs</a></div>
-      <div>
+
+      <!--<div>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let url of dummyUrls">
-            <div>{{url}}</div>
-            <button mat-icon-button (click)="deleteUrl(url)"><i
-              class="fa fa-lg fa-trash warn"></i></button>
+          <li class="list-group-item" *ngFor="let url of affectedUrls">
+            <input [(ngModel)]="url" type="text" class="input-label" size="64" tabindex="-1"/>
+            <button mat-icon-button (click)="deleteUrl(url)"><i class="fa fa-lg fa-trash warn"></i></button>
           </li>
           <li class="list-group-item add-url" style="display: flex; justify-content: center;" (click)="addUrl()">
             <i class="fa fa-lg fa-plus"></i>
           </li>
         </ul>
+      </div>-->
+
+      <!-- second approach -->
+      <div class="affected-url" *ngFor="let url of affectedUrls">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <input matInput class="url" [(ngModel)]="url">
+        </mat-form-field>
+        <button mat-icon-button (click)="deleteUrl(url)"><i class="fa fa-lg fa-trash fix-fa-trash-position"></i></button>
       </div>
+
     </div>
     <!-- Mitigation -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Mitigation</mat-label>
-      <textarea matInput placeholder="Mitigation"
+      <textarea matInput
+                class="fix-textarea-scrollbar"
+                placeholder="What can you do to solve the issue?"
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding?.mitigation}}</textarea>
+                cdkAutosizeMaxRows="5"
+                [(ngModel)]="finding.mitigation">
+        <!--{{finding?.mitigation}}-->
+      </textarea>
     </mat-form-field>
     <!-- Reproduction -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Reproduction</mat-label>
-      <textarea matInput placeholder="Reproduction"
+      <textarea matInput
+                class="fix-textarea-scrollbar"
+                placeholder="What do you have to do to reproduce the problem?"
                 cdkTextareaAutosize
                 #autosize="cdkTextareaAutosize"
                 cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="5">{{finding?.reproduction}}</textarea>
+                cdkAutosizeMaxRows="5"
+                [(ngModel)]="finding.reproduction">
+        <!--{{finding?.reproduction}}-->
+      </textarea>
     </mat-form-field>
   </div>
   <div class="spacer"></div>

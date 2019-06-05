@@ -11,12 +11,13 @@ import {Severity} from '../../../model/security-test/severity.enum';
 })
 export class FindingDialogComponent implements OnInit {
 
-  severityLevels = Object.keys(Severity).filter(key => typeof Severity[key as any] === 'number');
+  severityLevels = Object.keys(Severity);
 
-  dummyUrls = [
-    '[DUMMY]https://aftermath.example.com/?attack=arm&bomb=book#basin',
-    '[DUMMY]http://attack.example.org/badge/belief?airport=branch',
-    '[DUMMY]https://addition.example.com/sample.htm?beds=aunt&bike=believe'
+  affectedUrls = [
+    'https://www.example.local/portal?user=admin&test=some+very+long+parameter+value+' +
+    'VKUIwrlhuMIVEpidWiKtrS3rVO+kkvrBc0QBQ6qmJlEKazIdlyShiVTzZzThqDtAM/UVnl91TJn9505kZnduw==',
+    'http://my.secret.dev.stage.example.local/index.html',
+    'https://customers.example.local/sample.htm?beds=aunt&bike=believe'
   ];
 
   constructor(public dialogRef: MatDialogRef<FindingDialogComponent>,

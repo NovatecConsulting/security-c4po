@@ -3,12 +3,13 @@
 .input-label{
   background:rgba(0,0,0,0);
   border:none;
-  cursor: pointer;
-  font-weight: bold;
+  //cursor: pointer;
+  //font-weight: bold;
 }
 
 .dialogTitle {
   margin: 0;
+  word-wrap: break-spaces;
 }
 
 .dialog-buttons {
@@ -23,10 +24,23 @@
   font-weight: 700;
 }
 
-.fixActionRow {
+.fix-textarea-scrollbar {
+  box-sizing: content-box;
+}
+
+.fix-action-row {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+//Fix text alignment (NO EFFECT?)
+.mat-form-field-infix {
+  top: -0.25em;
+}
+
+.fix-fa-trash-position {
+  margin-bottom: 20px;
 }
 
 .spacer {
@@ -38,7 +52,7 @@ hr {
   margin-right: 0;
 }
 
-.list-group-item {
+/*.list-group-item {
   font-family: Roboto Condensed, sans-serif;
   font-size: inherit;
   height: 50px;
@@ -54,6 +68,25 @@ hr {
 
 .list-group-item:hover .mat-icon-button {
   visibility: visible;
+}*/
+
+.affected-url {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -28px;
+}
+
+.affected-url .mat-icon-button {
+  visibility: hidden;
+}
+
+.affected-url:hover .mat-icon-button {
+  visibility: visible;
+}
+
+.url {
+  font-family: Roboto Mono, monospace;
 }
 
 .add-url:hover {

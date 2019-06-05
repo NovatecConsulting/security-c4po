@@ -2,8 +2,14 @@
   <h4>Findings ({{findings.length}})</h4>
   <ul class="list-group">
     <li *ngFor="let finding of findings" class="list-group-item" (click)="editFinding(finding.id)">
-        <b>{{finding.title}}</b>
-        <h4 style="margin-bottom: 0;"><span class="badge badge-secondary">{{finding.severity}}</span></h4>
+      <b style="width: 80%;">{{finding.title}}</b>
+<!--      <i>{{finding.created}}</i>-->
+      <h4 *ngIf="finding.severity === 'INFO'" style="margin-bottom: 0;"><span class="badge badge-secondary">{{finding.severity}}</span></h4>
+      <h4 *ngIf="finding.severity === 'LOW'" style="margin-bottom: 0;"><span class="badge badge-warning">{{finding.severity}}</span></h4>
+      <h4 *ngIf="finding.severity === 'MEDIUM'" style="margin-bottom: 0;"><span class="badge badge-warning">{{finding.severity}}</span></h4>
+      <h4 *ngIf="finding.severity === 'HIGH'" style="margin-bottom: 0;"><span class="badge badge-danger">{{finding.severity}}</span></h4>
+      <h4 *ngIf="finding.severity === 'CRITICAL'" style="margin-bottom: 0;"><span class="badge badge-danger">{{finding.severity}}</span></h4>
+<!--      <h4><span class="badge badge-secondary">{{finding.severity}}</span></h4>-->
     </li>
   </ul>
 </ng-container>

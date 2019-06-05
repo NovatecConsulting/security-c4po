@@ -53,8 +53,8 @@ export class TestFrameComponent implements OnInit {
     finding.testId = this.testId;
     finding.severity = Severity.INFO;
     const dialogRef = this.dialog.open(FindingDialogComponent, {
-      width: '1000px',
-      height: '600px',
+      // width: '100%',
+      // height: '100%',
       disableClose: true,
       data: finding
     });

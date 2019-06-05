@@ -4,7 +4,7 @@
       <div class="card my-5 mat-elevation-z4">
         <div class="card-body">
           <h2 class="card-title text-center">Login</h2>
-          <!--<h6 style="text-align: center;">Welcome to Security C-3PO &#45;&#45; your security protocol tool based on the <b>OWASP Testing Guide!</b></h6>-->
+          <!--<h6 style="text-align: center;">Welcome to Security C-3PO -- your security protocol tool based on the <b>OWASP Testing Guide!</b></h6>-->
           <hr class="my-4">
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
@@ -38,7 +38,6 @@
     </div>
   </div>
 </div>
-
 <div style="display: flex; justify-content: center">
-  <button mat-flat-button color="warn" *ngIf="!isAuthenticated" (click)="login()"> Okta Login </button>
+  <button *ngIf="!isAuthenticated" mat-flat-button color="warn" (click)="login()">Login with Okta</button>
 </div>

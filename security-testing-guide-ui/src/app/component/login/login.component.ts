@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../service/login.service';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from '../../service/login.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../../service/alert.service';
 import {OktaAuthService} from '@okta/okta-angular';
@@ -28,50 +28,39 @@ export class LoginComponent implements OnInit {
               public oktaAuth: OktaAuthService) {
 
     this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+      async (isAuthenticated: boolean) => {
+        this.isAuthenticated = isAuthenticated;
+      }
     );
 
-    // if (this.loginService.currentUserValue) {
-    //   this.router.navigate(['/']);
-    // }
+    this.loginForm = new FormGroup({
+      username: new FormControl(),
+      password: new FormControl()
+    });
   }
 
   async ngOnInit() {
-
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
-    // localStorage.clear();
-    /*if (localStorage.getItem('username')) {
-    }
     this.loginForm = this.formBuilder.group({
-      username: ['user', Validators.required],
-      password: ['user', Validators.required]
+      username: ['viewer', Validators.required],
+      password: ['viewer', Validators.required]
     });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    */
 
     if (this.isAuthenticated === true) {
-      console.log(this.isAuthenticated)
       this.router.navigate(['/dashboard']);
     }
 
   }
 
-
   get f() {
     return this.loginForm.controls;
   }
-
 
   login() {
     this.oktaAuth.loginRedirect('/dashboard');
   }
 
-  onSubmit() {
-    /* remove */
-  }
-
-  /*
   onSubmit() {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -82,12 +71,11 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(
       (data) => {
         this.router.navigate([this.returnUrl]);
-    },
+      },
       (error) => {
         this.alertService.error(error);
         this.loading = false;
       });
   }
-  */
 
 }

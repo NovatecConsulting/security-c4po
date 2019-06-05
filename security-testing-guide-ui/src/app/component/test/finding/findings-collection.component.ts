@@ -1,8 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Severity} from '../../../model/security-test/severity.enum';
+import {Component, OnInit} from '@angular/core';
 import {SharedService} from '../../../service/shared.service';
 import {FindingService} from '../../../service/finding.service';
-import {Finding} from '../../../model/security-test/finding';
 import {FindingDialogComponent} from './finding-dialog.component';
 import {MatDialog} from '@angular/material';
 
@@ -27,8 +25,12 @@ export class FindingsCollectionComponent implements OnInit {
         const finding = findings.find(f => f.id === id);
         console.log('finding', finding);
         const dialogRef = this.dialog.open(FindingDialogComponent, {
-          width: '1110px',
-          height: '750px',
+          // width: '1110px',
+          // height: '750px',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          width: '90%',
+          height: '90%',
           disableClose: true,
           data: finding
         });

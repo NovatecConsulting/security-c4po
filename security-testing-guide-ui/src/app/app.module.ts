@@ -28,7 +28,7 @@ import {TestsTableComponent} from './component/tests-table/tests-table.component
 import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
 import {TestNavigationComponent} from './component/navigation/test-navigation/test-navigation.component';
 import {FindingDialogComponent} from './component/test/finding/finding-dialog.component';
-import {OktaAuthModule, OktaCallbackComponent} from '@okta/okta-angular';
+import {OktaAuthModule} from '@okta/okta-angular';
 // Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatBottomSheetModule, MatButtonModule, MatCheckboxModule} from '@angular/material';
