@@ -6,7 +6,6 @@ export class TestStatus {
   testProgress: TestProgress;
   created: string;
 
-
   constructor(testId: string, testProgress: TestProgress) {
     this.testId = testId;
     this.testProgress = testProgress;

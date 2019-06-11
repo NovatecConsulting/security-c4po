@@ -29,9 +29,7 @@ export class ApiService {
       });
   }
 
-  getAllResultsForProject(projectId: string): Observable<TestStatus[]> {
-    return this.http.get<TestStatus[]>(this.PROJECTS_URL + '/' + projectId + '/status');
-  }
+
 
   getTestByTestNumber(testNumber: string): Observable<SecurityTest> {
     return this.http.get<SecurityTest>(this.TESTS_URL + '/' + testNumber);

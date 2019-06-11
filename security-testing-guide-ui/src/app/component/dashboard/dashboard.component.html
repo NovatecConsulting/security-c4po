@@ -4,7 +4,7 @@
 
 <mat-grid-list cols="3" rowHeight="1:1">
   <mat-grid-tile *ngIf="projectsLoaded">
-    <app-new class="example-card new-card"></app-new>
+    <app-new-project class="example-card new-card"></app-new-project>
   </mat-grid-tile>
   <!--<mat-grid-tile *ngIf="!projectsLoaded">-->
     <!--<mat-card class="example-card mat-elevation-z6 new-card">-->
@@ -16,14 +16,14 @@
   <ng-container *ngIf="dashboardService.project$ | async as projects">
     <mat-grid-tile *ngFor="let project of projects" [colspan]="1" [rowspan]="1"
                    (click)="onProjectCardClick(project.id)">
-      <mat-card class="example-card mat-elevation-z6 project-card">
+      <mat-card class="project-card">
         <mat-card-header>
-          <img mat-card-avatar class="example-header-image" src="../../assets/none.png" alt="?">
+          <img mat-card-avatar class="example-header-image" src="../../assets/customer-logo/e-corp.png" alt="?">
           <!--</img>-->
           <mat-card-title>{{project.title}}</mat-card-title>
           <mat-card-subtitle>{{project.client}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content style="flex-grow: 1;">
           <b>ID: </b>{{project.id}}
           <br>
           <b>Created: </b>{{project.createdAt}}
@@ -31,8 +31,11 @@
           <!--<b>Last modified: </b>?-->
           <b>Tester: </b>{{project.testerName}}
           <br>
-          <b>Tests performed: </b><span class="badge badge-dark">? / 90</span>
+          <b>Tests performed: </b><span class="badge badge-dark">{{checked[project.id]?.total}} / 90</span>
         </mat-card-content>
+        <mat-card-footer>
+          <mat-progress-bar mode="determinate" color="accent" [value]=checked[project.id]?.percentage></mat-progress-bar>
+        </mat-card-footer>
       </mat-card>
     </mat-grid-tile>
   </ng-container>

@@ -39,8 +39,6 @@ export class TestsTableComponent implements OnInit, OnDestroy {
     //   this.dataSource.data = securityTests;
     // });
 
-    console.log('test-table.component: ngOnInit()');
-
     this.subscription = this.securityTestService.securityTests$.subscribe(
       (securityTests) => {
 
@@ -101,7 +99,7 @@ export class TestsTableComponent implements OnInit, OnDestroy {
           forkJoin(findingsObservables).subscribe(
             (data) => {
               const findings: Finding[][] = data as Finding[][];
-              console.log('findings', findings);
+              // console.log('findings', findings);
               securityTestsWithFindingsAndStatuses.forEach((item, index) => {
                 item.findings = findings[index];
               });
@@ -111,7 +109,7 @@ export class TestsTableComponent implements OnInit, OnDestroy {
           forkJoin(testStatusesObservables).subscribe(
             (data) => {
               const testStatuses: TestStatus[][] = data as TestStatus[][];
-              console.log('testStatuses', testStatuses);
+              // console.log('testStatuses', testStatuses);
               securityTestsWithFindingsAndStatuses.forEach((item, index) => {
                 item.statuses = testStatuses[index];
               });
@@ -120,7 +118,7 @@ export class TestsTableComponent implements OnInit, OnDestroy {
             }
           );
 
-          console.log('securityTestsWithFindingsAndStatuses', securityTestsWithFindingsAndStatuses);
+          // console.log('securityTestsWithFindingsAndStatuses', securityTestsWithFindingsAndStatuses);
           return securityTestsWithFindingsAndStatuses;
         }
       },

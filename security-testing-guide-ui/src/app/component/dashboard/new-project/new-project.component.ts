@@ -3,9 +3,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../../service/api.service';
 import {Project} from '../../../model/project';
 import {DashboardService} from '../../../service/dashboard.service';
+import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({
-  selector: 'app-new',
+  selector: 'app-new-project',
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.scss']
 })
@@ -17,7 +18,8 @@ export class NewProjectComponent implements OnInit {
   });
 
   constructor(private apiService: ApiService,
-              private dashboardService: DashboardService) { }
+              private dashboardService: DashboardService,
+              private oktaAuth: OktaAuthService) { }
 
   ngOnInit() { }
 
@@ -29,6 +31,7 @@ export class NewProjectComponent implements OnInit {
     const project = new Project();
     project.client = this.projectForm.value.clientName;
     project.title = this.projectForm.value.titleName;
+    project.testerName = JSON.parse(localStorage.getItem('user')).claims.name;
     this.dashboardService.addProject(project);
     this.projectForm.reset();
     this.projectForm.markAsUntouched();

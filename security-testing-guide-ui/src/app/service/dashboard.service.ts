@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class DashboardService {
 
   private BASE_URL = 'https://localhost:8443/api/v1';
-  private PROJECTS_URL = `${this.BASE_URL}/projects`;
+  private PROJECTS_URL = `${this.BASE_URL}/projects/`;
 
   private model: Model<Project[]>;
   project$: Observable<Project[]>;
@@ -48,7 +48,7 @@ export class DashboardService {
 
   deleteProject(id: string) {
     const projects = this.model.get();
-    this.http.delete(this.PROJECTS_URL + '/' + id, {observe: 'response'}).subscribe(
+    this.http.delete(this.PROJECTS_URL + id, {observe: 'response'}).subscribe(
       (res) => {
         if (res.status === 200) {
           projects.splice(projects.findIndex(finding => finding.id === id), 1);

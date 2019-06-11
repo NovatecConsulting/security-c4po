@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface TestStatusRepository extends CrudRepository<TestStatus, UUID> {
 
+    @Query("select * from test_status where project_id = :projectId")
     List<TestStatus> findAllByProjectId(UUID projectId);
 
     @Query("select * from test_status where project_id = :projectId and test_id = :testId")

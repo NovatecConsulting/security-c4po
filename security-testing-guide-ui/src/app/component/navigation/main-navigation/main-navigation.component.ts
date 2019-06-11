@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginService} from '../../../service/login.service';
+import {BasicLoginService} from '../../../service/basic-login.service';
 import {OktaAuthService, UserClaims} from '@okta/okta-angular';
 import {Role} from '../../../model/role.enum';
 import {MatDialog} from '@angular/material';
@@ -14,47 +14,48 @@ import {User} from '../../../model/user';
 })
 export class MainNavigationComponent implements OnInit {
 
+  // do not cache
   isAuthenticated: boolean;
+  accessToken: string;
+
+  // do cache
   user: User = new class implements User {
     claims: UserClaims;
     role: Role;
-    token: string;
   };
 
   constructor(private router: Router,
-              private loginService: LoginService,
+              private basicLoginService: BasicLoginService,
               private helpDialog: MatDialog,
               public oktaAuth: OktaAuthService) {
-
     this.oktaAuth.$authenticationState.subscribe(
       async (isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
         console.log('authenticationState changed to', this.isAuthenticated);
+        this.getUserNameAndRole().then(() => console.log('getUsernameAndRole done.'));
       }
     );
+    /*
+    this.basicLoginService.currentUser.subscribe(
+      (currentUser) => {
+        if (currentUser) {
+          console.log('currentUser', currentUser);
+          this.isAuthenticated = true;
+        } else {
+          this.isAuthenticated = false;
+        }
+      }
+    );
+    */
   }
 
   static extractRoleFromToken(token: string) {
     const groups = JSON.parse(window.atob(token.split('.')[1])).groups;
-    console.log(groups);
     return groups.includes('Tester') ? Role.Tester : Role.Viewer;
   }
 
   async ngOnInit() {
-    /*this.oktaAuth.isAuthenticated().then((res) => {
-      this.isAuthenticated = res;
-    });*/
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
-    console.log('isAuthenticated', this.isAuthenticated);
-
-    this.user.claims = await this.getUserClaims();
-    console.log('this.user.claims', this.user.claims);
-    this.user.token = await this.getAccessToken();
-    console.log('this.user.token', this.user.token);
-    // TODO: how to wait for await to finish and THEN extract from answer?
-    this.user.role = MainNavigationComponent.extractRoleFromToken(this.user.token);
-    console.log('this.user.role', this.user.role);
-
+    this.getUserNameAndRole().then(() => console.log('getUsernameAndRole done.'));
     /*this.oktaAuth.getUser().then((userClaims) => {
       this.user.claims = userClaims;
       console.log('userClaims', userClaims);
@@ -64,10 +65,19 @@ export class MainNavigationComponent implements OnInit {
         this.user.role = MainNavigationComponent.extractRoleFromToken(this.user.token);
       }).catch((err) => console.log(err));
     }).catch((err) => console.log(err));*/
+  }
 
-    // this.user.claims = await this.oktaAuth.getUser();
-    // this.user.token = await this.oktaAuth.getAccessToken();
-    // this.user.role = await this.extractRoleFromToken();
+  async getUserNameAndRole() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    // console.log('isAuthenticated', this.isAuthenticated);
+    this.user.claims = await this.getUserClaims();
+    // console.log('this.user.claims', this.user.claims);
+    this.accessToken = await this.getAccessToken();
+    // console.log('this.accessToken', this.accessToken);
+    // TODO: how to wait for await to finish and THEN extract from answer?
+    this.user.role = MainNavigationComponent.extractRoleFromToken(this.accessToken);
+    console.log('this.user.role:', this.user.role);
+    localStorage.setItem('user', JSON.stringify(this.user));
   }
 
   async getUserClaims() {
@@ -80,6 +90,7 @@ export class MainNavigationComponent implements OnInit {
 
   logout() {
     this.oktaAuth.logout('/');
+    this.basicLoginService.logout();
     this.router.navigate(['/login']);
   }
 

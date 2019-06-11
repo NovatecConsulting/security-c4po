@@ -100,6 +100,12 @@ public class ProjectController {
         return testStatusRepository.save(newStatus);
     }
 
+    @GetMapping(value = "/{projectId}/status")
+    public Collection<TestStatus> getAllStatus(@PathVariable("projectId") UUID projectId) {
+        log.info("Returning all statuses of project {}", projectId);
+        return testStatusRepository.findAllByProjectId(projectId);
+    }
+
     @GetMapping(value = "/{projectId}/status/{testId}")
     public Collection<TestStatus> getAllStatusForTestId(@PathVariable("projectId") UUID projectId, @PathVariable("testId") String testId) {
         log.info("Returning all statuses of {} of project {} ...", testId, projectId);

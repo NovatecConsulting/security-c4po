@@ -16,6 +16,11 @@ table {
   //text-align:center;
 }
 
+.header-centered {
+  display: flex;
+  justify-content: center;
+}
+
 .align-content-center {
   display: flex;
   height: 500px;
@@ -23,9 +28,12 @@ table {
   align-items: center;
 }
 
-.mat-column-findings,
 .mat-column-status {
-  text-align: center;
+  //text-align: center;
+}
+
+.mat-column-findings {
+  text-align: right;
 }
 
 .bold {
@@ -48,7 +56,7 @@ table {
 }
 
 .status {
-  font-style: italic;
+  //font-style: italic;
   color: $accent;
 }
 

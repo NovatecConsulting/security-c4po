@@ -23,6 +23,7 @@ export class ProjectNavigationComponent implements OnInit {
 
   navigateBack() {
     localStorage.removeItem('selectedCategory');
+    localStorage.removeItem('activeProjectId');
     this.store.setProjectName('');
     this.location.back();
   }

@@ -25,10 +25,10 @@
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.statuses !== undefined">
           <ng-container *ngIf="element.statuses.length == 0">
-            <div class="status">OPEN</div>
+            <div class="status"><span class="badge badge-secondary">OPEN</span></div>
           </ng-container>
           <ng-container *ngIf="element.statuses.length > 0">
-            <div class="status"> {{element.statuses[element.statuses.length - 1].testProgress}} </div>
+            <div class="status"><span class="badge badge-primary">{{element.statuses[element.statuses.length - 1].testProgress}}</span></div>
           </ng-container>
         </ng-container>
       </td>

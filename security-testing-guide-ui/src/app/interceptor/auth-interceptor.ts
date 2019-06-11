@@ -14,6 +14,9 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private async handleAccess(request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
+    if (request.url === 'https://localhost:8443/api/v1/login') {
+      return next.handle(request).toPromise();
+    }
     if (request.urlWithParams.startsWith('https://localhost')) {
       const accessToken = await this.oktaAuth.getAccessToken();
       request = request.clone({

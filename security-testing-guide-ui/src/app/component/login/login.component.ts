@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from '../../service/login.service';
+import {BasicLoginService} from '../../service/basic-login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private loginService: LoginService,
+              private loginService: BasicLoginService,
               private alertService: AlertService,
               public oktaAuth: OktaAuthService) {
 
@@ -70,9 +70,11 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.f.username.value, this.f.password.value)
       .pipe(first()).subscribe(
       (data) => {
-        this.router.navigate([this.returnUrl]);
+        this.loading = false;
+        this.router.navigate(['/dashboard']);
       },
       (error) => {
+        console.log('error', error);
         this.alertService.error(error);
         this.loading = false;
       });

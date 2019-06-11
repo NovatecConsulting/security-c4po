@@ -13,19 +13,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/api/v1/tests",
+							"raw": "{{BASE_URL}}/tests",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"tests"
 							]
 						}
@@ -37,19 +30,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/api/v1/tests/OTG-SESS-001",
+							"raw": "{{BASE_URL}}/tests/OTG-SESS-001",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"tests",
 								"OTG-SESS-001"
 							]
@@ -62,19 +48,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/api/v1/tests?category=SESS",
+							"raw": "{{BASE_URL}}/tests?category=SESS",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"tests"
 							],
 							"query": [
@@ -96,21 +75,22 @@
 					"name": "getAllProjects",
 					"request": {
 						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJraWQiOiJ4cXNMNWIyTmczODJrT29HMXAtX3YwNlVhNG12d1RPbEx6ZURlRk1QcTNrIiwiYWxnIjoiUlMyNTYifQ.eyJ2ZXIiOjEsImp0aSI6IkFULkI2UGE5X3I1MWFwTGNyWHZnSWZHWHVfazcyUnRkbTc1dWhhVU5RUlh3dkEiLCJpc3MiOiJodHRwczovL2Rldi0zMDgyOTgub2t0YS5jb20vb2F1dGgyL2RlZmF1bHQiLCJhdWQiOiJhcGk6Ly9kZWZhdWx0IiwiaWF0IjoxNTU5NTc0NDA0LCJleHAiOjE1NTk1NzgwMDQsImNpZCI6IjBvYW8zdmltYmk4ODBsOTJkMzU2IiwidWlkIjoiMDB1bzN1a3JwZ2xtVENIMjIzNTYiLCJzY3AiOlsib3BlbmlkIiwiZW1haWwiXSwic3ViIjoibm92YXRlc3RlckBub3ZhdGVjLWdtYmgubG9jYWwifQ.gZ-yv5iKs_SVnpUJWPpfNpfgggA8aYfz6xg42MyUlVDI1y3VoQNfBW-jOhPX-GRFlr1d5A0rTBh7wNkC_hg5BHa86LJUIN2ivGwnfVbyai10bgM3-XQV8Zj8VUtO6dfv7_IedwcGuwISS3--V7sSD1JIMvwyPmiAKqmScf5_Fk4CYmqWqqnzbzPjBb7hX5jVyjMjCEiwDYG6roOM88PrCDrUxpPe9GPVcI_hg5l99pJCPz4VYQC4uZczbhtYlu7Y5Ab2UucWeOTGI1yOXTHihDQqpsBtjnguqrZNtb7ESywnY8OoInLtJq2zC7PFtraNcZVDZaz7prfRBD1Pw2WK6g",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
-							"raw": "localhost:8080/api/v1/projects",
+							"raw": "{{BASE_URL}}/projects/",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
-								"projects"
+								"projects",
+								""
 							]
 						}
 					},
@@ -121,21 +101,14 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df",
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"projects",
-								"076d9bb2-0c23-4cfe-b6cf-5122e76138df"
+								"{{PROJECT_ID}}"
 							]
 						}
 					},
@@ -158,15 +131,41 @@
 							"raw": "{\n\t\"client\": \"E Corp\",\n\t\"title\": \"API (v2.0) Scan\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/projects",
+							"raw": "{{BASE_URL}}/projects",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProject",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"client\": \"E Corp\",\n\t\"title\": \"API (v2.0) Scan\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"projects",
+								"{{PROJECT_ID}}"
 							]
 						}
 					},
@@ -177,21 +176,14 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/api/v1/projects/98804470-cb07-4f72-902d-c3d1e350105c",
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"projects",
-								"98804470-cb07-4f72-902d-c3d1e350105c"
+								"{{PROJECT_ID}}"
 							]
 						}
 					},
@@ -200,10 +192,29 @@
 			]
 		},
 		{
-			"name": "Test Results",
+			"name": "Test Status",
 			"item": [
 				{
-					"name": "addTestResultToProject",
+					"name": "getAllTestStatusFromProjectForTestId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/status",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"projects",
+								"{{PROJECT_ID}}",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addTestStatusToProject",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -216,80 +227,172 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"testId\": \"OTG-INFO-002\",\n\t\"checked\": true,\n\t\"comment\": \"Some other comment ...\"\n}"
+							"raw": "{\n\t\"testId\": \"OTG-INFO-001\",\n\t\"testProgress\": \"CHECKED\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df",
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/status",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"projects",
-								"076d9bb2-0c23-4cfe-b6cf-5122e76138df"
+								"{{PROJECT_ID}}",
+								"status"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "deleteTestResultFromProject",
+					"name": "deleteTestStatusFromProject",
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df/results/32a6a170-7d21-47cd-a58b-bacc9c6266e3",
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/status/32a6a170-7d21-47cd-a58b-bacc9c6266e3",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"projects",
-								"076d9bb2-0c23-4cfe-b6cf-5122e76138df",
-								"results",
+								"{{PROJECT_ID}}",
+								"status",
 								"32a6a170-7d21-47cd-a58b-bacc9c6266e3"
 							]
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "607a50e4-ad15-4b50-9b8e-f8b01f4257cc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				},
 				{
-					"name": "updateTestResultForProject",
+					"listen": "test",
+					"script": {
+						"id": "e1c9809b-e3df-416c-aca4-9d89d8470b40",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Findings",
+			"item": [
+				{
+					"name": "getAllFindingsForTestForProject",
 					"request": {
-						"method": "PUT",
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/findings",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"projects",
+								"{{PROJECT_ID}}",
+								"findings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFindingForTestForProject",
+					"request": {
+						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"checked\": true,\n\t\"comment\": \"Some other comment ...\"\n}"
+							"raw": "{\n\t\"testId\": \"OTG-INFO-002\",\n\t\"title\": \"Webserver reveals Apache version\",\n\t\"severity\": \"INFO\",\n\t\"description\": \"\",\n\t\"reproduction\": \"Run the following command in a terminal: \\\"nc <ip> 80\\\"\",\n\t\"impact\": \"An attacker could run exploits against the server more easily, if the current version is outdated and revealed.\",\n\t\"mitigation\": \"Hide version (Apache config)\",\n\t\"affectedUrls\": \"-\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/v1/projects/076d9bb2-0c23-4cfe-b6cf-5122e76138df/results/e2f5e6cb-74f2-488b-80f5-6ad495e7ff7c",
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/findings",
 							"host": [
-								"localhost"
+								"{{BASE_URL}}"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"v1",
 								"projects",
-								"076d9bb2-0c23-4cfe-b6cf-5122e76138df",
-								"results",
-								"e2f5e6cb-74f2-488b-80f5-6ad495e7ff7c"
+								"{{PROJECT_ID}}",
+								"findings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFindingForTestForProject",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"testId\": \"OTG-INFO-002\",\n\t\"title\": \"Webserver reveals nginx version\",\n\t\"severity\": \"CRITICAL\",\n\t\"description\": \"\",\n\t\"reproduction\": \"Run the following command in a terminal: \\\"nc <ip> 80\\\"\",\n\t\"impact\": \"An attacker could run exploits against the server more easily, if the current version is outdated and revealed.\",\n\t\"mitigation\": \"Hide version (nginx config)\",\n\t\"affectedUrls\": \"-\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/findings/71578254-9851-45cc-82f6-98e53d6ed27b",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"projects",
+								"{{PROJECT_ID}}",
+								"findings",
+								"71578254-9851-45cc-82f6-98e53d6ed27b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeFindingForTestForProject",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/projects/{{PROJECT_ID}}/findings/bded3345-3a6b-4c18-aad7-fd227fedf938",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"projects",
+								"{{PROJECT_ID}}",
+								"findings",
+								"bded3345-3a6b-4c18-aad7-fd227fedf938"
 							]
 						}
 					},
@@ -298,32 +401,41 @@
 			]
 		},
 		{
-			"name": "Login",
+			"name": "/login (Basic Auth)",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "viewer",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "viewer",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Basic dXNlcjp1c2Vy",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"pass\"\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8080/login",
+					"raw": "{{BASE_URL}}/login",
 					"host": [
-						"localhost"
+						"{{BASE_URL}}"
 					],
-					"port": "8080",
 					"path": [
 						"login"
 					]
@@ -332,6 +444,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{ACCESS_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",

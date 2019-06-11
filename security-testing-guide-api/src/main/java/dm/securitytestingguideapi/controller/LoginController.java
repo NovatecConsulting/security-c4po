@@ -2,7 +2,14 @@ package dm.securitytestingguideapi.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
@@ -12,9 +19,11 @@ public class LoginController {
 
     @PostMapping(produces = "application/json")
     @ResponseBody
-    public String hardcodedUser() {
-        log.info("Returning hardcoded User (user, TESTER, s0m3-f4k3-jwt-t0k3n) ...");
-        return "{\"username\": \"user\", \"role\": \"TESTER\", \"token\": \"s0m3-f4k3-jwt-t0k3n\"}";
+    public ResponseEntity<UserDetails> hardcodedUser() {
+        if (SecurityContextHolder.getContext().getAuthentication() == null)
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new ResponseEntity<>(userDetails, HttpStatus.OK);
     }
 
 }

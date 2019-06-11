@@ -21,6 +21,10 @@ export class TestStatusService {
     this.testStatus$ = this.model.data$;
   }
 
+  getAllTestStatusOfProject(projectId: string): Observable<TestStatus[]> {
+    return this.http.get<TestStatus[]>(this.PROJECTS_URL + projectId + '/status');
+  }
+
   getTestStatusesById(testId: string): Promise<TestStatus[]> {
     return new Promise(resolve => {
       this.http.get<TestStatus[]>(this.PROJECTS_URL + localStorage.getItem('activeProjectId') + '/status/' + testId).subscribe(

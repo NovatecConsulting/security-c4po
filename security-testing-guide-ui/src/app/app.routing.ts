@@ -6,6 +6,7 @@ import {DashboardComponent} from './component/dashboard/dashboard.component';
 import {ProjectComponent} from './component/project/project.component';
 import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
 import {OktaAuthGuard, OktaCallbackComponent} from '@okta/okta-angular';
+import {AuthGuard} from './guard/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    // canActivate: [OktaAuthGuard, AuthGuard],
     canActivate: [OktaAuthGuard],
     data: {
       onAuthRequired
@@ -66,8 +68,7 @@ const appRoutes: Routes = [
   }
 ];
 
-export function onAuthRequired({ oktaAuth, router }) {
-  // Redirect the user to your custom login page
+export function onAuthRequired({oktaAuth, router}) {
   router.navigate(['/login']);
 }
 

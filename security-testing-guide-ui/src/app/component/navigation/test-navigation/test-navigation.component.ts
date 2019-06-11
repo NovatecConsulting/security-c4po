@@ -20,6 +20,7 @@ export class TestNavigationComponent implements OnInit {
 
   navigateBack() {
     localStorage.removeItem('testTitle');
+    localStorage.removeItem('testId');
     this.store.setProjectName('');
     this.location.back();
   }
