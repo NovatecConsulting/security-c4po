@@ -4,7 +4,7 @@ import {SharedService} from '../../../service/shared.service';
 import {CommentService} from '../../../service/comment.service';
 import {Router} from '@angular/router';
 import {FindingDialogComponent} from '../finding/finding-dialog.component';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {Finding} from '../../../model/security-test/finding';
 import {Severity} from '../../../model/security-test/severity.enum';
 

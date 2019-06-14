@@ -3,7 +3,7 @@ import {TestStatusService} from '../../../service/test-status.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TestStatus} from '../../../model/security-test/test-status';
 import {TestProgress} from '../../../model/security-test/test-progress.enum';
-import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet} from '@angular/material';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-test-status',

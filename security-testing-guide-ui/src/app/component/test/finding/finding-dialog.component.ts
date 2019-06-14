@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {FindingService} from '../../../service/finding.service';
 import {Finding} from '../../../model/security-test/finding';
 import {Severity} from '../../../model/security-test/severity.enum';
@@ -59,8 +59,8 @@ export class FindingDialogComponent implements OnInit {
     console.log('Not implemented: deleting url:', url);
   }
 
-  addUrl(): void {
-    console.log('Not implemented: add url.');
+  addUrl(url): void {
+    console.log('Not implemented: add url:', url);
   }
 
 }

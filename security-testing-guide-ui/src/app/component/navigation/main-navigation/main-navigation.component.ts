@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {BasicLoginService} from '../../../service/basic-login.service';
 import {OktaAuthService, UserClaims} from '@okta/okta-angular';
 import {Role} from '../../../model/role.enum';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {HelpDialogComponent} from '../../dialog/help-dialog/help-dialog.component';
 import {User} from '../../../model/user';
 

@@ -8,6 +8,34 @@
   <span *ngIf="isAuthenticated" style="color: white; margin-right: 35px; font-size: 16px;">{{user?.claims?.name}}</span>
   <span *ngIf="isAuthenticated" class="role">{{user?.role}}</span>
   <button *ngIf="isAuthenticated" type="button" class="btn btn-outline-light" (click)="logout()">LOGOUT</button>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>brightness_high</mat-icon>
+      <span>Light Mode</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>brightness_medium</mat-icon>
+      <i class="fas fa-moon"></i>
+      <span>Dark Mode</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
 </mat-toolbar>
 
 <!-- LEGACY (with Bootstrap navbar)

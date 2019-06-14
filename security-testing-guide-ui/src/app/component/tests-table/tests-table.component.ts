@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Category} from '../../model/security-test/category.enum';
 import {Finding} from '../../model/security-test/finding';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {Router} from '@angular/router';
 import {SecurityTestService} from '../../service/security-test.service';
 import {forkJoin, Observable, observable, Subscription} from 'rxjs';

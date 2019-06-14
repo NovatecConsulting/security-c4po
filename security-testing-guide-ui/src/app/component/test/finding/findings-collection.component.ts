@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SharedService} from '../../../service/shared.service';
 import {FindingService} from '../../../service/finding.service';
 import {FindingDialogComponent} from './finding-dialog.component';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-findings-collection',

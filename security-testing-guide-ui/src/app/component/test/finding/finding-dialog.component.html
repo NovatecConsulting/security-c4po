@@ -3,7 +3,7 @@
     <div>
       <!--<h1 mat-dialog-title class="dialogTitle"><b>{{finding?.title}}</b></h1>-->
       <h1 mat-dialog-title class="dialogTitle">
-        <input [(ngModel)]="finding.title" type="text" class="input-label" size="64" tabindex="-1"/>
+        <input [(ngModel)]="finding.title" type="text" class="input-label" size="64" tabindex="-1" placeholder="Give me a title ..."/>
       </h1>
       <br>
       <h6 style="font-size: 0.75em; color: gray;"><b *ngIf="finding.created">Created: </b>{{finding?.created}}</h6>
@@ -74,6 +74,8 @@
         </mat-form-field>
         <button mat-icon-button (click)="deleteUrl(url)"><i class="fa fa-lg fa-trash fix-fa-trash-position"></i></button>
       </div>
+
+      <button mat-stroked-button (click)="addUrl(undefined)"><i class="fa fa-lg fa-plus"></i></button>
 
     </div>
     <!-- Mitigation -->

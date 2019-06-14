@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { SecurityTest } from '../../model/security-test/security-test';
 import { ApiService } from '../../service/api.service';
-import { MatDialog, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { NotesDialogComponent } from '../dialog/notes-dialog/notes-dialog.component';
 import { InfoDialogComponent } from '../dialog/info-dialog/info-dialog.component';
 import { SharedService } from '../../service/shared.service';
