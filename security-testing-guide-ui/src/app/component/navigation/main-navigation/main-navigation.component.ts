@@ -50,8 +50,10 @@ export class MainNavigationComponent implements OnInit {
   }
 
   static extractRoleFromToken(token: string) {
-    const groups = JSON.parse(window.atob(token.split('.')[1])).groups;
-    return groups.includes('Tester') ? Role.Tester : Role.Viewer;
+    if (token !== undefined) {
+      const groups = JSON.parse(window.atob(token.split('.')[1])).groups;
+      return groups.includes('Tester') ? Role.Tester : Role.Viewer;
+    }
   }
 
   async ngOnInit() {

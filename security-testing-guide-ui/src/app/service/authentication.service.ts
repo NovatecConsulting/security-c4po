@@ -5,6 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationService {
 
+  username: string;
+
   constructor() { }
+
+  login() {
+    this.username = 'NovaTester';
+  }
+
+  logout() {
+    this.username = null;
+  }
 
 }
