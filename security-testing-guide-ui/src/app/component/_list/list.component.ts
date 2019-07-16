@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
   dataSourceMap: Map<string, MatTableDataSource<SecurityTest>>;
   displayedColumns = ['id', 'title',]; // 'checked', 'notes', 'info'];
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   data_AUTHN = null;
   dataSource_AUTHN = new MatTableDataSource();

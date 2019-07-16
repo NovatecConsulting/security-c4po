@@ -102,18 +102,18 @@ hr {
   color: $accent;
 }
 
-/deep/ .mat-select-value {
+::ng-deep .mat-select-value {
   color: $accent;
   font-weight: 700;
 }
 
 // hover color
-///deep/ .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+//::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
 //  color: $accent;
 //}
 
 // active color
-/deep/ .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: $accent;
 }
 

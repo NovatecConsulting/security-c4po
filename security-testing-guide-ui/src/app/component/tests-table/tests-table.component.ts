@@ -25,7 +25,7 @@ export class TestsTableComponent implements OnInit, OnDestroy {
 
   dataSource = new MatTableDataSource();
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private router: Router,
               private securityTestService: SecurityTestService,
