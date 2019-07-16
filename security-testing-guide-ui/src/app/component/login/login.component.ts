@@ -6,6 +6,8 @@ import {first} from 'rxjs/operators';
 import {AlertService} from '../../service/alert.service';
 import {OktaAuthService} from '@okta/okta-angular';
 
+declare var particlesJS: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -40,6 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    particlesJS.load('particles-js', 'assets/particles.json', null);
+
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
     this.loginForm = this.formBuilder.group({
