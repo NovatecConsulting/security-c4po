@@ -17,7 +17,8 @@ const appRoutes: Routes = [
   {
     path: 'tests',
     component: ListComponent,
-    canActivate: [OktaAuthGuard],
+    canActivate: [AuthGuard],
+    // canActivate: [OktaAuthGuard],
     data: {
       onAuthRequired
     }
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
   {
     path: 'projects/:id/settings',
     component: ProjectSettingsComponent,
-    canActivate: [OktaAuthGuard],
+    canActivate: [AuthGuard],
+    // canActivate: [OktaAuthGuard],
     data: {
       onAuthRequired
     }
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
   {
     path: 'projects/:id/:testId',
     component: TestFrameComponent,
-    canActivate: [OktaAuthGuard],
+    canActivate: [AuthGuard],
+    // canActivate: [OktaAuthGuard],
     data: {
       onAuthRequired
     }
@@ -45,8 +48,8 @@ const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [OktaAuthGuard, AuthGuard],
-    canActivate: [OktaAuthGuard],
+    // canActivate: [OktaAuthGuard],
+    canActivate: [AuthGuard],
     data: {
       onAuthRequired
     }
@@ -69,6 +72,7 @@ const appRoutes: Routes = [
 ];
 
 export function onAuthRequired({oktaAuth, router}) {
+  console.log('onAuthRequired');
   router.navigate(['/login']);
 }
 

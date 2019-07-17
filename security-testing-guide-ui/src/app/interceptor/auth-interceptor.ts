@@ -18,15 +18,27 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request).toPromise();
     }
     if (request.urlWithParams.startsWith('https://localhost')) {
-      const accessToken = await this.oktaAuth.getAccessToken();
-      request = request.clone({
-        setHeaders: {
-          Authorization: 'Bearer ' + accessToken
-        }
+      await this.getAuthorization().then(auth => {
+        const authType = Object.keys(auth).toString();
+        request = request.clone({
+          setHeaders: {
+            Authorization: `${authType} ${auth[authType]}`
+          }
+        });
       });
     }
-    // console.log('Authorization: ', request.headers.get('Authorization'));
+    // console.log('Authorization:', request.headers.get('Authorization'));
     return next.handle(request).toPromise();
+  }
+
+  private async getAuthorization() {
+    let authorization: {};
+    if (localStorage.getItem('basicAuth')) {
+      authorization = {'Basic': localStorage.getItem('basicAuth')};
+    }
+    const accessToken = await this.oktaAuth.getAccessToken();
+    authorization = accessToken ? {'Bearer': accessToken} : authorization;
+    return authorization;
   }
 
 }

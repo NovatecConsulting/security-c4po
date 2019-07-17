@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -63,6 +63,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
+import {GlobalErrorHandler} from './shared/global-error-handler';
 
 const oktaConfig = {
   issuer: 'https://dev-308298.okta.com/oauth2/default',
@@ -145,6 +146,10 @@ const oktaConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useExisting: GlobalErrorHandler
     },
     GlobalStore
   ],

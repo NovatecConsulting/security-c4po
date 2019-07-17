@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {DashboardService} from '../../service/dashboard.service';
 import {OktaAuthService} from '@okta/okta-angular';
 import {TestStatusService} from '../../service/test-status.service';
+import {AuthenticationService} from '../../service/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,20 +13,19 @@ import {TestStatusService} from '../../service/test-status.service';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   projectsLoaded = false;
-  accessToken: String;
   checked: {[projectId: string]: {total: number, percentage: number} } = {};
 
   constructor(public dashboardService: DashboardService,
               private testStatusService: TestStatusService,
               private router: Router,
-              private oktaAuth: OktaAuthService) {
+              private oktaAuth: OktaAuthService,
+              private authenticationService: AuthenticationService) {
   }
 
   async ngOnInit() {
-    if (!await this.oktaAuth.isAuthenticated()) {
+    if (!this.authenticationService.getLoggedInUser()) {
       this.router.navigate(['/login']);
     }
-    this.accessToken = await this.oktaAuth.getAccessToken();
 
     this.dashboardService.getAllProjects().then(successful => {
       this.dashboardService.project$.subscribe((projects) => {

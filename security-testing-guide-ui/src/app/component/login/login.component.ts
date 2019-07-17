@@ -5,8 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {AlertService} from '../../service/alert.service';
 import {OktaAuthService} from '@okta/okta-angular';
-
-// declare var particlesJS: any;
+import {AuthenticationService} from '../../service/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -25,64 +24,60 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private loginService: BasicLoginService,
               private alertService: AlertService,
-              public oktaAuth: OktaAuthService) {
-
-    this.oktaAuth.$authenticationState.subscribe(
+              private authenticationService: AuthenticationService,
+              private basicLoginService: BasicLoginService,
+              public oktaAuthService: OktaAuthService) {
+    this.oktaAuthService.$authenticationState.subscribe(
       async (isAuthenticated: boolean) => {
         this.isAuthenticated = isAuthenticated;
       }
     );
+  }
 
+  async ngOnInit() {
     this.loginForm = new FormGroup({
       username: new FormControl(),
       password: new FormControl()
     });
-  }
-
-  async ngOnInit() {
-
-    // particlesJS.load('particles-js', 'assets/particles.json', null);
-
-    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
     this.loginForm = this.formBuilder.group({
       username: ['viewer', Validators.required],
       password: ['viewer', Validators.required]
     });
 
-    if (this.isAuthenticated === true) {
+    if (this.authenticationService.getLoggedInUser()) {
       this.router.navigate(['/dashboard']);
     }
-
   }
 
   get f() {
     return this.loginForm.controls;
   }
 
-  login() {
-    this.oktaAuth.loginRedirect('/dashboard');
-  }
-
-  onSubmit() {
+  loginWithCredentials() {
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
     this.loading = true;
-    this.loginService.login(this.f.username.value, this.f.password.value)
-      .pipe(first()).subscribe(
-      (data) => {
+    this.basicLoginService.login(this.f.username.value, this.f.password.value)
+      .pipe(first()).subscribe((user) => {
         this.loading = false;
         this.router.navigate(['/dashboard']);
-      },
-      (error) => {
+      }, (error) => {
         console.log('error', error);
-        this.alertService.error(error);
         this.loading = false;
+        this.alertService.error(error);
       });
+  }
+
+  loginWithOkta() {
+    this.oktaAuthService.loginRedirect('/dashboard');
+  }
+
+  loginWithAuth0() {
+    console.log('auth0 not configured yet.');
   }
 
 }

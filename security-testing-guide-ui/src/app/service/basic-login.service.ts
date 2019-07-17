@@ -9,14 +9,12 @@ import {map} from 'rxjs/operators';
 })
 export class BasicLoginService {
 
-  public currentUser: Observable<User>;
-  private currentUserSubject: BehaviorSubject<User>;
+  private currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('userDetails')));
+  public currentUser = this.currentUserSubject.asObservable();
 
   private BASE_URL = 'https://localhost:8443/api/v1';
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserValue(): User {
@@ -27,10 +25,10 @@ export class BasicLoginService {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + window.btoa(username + ':' + password)
     });
-
     return this.http.post<any>(this.BASE_URL + '/login', null, {headers: headers})
       .pipe(map(user => {
         localStorage.setItem('userDetails', JSON.stringify(user));
+        localStorage.setItem('basicAuth', window.btoa(username + ':' + password));
         this.currentUserSubject.next(user);
         return user;
       }));
@@ -38,6 +36,7 @@ export class BasicLoginService {
 
   logout() {
     localStorage.removeItem('userDetails');
+    localStorage.removeItem('basicAuth');
     this.currentUserSubject.next(null);
   }
 
