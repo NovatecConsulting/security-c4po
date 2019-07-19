@@ -39,11 +39,11 @@
   </div>
 </div>
 <div style="display: flex; flex-direction: column; align-items: center;">
-  <button *ngIf="!isAuthenticated" mat-stroked-button color="" (click)="loginWithOkta()" class="oauth-provider-button" style="margin-bottom: 24px;">
+  <button mat-stroked-button color="" (click)="loginWithOkta()" class="oauth-provider-button" style="margin-bottom: 24px;">
     <a style="color: darkgrey;">Login with</a>
     <a style="float: right; margin-left: 0.5em;"><img src="../../assets/okta_logo.png" alt="okta" height="32"></a>
   </button>
-  <button *ngIf="!isAuthenticated" mat-stroked-button color="" (click)="loginWithAuth0()" class="oauth-provider-button">
+  <button mat-stroked-button color="" (click)="loginWithAuth0()" class="oauth-provider-button">
     <a style="color: darkgrey;">Login with</a>
     <a style="float: right; margin-left: 0.5em;"><img src="../../assets/auth0_logo.png" alt="auth0" height="24"></a>
   </button>

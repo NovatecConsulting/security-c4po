@@ -38,6 +38,8 @@
 
 </mat-toolbar>
 
+<!--<pre>user: {{user | json}}</pre>-->
+
 <!-- LEGACY (with Bootstrap navbar)
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="navbar-header">
@@ -47,12 +49,12 @@
     </a>
   </div>
   <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto" *ngIf="user">
-      <a style="color: white">{{user.email}}</a>
+    <ul class="navbar-nav mr-auto" *ngIf="$user">
+      <a style="color: white">{{$user.email}}</a>
     </ul>
     <ul class="nav navbar-nav pull-right">
-      <li class="role" *ngIf="user">
-        <a>Role: {{user.role}}</a>
+      <li class="role" *ngIf="$user">
+        <a>Role: {{$user.role}}</a>
       </li>
       <li class="login">
         <a *ngIf="isAuthenticated" class="nav-link" (click)="logout()" style="padding: 0;">

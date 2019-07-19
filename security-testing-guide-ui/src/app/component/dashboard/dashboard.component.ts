@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {DashboardService} from '../../service/dashboard.service';
 import {OktaAuthService} from '@okta/okta-angular';
 import {TestStatusService} from '../../service/test-status.service';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +23,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    if (!this.authenticationService.getLoggedInUser()) {
+    /*if (!this.authenticationService.$user) {
       this.router.navigate(['/login']);
-    }
+    }*/
 
     this.dashboardService.getAllProjects().then(successful => {
       this.dashboardService.project$.subscribe((projects) => {

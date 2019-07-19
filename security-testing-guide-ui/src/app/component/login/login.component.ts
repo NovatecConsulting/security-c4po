@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {BasicLoginService} from '../../service/basic-login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
 import {AlertService} from '../../service/alert.service';
-import {OktaAuthService} from '@okta/okta-angular';
-import {AuthenticationService} from '../../service/authentication.service';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -19,20 +16,11 @@ export class LoginComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
-  isAuthenticated: boolean;
-
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService,
-              private authenticationService: AuthenticationService,
-              private basicLoginService: BasicLoginService,
-              public oktaAuthService: OktaAuthService) {
-    this.oktaAuthService.$authenticationState.subscribe(
-      async (isAuthenticated: boolean) => {
-        this.isAuthenticated = isAuthenticated;
-      }
-    );
+              private authenticationService: AuthenticationService) {
   }
 
   async ngOnInit() {
@@ -46,9 +34,13 @@ export class LoginComponent implements OnInit {
       password: ['viewer', Validators.required]
     });
 
-    if (this.authenticationService.getLoggedInUser()) {
+    if (this.authenticationService.$user) {
       this.router.navigate(['/dashboard']);
     }
+
+    /*if (this.authenticationService.getLoggedInUser()) {
+      this.router.navigate(['/dashboard']);
+    }*/
   }
 
   get f() {
@@ -61,7 +53,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.basicLoginService.login(this.f.username.value, this.f.password.value)
+    this.authenticationService.loginBasicAuth(this.f.username.value, this.f.password.value).then((fullfilled) => {
+      console.log('fulfilled:', fullfilled);
+      this.loading = false;
+      this.router.navigate(['/dashboard']);
+    });
+    /*this.basicAuthService.login(this.f.username.value, this.f.password.value)
       .pipe(first()).subscribe((user) => {
         this.loading = false;
         this.router.navigate(['/dashboard']);
@@ -69,11 +66,12 @@ export class LoginComponent implements OnInit {
         console.log('error', error);
         this.loading = false;
         this.alertService.error(error);
-      });
+      });*/
+    this.loading = false;
   }
 
   loginWithOkta() {
-    this.oktaAuthService.loginRedirect('/dashboard');
+    this.authenticationService.loginWithOkta();
   }
 
   loginWithAuth0() {

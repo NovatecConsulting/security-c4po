@@ -15,7 +15,7 @@ public class DelaySimulation implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         try {
-            Thread.sleep(0);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
