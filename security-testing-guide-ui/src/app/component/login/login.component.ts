@@ -53,11 +53,27 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.authenticationService.loginBasicAuth(this.f.username.value, this.f.password.value).then((fullfilled) => {
-      console.log('fulfilled:', fullfilled);
-      this.loading = false;
-      this.router.navigate(['/dashboard']);
+    // console.log('Loading ...');
+    /*
+    this.authenticationService.loginBasicAuth(this.f.username.value, this.f.password.value).subscribe((isValid) => {
+      console.log('isValid:', isValid);
+      // this.loading = false;
+      if (isValid) {
+        this.router.navigate(['/dashboard']);
+      }
     });
+    */
+
+    // TODO: async
+    this.authenticationService.asyncLoginBasicAuth(this.f.username.value, this.f.password.value).then((isValid) => {
+      console.log('Basic Auth Success:', isValid);
+      this.loading = false;
+      if (isValid) {
+        console.log('Redirecting to /dashboard ...');
+        this.router.navigate(['/dashboard']);
+      }
+    });
+
     /*this.basicAuthService.login(this.f.username.value, this.f.password.value)
       .pipe(first()).subscribe((user) => {
         this.loading = false;
@@ -67,7 +83,7 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.alertService.error(error);
       });*/
-    this.loading = false;
+    // this.loading = false;
   }
 
   loginWithOkta() {
@@ -75,7 +91,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithAuth0() {
-    console.log('auth0 not configured yet.');
+    console.log('Auth0 not configured yet.');
   }
 
 }

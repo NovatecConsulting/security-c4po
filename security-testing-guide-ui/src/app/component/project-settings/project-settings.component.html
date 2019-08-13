@@ -61,6 +61,20 @@
                      (ngModelChange)="saveStringToStore($event, 'tester')">
             </mat-form-field>
           </section>
+          <!-- Image Cropping Tool -->
+          <input type="file" (change)="fileChangeEvent($event)" />
+          <div *ngIf=true>
+            <image-cropper
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [imageBase64]=""
+              [aspectRatio]="4 / 3"
+              [containWithinAspectRatio]="true"
+              [onlyScaleDown]="true"
+              format="png"
+              (imageCropped)="imageCropped($event)"></image-cropper>
+          </div>
+          <img [src]="croppedImage" />
         </mat-card-content>
       </mat-card>
     </div>

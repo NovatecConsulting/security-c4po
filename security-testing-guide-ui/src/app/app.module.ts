@@ -64,6 +64,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
 import {GlobalErrorHandler} from './shared/global-error-handler';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 const oktaConfig = {
   issuer: 'https://dev-308298.okta.com/oauth2/default',
@@ -139,7 +140,8 @@ const oktaConfig = {
     MatBadgeModule,
     ReactiveFormsModule,
     MatBottomSheetModule,
-    OktaAuthModule.initAuth(oktaConfig)
+    OktaAuthModule.initAuth(oktaConfig),
+    ImageCropperModule
   ],
   providers: [
     {

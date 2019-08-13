@@ -6,6 +6,7 @@ import {ApiService} from '../../service/api.service';
 import {Router} from '@angular/router';
 import {DashboardService} from '../../service/dashboard.service';
 import {ProjectService} from '../../service/project.service';
+import {ImageCroppedEvent} from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-share',
@@ -59,6 +60,10 @@ export class ProjectSettingsComponent implements OnInit {
 
   now = new Date();
 
+  // Image Cropper
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+
   constructor(private sharedService: SharedService,
               private location: Location,
               private store: GlobalStore,
@@ -80,6 +85,15 @@ export class ProjectSettingsComponent implements OnInit {
     });
     this.testedItems.tested = this.sharedService.getChecked;
     this.testedItems.total = this.sharedService.getTotal;
+  }
+
+  // Image Cropper
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
   }
 
   saveLogoRadioChangeToStore(value, field) {

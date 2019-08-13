@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +24,18 @@ export class BasicAuthService {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + window.btoa(username + ':' + password)
     });
-    return this.http.post<any>(this.BASE_URL + '/login', null, {headers: headers})
-      .pipe(map((userDetails: UserDetails) => {
-        localStorage.setItem('userDetails', JSON.stringify(userDetails));
-        localStorage.setItem('basicAuth', window.btoa(username + ':' + password));
-        this.basicAuthUserSubject.next(userDetails);
-        return true;
-        // TODO: return false on error (401)
-      }));
+    return this.http.post<any>(this.BASE_URL + '/login', null, {headers: headers}).pipe(
+      map((userDetails: UserDetails) => {
+      localStorage.setItem('userDetails', JSON.stringify(userDetails));
+      localStorage.setItem('basicAuth', window.btoa(username + ':' + password));
+      this.basicAuthUserSubject.next(userDetails);
+      return true;
+      }),
+      catchError((err: HttpErrorResponse) => {
+        // console.log('HTTP Status:', err.status);
+        return of(false);
+      })
+    );
   }
 
   logout() {

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {User} from '../../model/user';
 import {BasicAuthService, UserDetails} from './basic-auth.service';
 import {OktaAuthService, UserClaims} from '@okta/okta-angular';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Role} from '../../model/role.enum';
 
 @Injectable({
@@ -16,13 +16,10 @@ export class AuthenticationService {
   constructor(private basicAuthService: BasicAuthService,
               private oktaAuthService: OktaAuthService) {
 
-    // TODO: include basic-login as well as oktaAuthService
-    // this.$user = this.basicAuthService.$basicAuthUser;
-
     this.basicAuthService.$basicAuthUser.subscribe((userDetails: UserDetails) => {
       if (userDetails) {
         console.log('Basic Auth:', userDetails);
-        const user: User = {
+        const basicUser: User = {
           claims: {
             sub: null,
             iss: 'SpringSecurity',
@@ -30,8 +27,9 @@ export class AuthenticationService {
           },
           role: Role.Viewer
         };
-        this.userSubject.next(user);
+        this.userSubject.next(basicUser);
       } else {
+        console.log('BasicUser has no userDetails. Setting user to null.');
         this.userSubject.next(null);
       }
     });
@@ -43,10 +41,11 @@ export class AuthenticationService {
           claims: userClaims,
           role: Role.Viewer
         };
-        // console.log('OAuth (Okta):', oktaUser);
         this.userSubject.next(oktaUser);
+      } else {
+        // console.log('OktaUser has no userClaims. Setting user to null.');
+        // this.userSubject.next(null);
       }
-      // console.log('userSubject:', this.userSubject.getValue());
     });
   }
 
@@ -89,26 +88,19 @@ export class AuthenticationService {
   }
   */
 
-  loginBasicAuth(username: string, password: string): Promise<boolean> {
+  loginBasicAuth(username: string, password: string): Observable<boolean> {
+    console.log('Logging in as user "' + username + '" ...');
     this.basicAuthService.login(username, password).subscribe(value => {
-      return value;
+      console.log('Logging in as user "' + username + '". Success:', value);
+      return of(value);
     });
-    return new Promise<boolean>(() => true);
+    return of(false);
+  }
 
-    /*this.basicAuthService.login(username, password).pipe(first()).subscribe((user) => {
-      console.log('$user from basic auth service: ', user);
-      const u: User = {
-        claims: {
-          sub: 'sub',
-          name: user['username']
-        },
-        role: user['authorities'][0]['authority']
-      };
-      // this.$user = new BehaviorSubject<User>(JSON.parse($user).asObservable());
-      this.$user = new BehaviorSubject<User>(u).asObservable();
-      // return $user;
-      return true;
-    });*/
+  async asyncLoginBasicAuth(username: string, password: string) {
+    const a = await this.basicAuthService.login(username, password).toPromise();
+    // return of(a);
+    return a;
   }
 
   loginWithOkta() {
