@@ -1,4 +1,5 @@
-@import "~src/_variables";
+//@import "../../../../static-colors";
+@import "~src/styles.scss";
 
 button {
   width: 100%;
@@ -21,13 +22,6 @@ mat-button-toggle {
   font-size: 18px;
   width: 100%;
 }
-
-//.nav-pills > a.active,
-//.nav-pills > a:hover,
-//.nav-pills > a:focus {
-//  color:white;
-//  background-color: $accent;
-//}
 
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,

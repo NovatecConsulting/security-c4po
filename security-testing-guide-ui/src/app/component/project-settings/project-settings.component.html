@@ -61,20 +61,6 @@
                      (ngModelChange)="saveStringToStore($event, 'tester')">
             </mat-form-field>
           </section>
-          <!-- Image Cropping Tool -->
-          <input type="file" (change)="fileChangeEvent($event)" />
-          <div *ngIf=true>
-            <image-cropper
-              [imageChangedEvent]="imageChangedEvent"
-              [maintainAspectRatio]="true"
-              [imageBase64]=""
-              [aspectRatio]="4 / 3"
-              [containWithinAspectRatio]="true"
-              [onlyScaleDown]="true"
-              format="png"
-              (imageCropped)="imageCropped($event)"></image-cropper>
-          </div>
-          <img [src]="croppedImage" />
         </mat-card-content>
       </mat-card>
     </div>
@@ -104,6 +90,23 @@
                      (ngModelChange)="saveStringToStore($event, 'customer')">
             </mat-form-field>
           </section>
+
+          <!-- Image Cropping Tool -->
+          <input type="file" (change)="fileChangeEvent($event)" />
+          <div *ngIf=true>
+            <image-cropper style="border: 3px solid #007bff; border-radius: 8px;"
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [imageBase64]=""
+              [aspectRatio]="1"
+              [containWithinAspectRatio]="true"
+              [onlyScaleDown]="true"
+              format="png"
+              (imageCropped)="imageCropped($event)"></image-cropper>
+          </div>
+          <br>
+          <img [src]="croppedImage" style="border: 3px solid #28a745; border-radius: 8px;"/>
+
         </mat-card-content>
         <mat-card-actions align="center" style="padding-top: 0;">
           <!--<button mat-button>LIKE</button>-->

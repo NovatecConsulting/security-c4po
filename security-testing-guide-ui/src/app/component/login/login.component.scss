@@ -1,4 +1,4 @@
-@import "../../../variables";
+@import "../../../static-colors";
 
 /*label {*/
   /*font-family: Roboto Condensed;*/
@@ -149,16 +149,6 @@
   height: 52px;
   border: 1px solid darkgrey;
   border-radius: .25rem;
-}
-
-.btn-google {
-  color: white;
-  background-color: #ea4335;
-}
-
-.btn-facebook {
-  color: white;
-  background-color: #3b5998;
 }
 
 // particles.js as a background

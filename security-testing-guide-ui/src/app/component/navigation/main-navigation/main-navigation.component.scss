@@ -1,8 +1,8 @@
-@import "~src/_variables";
+//@import "~src/_static-colors";
+@import "~src/styles.scss";
 
 mat-toolbar {
-  //background-color: #343a40 !important;
-  background-color: #263238;
+  background-color: #263238 !important;
   font-weight: 700;
   border-radius: 5px;
 }

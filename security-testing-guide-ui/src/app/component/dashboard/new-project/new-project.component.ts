@@ -31,6 +31,7 @@ export class NewProjectComponent implements OnInit {
     const project = new Project();
     project.client = this.projectForm.value.clientName;
     project.title = this.projectForm.value.titleName;
+    // TODO: read username from logged in user
     project.testerName = JSON.parse(localStorage.getItem('$user')).claims.name;
     this.dashboardService.addProject(project);
     this.projectForm.reset();

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  loadUserLoggedIn: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
@@ -34,13 +35,21 @@ export class LoginComponent implements OnInit {
       password: ['viewer', Validators.required]
     });
 
-    if (this.authenticationService.$user) {
-      this.router.navigate(['/dashboard']);
-    }
-
-    /*if (this.authenticationService.getLoggedInUser()) {
+    /*if (this.authenticationService.$user) {
       this.router.navigate(['/dashboard']);
     }*/
+
+    console.log('Checking if user is logged in ...');
+    this.loadUserLoggedIn = true;
+    this.authenticationService.userIsLoggedIn().then((isLoggedIn) => {
+      this.loadUserLoggedIn = false;
+      if (isLoggedIn) {
+        console.log('navigating to /dashboard ...');
+        this.router.navigate(['/dashboard']);
+      } else {
+        console.log('no user is logged in.');
+      }
+    });
   }
 
   get f() {

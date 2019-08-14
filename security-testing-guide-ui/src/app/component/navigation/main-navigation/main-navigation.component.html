@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar [ngClass]="{'dark-theme': isDarkTheme | async}">
   <a class="navbar-brand" href="/">
     <i class="swg swg-c3po-3 swg-2x accent"></i>
     <a class="accent title">Security C-3PO</a>
@@ -9,33 +9,59 @@
   <span *ngIf="isAuthenticated" class="role">{{user?.role}}</span>
   <button *ngIf="isAuthenticated" type="button" class="btn btn-outline-light" (click)="logout()">LOGOUT</button>
 
+  <!-- Menu Settings -->
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
+    <mat-icon style="color: white;">more_vert</mat-icon>
   </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+  <mat-menu #menu="matMenu" class="light-theme">
+    <button mat-menu-item (click)="$event.stopPropagation()">
       <mat-icon>dialpad</mat-icon>
       <span>Redial</span>
     </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="$event.stopPropagation()">
       <mat-icon>brightness_high</mat-icon>
       <span>Light Mode</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="$event.stopPropagation()">
       <mat-icon>brightness_medium</mat-icon>
       <i class="fas fa-moon"></i>
       <span>Dark Mode</span>
     </button>
-    <button mat-menu-item>
-      <mat-icon>exit_to_app</mat-icon>
+
+    <!-- Reduce motion -->
+    <div style="display: flex; align-items: center; font-family: Roboto Condensed, sans-serif;
+                font-size: 14px; color: rgba(0, 0, 0, 0.87); padding: 0px 16px; height: 48px;"
+         (click)="$event.stopPropagation();">
+      <div style="display: flex; align-items: center; margin-right: 16px;">
+        <mat-icon style="color: rgba(0, 0, 0, 0.54); margin-right: 16px;">pause</mat-icon>
+        <span>Reduce motion</span>
+      </div>
+      <mat-slide-toggle style="margin-right: 16px;">
+      </mat-slide-toggle>
+    </div>
+
+    <!-- Toggle dark mode -->
+    <div style="display: flex; align-items: center; font-family: Roboto Condensed, sans-serif;
+                font-size: 14px; color: rgba(0, 0, 0, 0.87); padding: 0px 16px; height: 48px;"
+         (click)="$event.stopPropagation();">
+      <div style="display: flex; align-items: center; margin-right: 16px;">
+        <mat-icon style="color: rgba(0, 0, 0, 0.54); margin-right: 16px;">brightness_7</mat-icon>
+        <span>Light</span>
+      </div>
+      <mat-slide-toggle style="margin-right: 16px;"
+        [checked]="isDarkTheme | async"
+        (change)="toggleDarkTheme($event.checked)">
+      </mat-slide-toggle>
+      <div style="display: flex; align-items: center;">
+        <mat-icon style="color: rgba(0, 0, 0, 0.54); margin-right: 16px;">brightness_3</mat-icon>
+        <span>Dark</span>
+      </div>
+    </div>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon color="accent">logout</mat-icon>
       <span>Logout</span>
     </button>
   </mat-menu>
-
 </mat-toolbar>
 
 <!--<pre>user: {{user | json}}</pre>-->

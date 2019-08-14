@@ -1,4 +1,19 @@
 @import "./custom-theme";
+@import "./dark-theme";
+
+@include angular-material-theme($light-theme);
+
+$accent: mat-color($light-accent);
+//$accent: mat-color($dark-accent);
+
+.dark-theme {
+  //color: $light-primary-text;
+  @include angular-material-theme($dark-theme)
+}
+
+.dark-background-particles {
+  background-color: #455A64;
+}
 
 html {
   height:100%;
@@ -6,7 +21,6 @@ html {
 
 body {
   height: 100%;
-  background-color: #455A64;
 }
 
 // particles.js as a background

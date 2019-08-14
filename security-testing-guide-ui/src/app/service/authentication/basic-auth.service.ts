@@ -16,10 +16,6 @@ export class BasicAuthService {
   constructor(private http: HttpClient) {
   }
 
-  /*public get currentUserValue(): User {
-    return this.basicAuthUserSubject.value;
-  }*/
-
   login(username: string, password: string): Observable<boolean> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + window.btoa(username + ':' + password)

@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ThemeService} from './service/theme.service';
 
 declare var particlesJS: any;
 
@@ -7,10 +9,16 @@ declare var particlesJS: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor() {
+  isDarkTheme: Observable<boolean>;
+
+  constructor(private themeService: ThemeService) {
     particlesJS.load('particles-js', 'assets/particles.json', null);
+  }
+
+  ngOnInit() {
+    this.isDarkTheme = this.themeService.isDarkTheme;
   }
 
 }

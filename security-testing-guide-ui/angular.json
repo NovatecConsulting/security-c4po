@@ -28,7 +28,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/_variables.scss"
+              "src/_static-colors.scss"
             ],
             "scripts": [
               "node_modules/particles.js/particles.js"

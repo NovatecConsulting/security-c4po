@@ -1,6 +1,7 @@
-<div class="container">
+<div class="container" [ngClass]="{'dark-theme': isDarkTheme | async}">
   <app-navigation></app-navigation>
   <router-outlet></router-outlet>
 </div>
-<div id="particles-js">
-</div>
+
+<!--<div id="particles-js" [ngClass]="{'dark-theme': isDarkTheme | async}"></div>-->
+<div id="particles-js" [ngClass]="{'dark-background-particles': isDarkTheme | async}"></div>
