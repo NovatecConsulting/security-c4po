@@ -74,7 +74,10 @@
           <mat-card-title>Client</mat-card-title>
           <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
         </mat-card-header>
-        <img mat-card-image [src]=customerLogos[selectedCustomerLogo] alt="No Logo">
+<!--        <img mat-card-image [src]=customerLogos[selectedCustomerLogo] alt="No Logo">-->
+        <div style="text-align: center;">
+          <img mat-card-image [src]="croppedImage" class="logo" alt="No Logo">
+        </div>
         <mat-card-content style="margin-bottom: 0;">
           <section class="example-section">
             <mat-radio-group class="example-radio-group" [(ngModel)]="selectedCustomerLogo">
@@ -92,9 +95,8 @@
           </section>
 
           <!-- Image Cropping Tool -->
-          <input type="file" (change)="fileChangeEvent($event)" />
           <div *ngIf=true>
-            <image-cropper style="border: 3px solid #007bff; border-radius: 8px;"
+            <image-cropper class="image-cropper"
               [imageChangedEvent]="imageChangedEvent"
               [maintainAspectRatio]="true"
               [imageBase64]=""
@@ -105,12 +107,16 @@
               (imageCropped)="imageCropped($event)"></image-cropper>
           </div>
           <br>
-          <img [src]="croppedImage" style="border: 3px solid #28a745; border-radius: 8px;"/>
+<!--          <img [src]="croppedImage" class="image-cropper"/>-->
 
         </mat-card-content>
         <mat-card-actions align="center" style="padding-top: 0;">
-          <!--<button mat-button>LIKE</button>-->
-          <button mat-stroked-button color="primary">UPLOAD<i class="fa fa-arrow-up" style="padding-left: 10px;"></i>
+          <button mat-stroked-button color="primary" (click)="fileInput.click()">
+<!--            <div>-->
+            <a>UPLOAD</a>
+            <i class="fa fa-arrow-up" style="padding-left: 10px;"></i>
+<!--            </div>-->
+            <input #fileInput type="file" (change)="fileChangeEvent($event)" style="display: none;">
           </button>
         </mat-card-actions>
       </mat-card>

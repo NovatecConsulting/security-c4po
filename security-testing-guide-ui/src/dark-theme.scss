@@ -1,9 +1,9 @@
 @import '~@angular/material/theming';
 
 //$dark-primary: mat-palette($mat-blue-gray);
-$dark-primary: mat-palette($mat-green);
+$dark-primary: mat-palette($mat-orange);
 //$dark-accent: mat-palette($mat-orange);
-$dark-accent: mat-palette($mat-pink);
+$dark-accent: mat-palette($mat-cyan);
 $dark-warn: mat-palette($mat-red);
 $dark-theme: mat-dark-theme(
     $dark-primary,

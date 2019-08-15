@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {ThemeService} from './service/theme.service';
 
 declare var particlesJS: any;
@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.isDarkTheme = this.themeService.isDarkTheme;
+    // this.isDarkTheme = of(true); // TODO: hard-coded (always dark)
   }
 
 }

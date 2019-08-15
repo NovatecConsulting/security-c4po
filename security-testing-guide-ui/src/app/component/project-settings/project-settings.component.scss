@@ -22,8 +22,21 @@
 //  }
 //}
 
+.logo {
+  border: solid 1px $primary;
+  border-radius: 8px !important;
+  width: 80%;
+  margin: 0 0 16px !important;
+}
+
+.image-cropper {
+  border: solid 1px $accent;
+  border-radius: 8px;
+}
+
 .navbar-custom {
-  background: #E5E5E5;
+  //background: #E5E5E5;
+  //background-color: $primary;
 }
 
 .navbar {
@@ -88,7 +101,7 @@ mat-card-content {
 
 mat-card img {
   object-fit: scale-down;
-  height: 200px;
+  //height: 200px;
 }
 
 .badge {

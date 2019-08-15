@@ -36,7 +36,9 @@
         <mat-icon style="color: rgba(0, 0, 0, 0.54); margin-right: 16px;">pause</mat-icon>
         <span>Reduce motion</span>
       </div>
-      <mat-slide-toggle style="margin-right: 16px;">
+      <mat-slide-toggle style="margin-right: 16px;"
+        [checked]="isReduceMotion | async"
+        (change)="toggleReduceMotion($event.checked)">
       </mat-slide-toggle>
     </div>
 

@@ -20,6 +20,7 @@ export class MainNavigationComponent implements OnInit {
   user: User;
 
   isDarkTheme: Observable<boolean>;
+  isReduceMotion: Observable<boolean>;
 
   constructor(private router: Router,
               private helpDialog: MatDialog,
@@ -37,7 +38,8 @@ export class MainNavigationComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.isDarkTheme = this.themeService.isDarkTheme; // is always dark
+    // this.isDarkTheme = this.themeService.isDarkTheme; // is always dark
+    // this.themeService.setDarkTheme(true);
     // this.user = this.authenticationService.getCurrentLoggedInUser();
     console.log('ngOnInit(): user:', this.user);
     // if (this.user.claims == null && this.user.role == null) {
@@ -73,6 +75,12 @@ export class MainNavigationComponent implements OnInit {
 
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked);
+  }
+
+  toggleReduceMotion(checked: boolean) {
+    this.themeService.setReduceMotion(checked);
+    const speed: number = checked ? 0 : 1;
+    eval('window.pJSDom[0].pJS.particles.move.speed = ' + speed + ';');
   }
 
 }

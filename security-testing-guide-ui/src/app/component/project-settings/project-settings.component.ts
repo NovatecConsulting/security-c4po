@@ -89,6 +89,7 @@ export class ProjectSettingsComponent implements OnInit {
 
   // Image Cropper
   fileChangeEvent(event: any): void {
+    console.log('fileChangeEvent');
     this.imageChangedEvent = event;
   }
 

@@ -1,7 +1,10 @@
-@import "../../../../static-colors";
+//@import "../../../../static-colors";
+@import "~src/static-colors";
 
 .navbar-custom {
-  background: #E5E5E5;
+  //background: #E5E5E5;
+  //color: $light-primary-text;
+  //background: $primary;
 }
 
 .navbar {
