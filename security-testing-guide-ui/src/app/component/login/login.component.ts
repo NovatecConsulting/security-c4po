@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
 
     console.log('Checking if user is logged in ...');
     this.loadUserLoggedIn = true;
+    // await new Promise(resolve => setTimeout(resolve, 30000));
     this.authenticationService.userIsLoggedIn().then((isLoggedIn) => {
       this.loadUserLoggedIn = false;
       if (isLoggedIn) {
@@ -56,12 +57,15 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  loginWithCredentials() {
+  loginWithCredentials() { // is only async because of setTimeout await
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
     this.loading = true;
+
+    // await new Promise(resolve => setTimeout(resolve, 3000));
+
     // console.log('Loading ...');
     /*
     this.authenticationService.loginBasicAuth(this.f.username.value, this.f.password.value).subscribe((isValid) => {

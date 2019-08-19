@@ -41,13 +41,13 @@
           <mat-card-title>Tester</mat-card-title>
           <!--<mat-card-subtitle>Tested by: {{tester}}</mat-card-subtitle>-->
         </mat-card-header>
-        <img mat-card-image [src]=testerLogos[selectedTesterLogo] alt="No Logo">
+        <img mat-card-image [src]=testerLogos[selectedTesterLogo] alt="No Logo" style="height: 214px;">
         <mat-card-content>
           <section class="example-section">
             <mat-radio-group class="example-radio-group" [(ngModel)]="selectedTesterLogo">
               <mat-radio-button class="example-radio-button" *ngFor="let logo of objectKeys(testerLogos)" [value]="logo"
                                 (change)="saveLogoRadioChangeToStore($event.value, 'tester')">
-                {{logo}}
+                {{ logo }}
               </mat-radio-button>
             </mat-radio-group>
           </section>
@@ -75,50 +75,34 @@
           <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
         </mat-card-header>
 <!--        <img mat-card-image [src]=customerLogos[selectedCustomerLogo] alt="No Logo">-->
-        <div style="text-align: center;">
-          <img mat-card-image [src]="croppedImage" class="logo" alt="No Logo">
-        </div>
-        <mat-card-content style="margin-bottom: 0;">
-          <section class="example-section">
-            <mat-radio-group class="example-radio-group" [(ngModel)]="selectedCustomerLogo">
-              <mat-radio-button class="example-radio-button" *ngFor="let logo of objectKeys(customerLogos)"
-                                [value]="logo" (change)="saveLogoRadioChangeToStore($event.value, 'customer')">
-                {{logo}}
-              </mat-radio-button>
-            </mat-radio-group>
-          </section>
-          <section class="example-section" style="padding-top: 20px;">
+
+        <mat-card-content style="display: flex; flex-direction: column; align-items: center;">
+          <div class="logo-container" (click)="fileInput.click()">
+            <img *ngIf="customerLogo" mat-card-image [src]="customerLogo" alt="croppedImage missing." class="logo-inner">
+            <a *ngIf="!customerLogo" class="padding logo-inner">
+              No logo.
+              <!--<button mat-button color="primary" (click)="openLogoUploadDialog()">
+                <a>UPLOAD</a>
+                <i class="fa fa-arrow-up" style="padding-left: 10px;"></i>
+              </button>-->
+            </a>
+            <div class="upload-icon-frame"><mat-icon class="upload-icon">cloud_upload</mat-icon></div>
+          </div>
+          <section class="example-section" style="padding-top: 20px; width: 100%;">
             <mat-form-field class="example-full-width">
               <input matInput placeholder="Client" [(ngModel)]="customer"
                      (ngModelChange)="saveStringToStore($event, 'customer')">
             </mat-form-field>
           </section>
-
-          <!-- Image Cropping Tool -->
-          <div *ngIf=true>
-            <image-cropper class="image-cropper"
-              [imageChangedEvent]="imageChangedEvent"
-              [maintainAspectRatio]="true"
-              [imageBase64]=""
-              [aspectRatio]="1"
-              [containWithinAspectRatio]="true"
-              [onlyScaleDown]="true"
-              format="png"
-              (imageCropped)="imageCropped($event)"></image-cropper>
-          </div>
-          <br>
-<!--          <img [src]="croppedImage" class="image-cropper"/>-->
-
         </mat-card-content>
-        <mat-card-actions align="center" style="padding-top: 0;">
+        <input #fileInput type="file" (change)="fileChangeEvent($event)" style="display: none;">
+        <!--<mat-card-actions align="center">
           <button mat-stroked-button color="primary" (click)="fileInput.click()">
-<!--            <div>-->
             <a>UPLOAD</a>
             <i class="fa fa-arrow-up" style="padding-left: 10px;"></i>
-<!--            </div>-->
             <input #fileInput type="file" (change)="fileChangeEvent($event)" style="display: none;">
           </button>
-        </mat-card-actions>
+        </mat-card-actions>-->
       </mat-card>
     </div>
 
@@ -136,7 +120,8 @@
         <mat-card-content>
           <!--<mat-card-content>-->
 
-          <ng-container *ngIf="projectService.projectDetails$ | async as project">
+<!--          <ng-container *ngIf="projectService.projectDetails$ | async as project">-->
+          <ng-container *ngIf="project">
             <section class="info-section" style="padding-bottom: 0;">
               <mat-form-field class="example-full-width">
                 <input matInput placeholder="Project name" [(ngModel)]="project.title"

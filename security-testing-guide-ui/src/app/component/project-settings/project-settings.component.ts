@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SharedService} from '../../service/shared.service';
 import {GlobalStore} from '../../store/global.store';
 import {Location} from '@angular/common';
@@ -6,7 +6,11 @@ import {ApiService} from '../../service/api.service';
 import {Router} from '@angular/router';
 import {DashboardService} from '../../service/dashboard.service';
 import {ProjectService} from '../../service/project.service';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
+import {MatDialog} from '@angular/material';
+import {LogoCroppingDialogComponent} from './logo-upload-dialog/logo-cropping-dialog.component';
+import {Project} from '../../model/project';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-share',
@@ -14,26 +18,25 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
   styleUrls: ['./project-settings.component.scss'],
   // providers: [GlobalStore] // will be cleaned up in comparison to global store defined in constructor
 })
-export class ProjectSettingsComponent implements OnInit {
+export class ProjectSettingsComponent implements OnInit, OnDestroy {
+
+  @ViewChild('fileInput', {static: false}) fileInput;
+
+  project: Project;
+
+  projectServiceSubscription: Subscription;
 
   selectedTesterLogo: string;
-  selectedCustomerLogo: string;
+  customerLogo: any = '';
 
   objectKeys = Object.keys;
 
   testerLogosFolder = '../../../assets/nt-logo';
-  customerLogosFolder = '../../../assets/customer-logo';
 
   testerLogos = {
     cyan: this.testerLogosFolder + '/cyan-tuerkis.png',
     orange: this.testerLogosFolder + '/orange-gelb.png',
     violet: this.testerLogosFolder + '/violett-rot.png',
-    none: this.testerLogosFolder + '/../none.png'
-  };
-
-  customerLogos = {
-    e_corp: this.customerLogosFolder + '/e-corp.png',
-    acme: this.customerLogosFolder + '/acme.png',
     none: this.testerLogosFolder + '/../none.png'
   };
 
@@ -60,24 +63,21 @@ export class ProjectSettingsComponent implements OnInit {
 
   now = new Date();
 
-  // Image Cropper
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-
   constructor(private sharedService: SharedService,
               private location: Location,
               private store: GlobalStore,
               private apiService: ApiService,
               private router: Router,
+              public dialog: MatDialog,
               public dashboardService: DashboardService,
-              public projectService: ProjectService) {
+              public projectService: ProjectService,
+              public authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
     this.store.state$.subscribe(state => {
-      this.selectedTesterLogo = state.selectedTesterLogo;
-      this.tester = state.testerName;
-      this.selectedCustomerLogo = state.selectedCustomerLogo;
+      this.selectedTesterLogo = 'cyan';
+      // this.tester = state.testerName;
       this.customer = state.customerName;
       this.projectName = state.projectName;
       this.linkPermissions = state.customerPermissions;
@@ -85,16 +85,53 @@ export class ProjectSettingsComponent implements OnInit {
     });
     this.testedItems.tested = this.sharedService.getChecked;
     this.testedItems.total = this.sharedService.getTotal;
+
+    this.projectServiceSubscription = this.projectService.projectDetails$.subscribe((project) => {
+      console.log('project', project);
+      this.project = project;
+
+      this.tester = project.testerName;
+      this.selectedTesterLogo = project.selectedLogoTester;
+      this.customer = project.client;
+      this.customerLogo = project.logoClient;
+      this.projectName = project.title;
+    });
+
+    // console.log('project (before)', this.project);
+    console.log('this.selectedTesterLogo', this.selectedTesterLogo);
+
+    // this.projectService.getProjectDetailsById(this.sharedService.projectId);
+    this.projectService.getProjectDetailsById('b034b0d0-2958-4e4e-b129-37d1fbd5a5bf'); // TODO: remove hard
   }
+
+  /*openLogoUploadDialog(): void {
+    const dialogRef = this.dialog.open(LogoCroppingDialogComponent, {
+      height: '50%',
+      width: '50%',
+      data: {name: 'abc'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('image upload dialog closed.', result);
+    });
+  }*/
 
   // Image Cropper
   fileChangeEvent(event: any): void {
-    console.log('fileChangeEvent');
-    this.imageChangedEvent = event;
-  }
-
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
+    console.log('fileChangeEvent', event);
+    // this.imageChangedEvent = event;
+    const logoCroppingDialog = this.dialog.open(LogoCroppingDialogComponent, {
+      // height: '50%',
+      // width: '80%',
+      height: '500px',
+      width: '500px',
+      data: {event: event}
+    });
+    logoCroppingDialog.afterClosed().subscribe(croppedImage => {
+      console.log('image upload dialog closed.');
+      this.customerLogo = croppedImage;
+      this.fileInput.nativeElement.value = '';
+    });
   }
 
   saveLogoRadioChangeToStore(value, field) {
@@ -148,6 +185,21 @@ export class ProjectSettingsComponent implements OnInit {
     if (confirm('Are you sure you want to delete project: ' + this.sharedService.projectId + '?')) {
       this.dashboardService.deleteProject(this.sharedService.projectId);
     }
+  }
+
+  ngOnDestroy(): void {
+    const projectUpdate: Project = {
+      client: this.customer,
+      createdAt: '',
+      id: '',
+      logoClient: this.customerLogo,
+      selectedLogoTester: this.selectedTesterLogo,
+      testerName: this.authenticationService.getCurrentLoggedInUser().claims.name,
+      title: this.project.title
+    };
+    console.log('Saving project settings to backend ...', projectUpdate);
+    this.projectService.saveProjectSettings(this.project.id, projectUpdate);
+    this.projectServiceSubscription.unsubscribe();
   }
 
 }

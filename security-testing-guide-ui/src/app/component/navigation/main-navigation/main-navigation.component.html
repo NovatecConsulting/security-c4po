@@ -14,7 +14,7 @@
     <mat-icon style="color: white;">more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu" class="light-theme">
-    <button mat-menu-item (click)="$event.stopPropagation()">
+    <!--<button mat-menu-item (click)="$event.stopPropagation()">
       <mat-icon>dialpad</mat-icon>
       <span>Redial</span>
     </button>
@@ -26,14 +26,14 @@
       <mat-icon>brightness_medium</mat-icon>
       <i class="fas fa-moon"></i>
       <span>Dark Mode</span>
-    </button>
+    </button>-->
 
     <!-- Reduce motion -->
     <div style="display: flex; align-items: center; font-family: Roboto Condensed, sans-serif;
                 font-size: 14px; color: rgba(0, 0, 0, 0.87); padding: 0px 16px; height: 48px;"
          (click)="$event.stopPropagation();">
       <div style="display: flex; align-items: center; margin-right: 16px;">
-        <mat-icon style="color: rgba(0, 0, 0, 0.54); margin-right: 16px;">pause</mat-icon>
+        <mat-icon style="color: rgba(0, 0, 0, 0.54); margin-right: 16px;">blur_on</mat-icon>
         <span>Reduce motion</span>
       </div>
       <mat-slide-toggle style="margin-right: 16px;"

@@ -22,11 +22,50 @@
 //  }
 //}
 
-.logo {
+.logo-container {
   border: solid 1px $primary;
   border-radius: 8px !important;
-  width: 80%;
-  margin: 0 0 16px !important;
+  //margin: 0 0 16px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.logo-inner {
+  width: 100%;
+  margin: 0 !important;
+  border-radius: inherit;
+  opacity: 1;
+  transition: 0.5s ease;
+}
+
+.upload-icon {
+  font-size: 80px;
+}
+
+.upload-icon-frame {
+  opacity: 0;
+  transition: 0.5s ease;
+  position: absolute;
+  top: 23%;
+  left: 38%;
+}
+
+.logo-container:hover .logo-inner {
+  opacity: 0.25;
+  cursor: pointer;
+}
+
+.logo-container:hover .upload-icon-frame {
+  opacity: 0.80;
+  cursor: pointer;
+}
+
+.padding {
+  padding-top: calc(50% - 24px / 2);
+  padding-bottom: calc(50% - 24px / 2);
+  text-align: center;
 }
 
 .image-cropper {

@@ -35,7 +35,7 @@ public class Project implements Serializable {
 
     private String testerName;
 
-    private int selectedLogoTester;
+    private String selectedLogoTester;
 
     private int selectedLogoClient;
 

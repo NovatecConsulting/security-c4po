@@ -128,6 +128,10 @@ export class AuthenticationService {
   }
   */
 
+  getCurrentLoggedInUser(): User {
+    return this.currentLoggedInUser;
+  }
+
   loginBasicAuth(username: string, password: string): Observable<boolean> {
     console.log('Logging in as user "' + username + '" ...');
     this.basicAuthService.login(username, password).subscribe(value => {

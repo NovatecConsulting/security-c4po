@@ -72,6 +72,10 @@ public class ProjectController {
             project.setTitle(projectUpdate.getTitle());
         }
 
+        if (projectUpdate.getSelectedLogoTester() != null) {
+            project.setSelectedLogoTester(projectUpdate.getSelectedLogoTester());
+        }
+
         log.info("{}", project.toString());
 
         return projectRepository.save(project);

@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS PROJECT (
     CREATED_AT DATETIME,
     -- DETAILS
     TESTER_NAME VARCHAR(255),
-    SELECTED_LOGO_TESTER INT,
+    SELECTED_LOGO_TESTER VARCHAR(36) NOT NULL,
     SELECTED_LOGO_CLIENT INT,
     PRIMARY KEY (ID)
 );
@@ -58,7 +58,9 @@ CREATE TABLE IF NOT EXISTS SECURITY_TEST_PERFORMED (
 );
 
 -- TODO: Why does this only work here and not in test-data.sql?
-INSERT INTO PROJECT VALUES('c02d0059-326f-4013-a2b1-0954e308bd00', 'E Corp', 'Some Mock API (v1.3) Scanning', parsedatetime('13-12-2018 17:04:18', 'dd-MM-yyyy hh:mm:ss'), 'Nova Tester', 1, 2);
+INSERT INTO PROJECT VALUES('c02d0059-326f-4013-a2b1-0954e308bd00', 'E Corp', 'Some Mock API (v1.3) Scanning', parsedatetime('13-12-2018 17:04:18', 'dd-MM-yyyy hh:mm:ss'), 'Nova Tester', 'orange', 2);
+INSERT INTO PROJECT VALUES('b034b0d0-2958-4e4e-b129-37d1fbd5a5bf', 'E Corp', 'CashMyData (iOS)', parsedatetime('21-04-2019 11:01:24', 'dd-MM-yyyy hh:mm:ss'), 'Nova Tester', 'violet', 2);
+INSERT INTO PROJECT VALUES('45e09010-510f-4235-a509-cc3de646d7fb', 'ACME Corporation LLC', 'ACME Customer API (219.12a)', parsedatetime('02-05-2019 18:34:04', 'dd-MM-yyyy hh:mm:ss'), 'Nova Tester', 'cyan', 1);
 
 INSERT INTO FINDING VALUES('71578254-9851-45cc-82f6-98e53d6ed27b', 'OTG-INFO-002', 'c02d0059-326f-4013-a2b1-0954e308bd00',
 'Webserver reveals Apache version', 'LOW', '', 'Run the following command in a terminal: \"nc <ip> 80\"',

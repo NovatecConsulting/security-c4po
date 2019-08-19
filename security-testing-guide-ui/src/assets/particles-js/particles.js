@@ -1247,7 +1247,7 @@ var pJS = function(tag_id, params){
     var decimalSides = sideCountNumerator / sideCountDenominator;
     var interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
     var interiorAngle = Math.PI - Math.PI * interiorAngleDegrees / 180; // convert to radians
-    c.save();
+    c.onSaveClick();
     c.beginPath();
     c.translate(startX, startY);
     c.moveTo(0,0);

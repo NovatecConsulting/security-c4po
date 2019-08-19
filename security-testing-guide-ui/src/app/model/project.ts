@@ -4,6 +4,6 @@ export class Project {
   title: string;
   createdAt: string;
   testerName: string;
-  selectedLogoTester: number;
-  selectedLogoClient: number;
+  selectedLogoTester: string;
+  logoClient: string;
 }

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ data.event.path[0].files[0]?.name }}</h1>
+<div mat-dialog-content class="cropper-frame">
+  <image-cropper class="image-cropper"
+                 [imageChangedEvent]="imageChangedEvent"
+                 [maintainAspectRatio]="true"
+                 [imageBase64]=""
+                 [aspectRatio]="1"
+                 [containWithinAspectRatio]="true"
+                 [onlyScaleDown]="true"
+                 format="png"
+                 (imageCropped)="imageCropped($event)"></image-cropper>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="onSaveClick()">SAVE</button>
+</div>

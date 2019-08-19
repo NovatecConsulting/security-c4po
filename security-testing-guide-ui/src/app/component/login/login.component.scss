@@ -17,8 +17,21 @@
   //background-color: $primary;
 }
 
-::ng-deep .mat-spinner circle {
-  stroke: #ffffff;
+//::ng-deep .mat-spinner circle {
+//  stroke: #ffffff;
+//}
+
+.btn {
+ height: 46px;
+}
+
+.btn-loading {
+  background: none !important;
+}
+
+.loading-spinner {
+  margin:0 auto;
+  //stroke: #ffffff;
 }
 
 .container {

@@ -18,7 +18,8 @@
                    (click)="onProjectCardClick(project.id)">
       <mat-card class="project-card mat-elevation-z4">
         <mat-card-header>
-          <img mat-card-avatar class="example-header-image" src="../../assets/customer-logo/e-corp.png" alt="?">
+          <img *ngIf="project.selectedLogoClient == 1" mat-card-avatar class="example-header-image" src="../../assets/customer-logo/acme.png" alt="?">
+          <img *ngIf="project.selectedLogoClient == 2" mat-card-avatar class="example-header-image" src="../../assets/customer-logo/e-corp.png" alt="?">
           <!--</img>-->
           <mat-card-title>{{project.title}}</mat-card-title>
           <mat-card-subtitle>{{project.client}}</mat-card-subtitle>

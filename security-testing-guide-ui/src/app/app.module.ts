@@ -65,6 +65,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatBadgeModule} from '@angular/material/badge';
 import {GlobalErrorHandler} from './shared/global-error-handler';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {LogoCroppingDialogComponent} from './component/project-settings/logo-upload-dialog/logo-cropping-dialog.component';
 
 const oktaConfig = {
   issuer: 'https://dev-308298.okta.com/oauth2/default',
@@ -98,7 +99,8 @@ const oktaConfig = {
     TestNavigationComponent,
     StatusHistorySheetComponent,
     FindingDialogComponent,
-    HelpDialogComponent
+    HelpDialogComponent,
+    LogoCroppingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -161,7 +163,8 @@ const oktaConfig = {
     InfoDialogComponent,
     HelpDialogComponent,
     StatusHistorySheetComponent,
-    FindingDialogComponent
+    FindingDialogComponent,
+    LogoCroppingDialogComponent
   ],
   bootstrap: [AppComponent]
 })

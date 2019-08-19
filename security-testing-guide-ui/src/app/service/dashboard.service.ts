@@ -27,6 +27,7 @@ export class DashboardService {
     return new Promise(resolve => {
       this.http.get<Project[]>(this.PROJECTS_URL).subscribe(
         (projects) => {
+          // console.log(projects);
           this.model.set(projects);
           resolve(true);
         },

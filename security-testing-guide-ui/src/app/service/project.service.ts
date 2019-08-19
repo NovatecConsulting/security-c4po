@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Model, ModelFactory} from '@angular-extensions/model';
 import {Project} from '../model/project';
 import {Observable} from 'rxjs';
@@ -24,6 +24,15 @@ export class ProjectService {
   getProjectDetailsById(id: string) {
     this.http.get<Project>(this.PROJECTS_URL + id).subscribe(
       (projectDetails) => {
+        this.model.set(projectDetails);
+      }
+    );
+  }
+
+  saveProjectSettings(id: string, project: Project) {
+    this.http.patch<Project>(this.PROJECTS_URL + id, project).subscribe(
+      (projectDetails) => {
+        console.log(projectDetails);
         this.model.set(projectDetails);
       }
     );
