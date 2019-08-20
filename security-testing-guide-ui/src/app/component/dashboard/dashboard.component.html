@@ -18,8 +18,10 @@
                    (click)="onProjectCardClick(project.id)">
       <mat-card class="project-card mat-elevation-z4">
         <mat-card-header>
-          <img *ngIf="project.selectedLogoClient == 1" mat-card-avatar class="example-header-image" src="../../assets/customer-logo/acme.png" alt="?">
-          <img *ngIf="project.selectedLogoClient == 2" mat-card-avatar class="example-header-image" src="../../assets/customer-logo/e-corp.png" alt="?">
+<!--          <img *ngIf="project.selectedLogoClient == 1" mat-card-avatar class="example-header-image" src="../../assets/customer-logo/acme.png" alt="?">-->
+<!--          <img *ngIf="project.selectedLogoClient == 2" mat-card-avatar class="example-header-image" src="../../assets/customer-logo/e-corp.png" alt="?">-->
+          <img *ngIf="project.logoClient" mat-card-avatar class="example-header-image" [src]="project.logoClient" alt="?">
+          <img *ngIf="!project.logoClient" mat-card-avatar class="example-header-image" src="../../assets/none.png" alt="no image">
           <!--</img>-->
           <mat-card-title>{{project.title}}</mat-card-title>
           <mat-card-subtitle>{{project.client}}</mat-card-subtitle>
@@ -32,7 +34,9 @@
           <!--<b>Last modified: </b>?-->
           <b>Tester: </b>{{project.testerName}}
           <br>
-          <b>Tests performed: </b><span class="badge badge-dark">{{checked[project.id]?.total}} / 90</span>
+          <b>Tests performed: </b>
+          <span class="badge badge-primary">{{checked[project.id]?.total}} / 90</span>
+          <span class="badge badge-accent">{{checked[project.id]?.percentage | number:'.0-0'}}%</span>
         </mat-card-content>
         <mat-card-footer>
           <mat-progress-bar mode="determinate" color="accent" [value]=checked[project.id]?.percentage></mat-progress-bar>

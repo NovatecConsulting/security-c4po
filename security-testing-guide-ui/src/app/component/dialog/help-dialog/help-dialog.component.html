@@ -2,12 +2,12 @@
 <div mat-dialog-content>
   <p>Frontend: <b>{{versionFrontend}}</b></p>
   <p>Backend: <b>{{versionBackend}}</b></p>
-  <p>Testing Guide: <b>v4</b></p>
+  <p>Testing Guide: <b>{{testingGuideVersion}}</b></p>
   <mat-divider></mat-divider>
   <br>
   <p>
     This tool allows a security tester to keep track of the testing progress after
-    <a href="https://www.owasp.org/index.php/OWASP_Testing_Project"
+    <a [href]="linkToWebsite"
        target="_blank">OWASP Testing Guide</a>.
     At this point, the Testing Guide materials are available as pdf which is a quite static resource. A tester needs to
     track progress, make comments and be in close contact with the client -- what a tedious task when having a pdf.

@@ -76,10 +76,12 @@ export class ProjectSettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.store.state$.subscribe(state => {
-      this.selectedTesterLogo = 'cyan';
+      // this.selectedTesterLogo = 'cyan';
       // this.tester = state.testerName;
-      this.customer = state.customerName;
-      this.projectName = state.projectName;
+      // this.customer = state.customerName;
+      // this.projectName = state.projectName;
+      this.testedItems.tested = this.sharedService.getChecked;
+      this.testedItems.total = this.sharedService.getTotal;
       this.linkPermissions = state.customerPermissions;
       this.includeCheckedOnly = state.includeCheckedOnly;
     });
@@ -96,12 +98,7 @@ export class ProjectSettingsComponent implements OnInit, OnDestroy {
       this.customerLogo = project.logoClient;
       this.projectName = project.title;
     });
-
-    // console.log('project (before)', this.project);
-    console.log('this.selectedTesterLogo', this.selectedTesterLogo);
-
-    // this.projectService.getProjectDetailsById(this.sharedService.projectId);
-    this.projectService.getProjectDetailsById('b034b0d0-2958-4e4e-b129-37d1fbd5a5bf'); // TODO: remove hard
+    this.projectService.getProjectDetailsById(localStorage.getItem('activeProjectId'));
   }
 
   /*openLogoUploadDialog(): void {

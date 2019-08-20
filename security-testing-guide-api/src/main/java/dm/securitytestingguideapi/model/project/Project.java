@@ -37,7 +37,7 @@ public class Project implements Serializable {
 
     private String selectedLogoTester;
 
-    private int selectedLogoClient;
+    private String logoClient;
 
     public Project() {
         this.createdAt = LocalDateTime.now().toInstant(ZoneId.of("Europe/Berlin").getRules().getOffset(LocalDateTime.now()));
@@ -52,7 +52,7 @@ public class Project implements Serializable {
                 ", createdAt=" + createdAt +
                 ", testerName='" + testerName + '\'' +
                 ", selectedLogoTester=" + selectedLogoTester +
-                ", selectedLogoClient=" + selectedLogoClient +
+                ", logoClient=" + logoClient +
                 '}';
     }
 

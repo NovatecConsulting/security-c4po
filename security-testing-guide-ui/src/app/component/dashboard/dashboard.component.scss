@@ -71,8 +71,15 @@ mat-card {
 }
 
 .badge {
-  background-color: $primary;
   font-size: 14px;
+}
+
+.badge-primary {
+  background-color: $primary;
+}
+
+.badge-accent {
+  background-color: $accent;
 }
 
 .align-content-center {

@@ -11,6 +11,9 @@ export class HelpDialogComponent implements OnInit {
   versionBackend = 'v0.0.1';
   versionFrontend = 'v0.0.1';
 
+  testingGuideVersion = 'v4';
+  linkToWebsite = 'https://www.owasp.org/index.php/OWASP_Testing_Project';
+
   constructor(public dialogRef: MatDialogRef<HelpDialogComponent>) {
   }
 

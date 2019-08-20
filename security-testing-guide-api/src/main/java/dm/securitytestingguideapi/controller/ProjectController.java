@@ -76,6 +76,10 @@ public class ProjectController {
             project.setSelectedLogoTester(projectUpdate.getSelectedLogoTester());
         }
 
+        if (projectUpdate.getLogoClient() != null) {
+            project.setLogoClient(projectUpdate.getLogoClient());
+        }
+
         log.info("{}", project.toString());
 
         return projectRepository.save(project);

@@ -8,5 +8,6 @@ public class ProjectUpdateDTO {
     private String client;
     private String title;
     private String selectedLogoTester;
+    private String logoClient;
 
 }

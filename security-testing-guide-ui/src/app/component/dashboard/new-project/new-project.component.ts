@@ -4,6 +4,7 @@ import {ApiService} from '../../../service/api.service';
 import {Project} from '../../../model/project';
 import {DashboardService} from '../../../service/dashboard.service';
 import {OktaAuthService} from '@okta/okta-angular';
+import {AuthenticationService} from '../../../service/authentication/authentication.service';
 
 @Component({
   selector: 'app-new-project',
@@ -13,15 +14,18 @@ import {OktaAuthService} from '@okta/okta-angular';
 export class NewProjectComponent implements OnInit {
 
   projectForm = new FormGroup({
-    clientName: new FormControl('My cool client', [Validators.required]),
-    titleName: new FormControl('Some project title', Validators.required)
+    clientName: new FormControl('', [Validators.required]),
+    titleName: new FormControl('', Validators.required)
   });
 
   constructor(private apiService: ApiService,
               private dashboardService: DashboardService,
-              private oktaAuth: OktaAuthService) { }
+              private authService: AuthenticationService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.projectForm.get('clientName').setValue('My cool client');
+    this.projectForm.get('titleName').setValue('Some project title');
+  }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.projectForm.controls[controlName].hasError(errorName);
@@ -31,10 +35,11 @@ export class NewProjectComponent implements OnInit {
     const project = new Project();
     project.client = this.projectForm.value.clientName;
     project.title = this.projectForm.value.titleName;
-    // TODO: read username from logged in user
-    project.testerName = JSON.parse(localStorage.getItem('$user')).claims.name;
+    project.testerName = this.authService.getCurrentLoggedInUser().claims.name;
+    project.selectedLogoTester = 'none';
     this.dashboardService.addProject(project);
     this.projectForm.reset();
+    // this.projectForm.get('clientName').setValue('');
     this.projectForm.markAsUntouched();
   };
 
