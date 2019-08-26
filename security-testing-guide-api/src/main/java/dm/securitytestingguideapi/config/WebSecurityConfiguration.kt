@@ -14,7 +14,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager
 //@Configuration
 open class WebSecurityConfiguration : WebSecurityConfigurerAdapter() {
 
-
     override fun configure(http: HttpSecurity) {
         http.headers().httpStrictTransportSecurity().disable()
                 .and().csrf().disable()

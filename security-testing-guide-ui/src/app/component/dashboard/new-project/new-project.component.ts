@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../../service/api.service';
 import {Project} from '../../../model/project';
 import {DashboardService} from '../../../service/dashboard.service';
-import {OktaAuthService} from '@okta/okta-angular';
 import {AuthenticationService} from '../../../service/authentication/authentication.service';
 
 @Component({
