@@ -32,6 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .headers()
                 .httpStrictTransportSecurity().disable()
                 .frameOptions().disable()
+//                .httpStrictTransportSecurity().includeSubDomains(true).maxAgeInSeconds(31536000)
+//                .frameOptions().sameOrigin()
+//                .httpPublicKeyPinning()
+//                    .includeSubDomains(true)
+//                    .reportUri("")
+//                    .addSha256Pins("", "")
                 .and()
             .csrf()
                 .disable()
@@ -58,10 +64,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS"));
+        configuration.setAllowedOrigins(Arrays.asList("https://localhost", "https://localhost:4200"));
+//        configuration.setAllowedOrigins(Arrays.asList("*"));
+//        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
+//        configuration.setAllowCredentials(true);
+        configuration.setAllowedHeaders(Arrays.asList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

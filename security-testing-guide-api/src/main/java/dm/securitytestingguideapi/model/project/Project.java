@@ -52,7 +52,7 @@ public class Project implements Serializable {
                 ", createdAt=" + createdAt +
                 ", testerName='" + testerName + '\'' +
                 ", selectedLogoTester=" + selectedLogoTester +
-                ", logoClient=" + logoClient +
+                ", logoClient=" + (logoClient == null ? "exists" : "none") +
                 '}';
     }
 

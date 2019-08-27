@@ -12,4 +12,5 @@ public class SecurityTestingGuideApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SecurityTestingGuideApiApplication.class, args);
 	}
+
 }

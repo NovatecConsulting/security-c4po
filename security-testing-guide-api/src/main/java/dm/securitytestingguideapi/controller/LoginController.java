@@ -6,10 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
@@ -20,6 +17,7 @@ public class LoginController {
     @PostMapping(produces = "application/json")
     @ResponseBody
     public ResponseEntity<UserDetails> hardcodedUser() {
+//        log.debug("Is already authenticated: {}", SecurityContextHolder.getContext().getAuthentication());
         if (SecurityContextHolder.getContext().getAuthentication() == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
