@@ -6,6 +6,7 @@ import {User} from '../../../model/user';
 import {AuthenticationService} from '../../../service/authentication/authentication.service';
 import {ThemeService} from '../../../service/theme.service';
 import {Observable, of} from 'rxjs';
+import {PingService} from '../../../service/ping.service';
 
 @Component({
   selector: 'app-navigation',
@@ -25,6 +26,7 @@ export class MainNavigationComponent implements OnInit {
   constructor(private router: Router,
               private helpDialog: MatDialog,
               private themeService: ThemeService,
+              private pingService: PingService,
               private authenticationService: AuthenticationService) {
     this.authenticationService.$user.subscribe((user) => {
       this.user = user;
