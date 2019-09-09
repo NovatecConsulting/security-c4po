@@ -76,4 +76,4 @@ export function onAuthRequired({oktaAuth, router}) {
   router.navigate(['/login']);
 }
 
-export const Routing = RouterModule.forRoot(appRoutes);
+export const Routing = RouterModule.forRoot(appRoutes, {useHash: true});

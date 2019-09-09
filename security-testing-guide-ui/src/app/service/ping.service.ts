@@ -14,25 +14,27 @@ export class PingService {
 
   constructor(private http: HttpClient,
               private snackBar: MatSnackBar) {
-    console.log('Starting backend ping service ...');
+    // this.startPingBackend();
+  }
 
-  const observable = new Observable((observer) => {
-    interval(2000).subscribe(() => {
-      this.http.get(this.backendUrl, {observe: 'response'}).subscribe((response) => {
-        observer.next(response.status);
-      }, () => {
-        observer.next('unreachable');
+  startPingBackend() {
+    console.log('Starting backend ping service ...');
+    const observable = new Observable((observer) => {
+      interval(2000).subscribe(() => {
+        this.http.get(this.backendUrl, {observe: 'response'}).subscribe((response) => {
+          observer.next(response.status);
+        }, () => {
+          observer.next('unreachable');
+        });
       });
     });
-  });
-
-  observable.pipe(sample(interval(10000))).subscribe((val) => {
-    console.log('Backend status:', val);
-    snackBar.open('Backend ' + val, 'DISMISS', {
-      duration: 5000
+    observable.pipe(sample(interval(10000))).subscribe((val) => {
+      console.log('Backend status:', val);
+      this.snackBar.open('Backend ' + val, 'DISMISS', {
+        duration: 5000
+      });
+      this.isBackendReachable = val === 'unreachable' ? of(false) : of(true);
     });
-    this.isBackendReachable = val === 'unreachable' ? of(false) : of(true);
-  });
-
   }
+
 }
