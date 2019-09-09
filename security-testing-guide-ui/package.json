@@ -25,6 +25,8 @@
     "@fortawesome/angular-fontawesome": "^0.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@ngrx/store": "^8.3.0",
+    "@ngrx/store-devtools": "^8.3.0",
     "@okta/okta-angular": "^1.2.2",
     "@okta/okta-signin-widget": "^3.2.1",
     "bootstrap": "^4.3.1",

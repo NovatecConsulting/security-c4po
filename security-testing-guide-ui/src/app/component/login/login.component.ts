@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AlertService} from '../../service/alert.service';
 import {AuthenticationService} from '../../service/authentication/authentication.service';
+import {Store} from '@ngrx/store';
+import {login} from './login.actions';
+import * as fromAuth from './login.reducer';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
+              private store: Store<fromAuth.State>,
               private alertService: AlertService,
               private authenticationService: AuthenticationService) {
   }
@@ -76,6 +80,8 @@ export class LoginComponent implements OnInit {
       }
     });
     */
+    const username = this.f.username.value;
+    const password = this.f.password.value;
 
     // TODO: async
     this.authenticationService.asyncLoginBasicAuth(this.f.username.value, this.f.password.value).then((isValid) => {
@@ -97,6 +103,7 @@ export class LoginComponent implements OnInit {
         this.alertService.error(error);
       });*/
     // this.loading = false;
+    this.store.dispatch(login({username, password}));
   }
 
   loginWithOkta() {

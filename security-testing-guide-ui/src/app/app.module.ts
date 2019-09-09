@@ -34,6 +34,10 @@ import {GlobalErrorHandler} from './shared/global-error-handler';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import {LogoCroppingDialogComponent} from './component/project-settings/logo-upload-dialog/logo-cropping-dialog.component';
 import {MaterialModule} from './material/material.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 const oktaConfig = {
   issuer: 'https://dev-308298.okta.com/oauth2/default',
@@ -49,9 +53,7 @@ const oktaConfig = {
     ProjectSettingsComponent,
     NotesDialogComponent,
     InfoDialogComponent,
-    HelpDialogComponent,
     LoginComponent,
-    ProjectSettingsComponent,
     AlertComponent,
     NewProjectComponent,
     DashboardComponent,
@@ -79,7 +81,15 @@ const oktaConfig = {
     ReactiveFormsModule,
     OktaAuthModule.initAuth(oktaConfig),
     ImageCropperModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     {

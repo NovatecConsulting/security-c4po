@@ -11,6 +11,8 @@ import {LogoCroppingDialogComponent} from './logo-upload-dialog/logo-cropping-di
 import {Project} from '../../model/project';
 import {AuthenticationService} from '../../service/authentication/authentication.service';
 import {Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {AppActions} from '../../app.actions';
 
 @Component({
   selector: 'app-share',
@@ -66,6 +68,7 @@ export class ProjectSettingsComponent implements OnInit, OnDestroy {
   constructor(private sharedService: SharedService,
               private location: Location,
               private store: GlobalStore,
+              private appActions: AppActions,
               private apiService: ApiService,
               private router: Router,
               public dialog: MatDialog,
@@ -197,6 +200,7 @@ export class ProjectSettingsComponent implements OnInit, OnDestroy {
     console.log('Saving project settings to backend ...', projectUpdate);
     this.projectService.saveProjectSettings(this.project.id, projectUpdate);
     this.projectServiceSubscription.unsubscribe();
+    this.appActions.saveProjectSettings();
   }
 
 }
