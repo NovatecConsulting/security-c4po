@@ -4,38 +4,38 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
-import {MainNavigationComponent} from './component/navigation/main-navigation/main-navigation.component';
+import {MainNavigationComponent} from './components/navigation/main-navigation/main-navigation.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {LoginComponent} from './component/login/login.component';
-import {AuthInterceptor} from './interceptor/auth-interceptor';
+import {LoginComponent} from './components/login/login.component';
+import {AuthInterceptor} from './interceptors/auth-interceptor';
 import {Routing} from './app.routing';
-import {ProjectSettingsComponent} from './component/project-settings/project-settings.component';
-import {NotesDialogComponent} from './component/dialog/notes-dialog/notes-dialog.component';
-import {InfoDialogComponent} from './component/dialog/info-dialog/info-dialog.component';
-import {HelpDialogComponent} from './component/dialog/help-dialog/help-dialog.component';
+import {ProjectSettingsComponent} from './components/project-settings/project-settings.component';
+import {NotesDialogComponent} from './components/dialog/notes-dialog/notes-dialog.component';
+import {InfoDialogComponent} from './components/dialog/info-dialog/info-dialog.component';
+import {HelpDialogComponent} from './components/dialog/help-dialog/help-dialog.component';
 import {GlobalStore} from './store/global.store';
-import {AlertComponent} from './component/alert/alert.component';
-import {NewProjectComponent} from './component/dashboard/new-project/new-project.component';
-import {DashboardComponent} from './component/dashboard/dashboard.component';
-import {ProjectComponent} from './component/project/project.component';
-import {CategoryNavigationComponent} from './component/navigation/category-navigation/category-navigation.component';
-import {SearchFilterPipe} from './pipe/searchfilter.pipe';
-import {FindingsCollectionComponent} from './component/test/finding/findings-collection.component';
-import {StatusHistorySheetComponent, TestStatusComponent} from './component/test/test-status/test-status.component';
-import {ProjectNavigationComponent} from './component/navigation/project-navigation/project-navigation.component';
-import {CommentComponent} from './component/test/comment/comment.component';
-import {TestsTableComponent} from './component/tests-table/tests-table.component';
-import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
-import {TestNavigationComponent} from './component/navigation/test-navigation/test-navigation.component';
-import {FindingDialogComponent} from './component/test/finding/finding-dialog.component';
+import {AlertComponent} from './components/alert/alert.component';
+import {NewProjectComponent} from './components/dashboard/new-project/new-project.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ProjectComponent} from './components/project/project.component';
+import {CategoryNavigationComponent} from './components/navigation/category-navigation/category-navigation.component';
+import {SearchFilterPipe} from './pipes/searchfilter.pipe';
+import {FindingsCollectionComponent} from './components/test/finding/findings-collection.component';
+import {StatusHistorySheetComponent, TestStatusComponent} from './components/test/test-status/test-status.component';
+import {ProjectNavigationComponent} from './components/navigation/project-navigation/project-navigation.component';
+import {CommentComponent} from './components/test/comment/comment.component';
+import {TestsTableComponent} from './components/tests-table/tests-table.component';
+import {TestFrameComponent} from './components/test/test-frame/test-frame.component';
+import {TestNavigationComponent} from './components/navigation/test-navigation/test-navigation.component';
+import {FindingDialogComponent} from './components/test/finding/finding-dialog.component';
 import {OktaAuthModule} from '@okta/okta-angular';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GlobalErrorHandler} from './shared/global-error-handler';
 import {ImageCropperModule} from 'ngx-image-cropper';
-import {LogoCroppingDialogComponent} from './component/project-settings/logo-upload-dialog/logo-cropping-dialog.component';
+import {LogoCroppingDialogComponent} from './components/project-settings/logo-upload-dialog/logo-cropping-dialog.component';
 import {MaterialModule} from './material/material.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { ROOT_REDUCERS, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
@@ -82,7 +82,7 @@ const oktaConfig = {
     OktaAuthModule.initAuth(oktaConfig),
     ImageCropperModule,
     MaterialModule,
-    StoreModule.forRoot(reducers, {
+    StoreModule.forRoot(ROOT_REDUCERS, {
       metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,

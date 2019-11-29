@@ -1,12 +1,12 @@
 import {RouterModule, Routes} from '@angular/router';
-import {ListComponent} from './component/_list/list.component';
-import {LoginComponent} from './component/login/login.component';
-import {ProjectSettingsComponent} from './component/project-settings/project-settings.component';
-import {DashboardComponent} from './component/dashboard/dashboard.component';
-import {ProjectComponent} from './component/project/project.component';
-import {TestFrameComponent} from './component/test/test-frame/test-frame.component';
+import {ListComponent} from './components/_list/list.component';
+import {LoginComponent} from './components/login/login.component';
+import {ProjectSettingsComponent} from './components/project-settings/project-settings.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {ProjectComponent} from './components/project/project.component';
+import {TestFrameComponent} from './components/test/test-frame/test-frame.component';
 import {OktaAuthGuard, OktaCallbackComponent} from '@okta/okta-angular';
-import {AuthGuard} from './guard/auth.guard';
+import {AuthGuard} from './guards/auth.guard';
 
 const appRoutes: Routes = [
   {

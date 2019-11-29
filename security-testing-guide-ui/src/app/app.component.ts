@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {ThemeService} from './service/theme.service';
+import {ThemeService} from './services/theme.service';
 
 declare var particlesJS: any;
 

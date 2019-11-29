@@ -1,4 +1,4 @@
-# security-c3po
+# security-c4po
 
 Prerequisites:
 * Java 11

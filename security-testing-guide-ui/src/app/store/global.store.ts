@@ -1,7 +1,7 @@
 import {Store} from './store';
 import {Injectable} from '@angular/core';
-import {ShareState} from '../service/share-state';
-import {Category} from '../model/security-test/category.enum';
+import {ShareState} from '../services/share-state';
+import {Category} from '../models/security-test/category.enum';
 
 @Injectable()
 export class GlobalStore extends Store<ShareState> {
