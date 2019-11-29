@@ -1,7 +1,7 @@
 <mat-toolbar [ngClass]="{'dark-theme': isDarkTheme | async}">
   <a class="navbar-brand" href="/">
     <i class="swg swg-c3po-3 swg-2x accent"></i>
-    <a class="accent title">Security C-3PO</a>
+    <a class="accent title">Security C-4PO</a>
   </a>
   <button mat-icon-button color="accent" (click)="showHelp()"><mat-icon>help</mat-icon></button>
   <span class="fill-remaining-space"></span>
@@ -81,7 +81,7 @@
   <div class="navbar-header">
     <a class="navbar-brand" href="#">
       <i class="swg swg-c3po-3 swg-2x accent"></i>
-      <span class="accent title">Security C-3PO</span>
+      <span class="accent title">Security C-4PO</span>
     </a>
   </div>
   <div class="collapse navbar-collapse" id="navbarColor01">
@@ -92,7 +92,7 @@
       <li class="role" *ngIf="$user">
         <a>Role: {{$user.role}}</a>
       </li>
-      <li class="login">
+      <li class="LOGIN">
         <a *ngIf="isAuthenticated" class="nav-link" (click)="logout()" style="padding: 0;">
           <button type="button" class="btn btn-outline-light">LOGOUT</button>
         </a>

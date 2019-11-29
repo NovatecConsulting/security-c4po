@@ -73,7 +73,7 @@ const appRoutes: Routes = [
 
 export function onAuthRequired({oktaAuth, router}) {
   console.log('onAuthRequired');
-  router.navigate(['/login']);
+  router.navigate(['/LOGIN']);
 }
 
 export const Routing = RouterModule.forRoot(appRoutes, {useHash: true});

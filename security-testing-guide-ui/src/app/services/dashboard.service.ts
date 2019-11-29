@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Model, ModelFactory} from '@angular-extensions/model';
 import {Observable} from 'rxjs';
 import {Project} from '../models/project';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class DashboardService {
               private router: Router) {
     this.model = this.modelFactory.create([]);
     this.project$ = this.model.data$;
+  }
+
+  getAllProjects2(): Observable<any> {
+    return this.http.get<Project[]>(this.PROJECTS_URL);
   }
 
   getAllProjects(): Promise<boolean> {

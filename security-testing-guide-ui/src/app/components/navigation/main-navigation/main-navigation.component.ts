@@ -7,6 +7,7 @@ import {AuthenticationService} from '../../../services/authentication/authentica
 import {ThemeService} from '../../../services/theme.service';
 import {Observable, of} from 'rxjs';
 import {PingService} from '../../../services/ping.service';
+import {BasicAuthService} from "../../../services/authentication/basic-auth.service";
 
 @Component({
   selector: 'app-navigation',
@@ -28,18 +29,18 @@ export class MainNavigationComponent implements OnInit {
               private themeService: ThemeService,
               private pingService: PingService,
               private authenticationService: AuthenticationService) {
-    this.authenticationService.$user.subscribe((user) => {
-      this.user = user;
-      console.log('user:', this.user);
-      if (this.user != null && this.user.claims != null && this.user.role != null) {
-        this.isAuthenticated = true;
-      } else {
-        this.isAuthenticated = false;
-      }
-    });
+    // this.authenticationService.$user.subscribe((user) => {
+    //   this.user = user;
+    //   console.log('user:', this.user);
+    //   if (this.user != null && this.user.claims != null && this.user.role != null) {
+    //     this.isAuthenticated = true;
+    //   } else {
+    //     this.isAuthenticated = false;
+    //   }
+    // });
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     // this.isDarkTheme = this.themeService.isDarkTheme; // is always dark
     // this.themeService.setDarkTheme(true);
     // this.user = this.authenticationService.getCurrentLoggedInUser();

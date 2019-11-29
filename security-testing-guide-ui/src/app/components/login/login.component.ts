@@ -4,8 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AlertService} from '../../services/alert.service';
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {Store} from '@ngrx/store';
-import * as fromAuth from '../../store/reducers/login.reducer';
-import {login} from "../../store/actions/login.actions";
+import {LOGIN} from "../../shared/authentication/authentication.actions";
+import {AppState} from "../../store/app.states";
 
 @Component({
   selector: 'app-login',
@@ -23,12 +23,14 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private store: Store<fromAuth.State>,
+              private store: Store<AppState>,
               private alertService: AlertService,
               private authenticationService: AuthenticationService) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+    console.log('OnInit LoginComponent');
+
     this.loginForm = new FormGroup({
       username: new FormControl(),
       password: new FormControl()
@@ -44,7 +46,7 @@ export class LoginComponent implements OnInit {
     }*/
 
     console.log('Checking if user is logged in ...');
-    this.loadUserLoggedIn = true;
+    /*this.loadUserLoggedIn = true;
     // await new Promise(resolve => setTimeout(resolve, 30000));
     this.authenticationService.userIsLoggedIn().then((isLoggedIn) => {
       this.loadUserLoggedIn = false;
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
         console.log('no user is logged in.');
       }
     });
+    */
   }
 
   get f() {
@@ -93,7 +96,7 @@ export class LoginComponent implements OnInit {
       }
     });
 
-    /*this.basicAuthService.login(this.f.username.value, this.f.password.value)
+    /*this.basicAuthService.LOGIN(this.f.username.value, this.f.password.value)
       .pipe(first()).subscribe((user) => {
         this.loading = false;
         this.router.navigate(['/dashboard']);
@@ -103,7 +106,7 @@ export class LoginComponent implements OnInit {
         this.alertService.error(error);
       });*/
     // this.loading = false;
-    this.store.dispatch(login({username, password}));
+    this.store.dispatch(LOGIN({username, password}));
   }
 
   loginWithOkta() {

@@ -10,8 +10,8 @@ import {Role} from '../../models/role.enum';
 })
 export class AuthenticationService {
 
-  private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-  public $user: Observable<User> = this.userSubject.asObservable();
+  // private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  public $user: Observable<User>;// = this.userSubject.asObservable();
   private currentLoggedInUser: User; // TODO: provide currently logged in user with getter to components (can be removed with NgRx?)
 
   constructor(private basicAuthService: BasicAuthService,
@@ -19,7 +19,7 @@ export class AuthenticationService {
 
     console.log('constructor of auth service called. current logged in user:', this.currentLoggedInUser);
 
-    this.basicAuthService.$basicAuthUser.subscribe((userDetails: UserDetails) => {
+    /*this.basicAuthService.$basicAuthUser.subscribe((userDetails: UserDetails) => {
       if (userDetails) {
         console.log('Basic Auth:', userDetails);
         const basicUser: User = {
@@ -35,8 +35,9 @@ export class AuthenticationService {
       } else {
         console.log('Basic User not logged in.');
       }
-    });
+    });*/
 
+    /*console.log('checking okta user...');
     // if okta token is already in localstorage across component lifecycle
     if (localStorage.getItem('okta-token-storage') && localStorage.getItem('okta-token-storage').length > 2) {
       console.log('okta-token-storage is present. --> Okta user logged in!');
@@ -53,10 +54,12 @@ export class AuthenticationService {
           console.log('Okta User not logged in.');
         }
       });
-    }
+    } else {
+      console.log('no okta-token-storage in localStorage')
+    }*/
 
     // if okta auth state changes
-    this.oktaAuthService.$authenticationState.subscribe((isAuthenticated) => {
+    /*this.oktaAuthService.$authenticationState.subscribe((isAuthenticated) => {
       console.log('okta User authenticationState has changed to:', isAuthenticated);
       this.oktaAuthService.getUser().then((userClaims: UserClaims) => {
         if (userClaims) {
@@ -71,10 +74,10 @@ export class AuthenticationService {
           console.log('Okta User not logged in.');
         }
       });
-    });
+    });*/
   }
 
-  async userIsLoggedIn(): Promise<boolean> {
+  /*async userIsLoggedIn(): Promise<boolean> {
     // await new Promise(resolve => setTimeout(resolve, 3000));
     const isOktaUserLoggedIn = await this.oktaAuthService.getUser().then((userClaims: UserClaims) => {
       if (userClaims) {
@@ -87,7 +90,7 @@ export class AuthenticationService {
     const isBasicAuthUserLoggedIn = !!localStorage.getItem('basicAuth');
     console.log('isBasicAuthUserLoggedIn:', isBasicAuthUserLoggedIn);
     return (isOktaUserLoggedIn || isBasicAuthUserLoggedIn);
-  }
+  }*/
 
   someOktaUserListeningAndMappingToUserObject() {
     /*this.oktaAuthService.$authenticationState.subscribe(
@@ -128,6 +131,10 @@ export class AuthenticationService {
   }
   */
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
   getCurrentLoggedInUser(): User {
     return this.currentLoggedInUser;
   }
@@ -161,7 +168,7 @@ export class AuthenticationService {
       }
     });
     localStorage.removeItem('okta-token-storage');
-    this.userSubject.next(null);
+    // this.userSubject.next(null);
     this.currentLoggedInUser = null;
   }
 

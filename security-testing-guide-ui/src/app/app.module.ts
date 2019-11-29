@@ -35,9 +35,11 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import {LogoCroppingDialogComponent} from './components/project-settings/logo-upload-dialog/logo-cropping-dialog.component';
 import {MaterialModule} from './material/material.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { ROOT_REDUCERS, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import {AuthenticationEffects} from "./store/effects/authentication.effects";
 
 const oktaConfig = {
   issuer: 'https://dev-308298.okta.com/oauth2/default',
@@ -86,9 +88,12 @@ const oktaConfig = {
       metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
-        strictActionImmutability: true
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true
       }
     }),
+    EffectsModule.forRoot([ AuthenticationEffects ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [

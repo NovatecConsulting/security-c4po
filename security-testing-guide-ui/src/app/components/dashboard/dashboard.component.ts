@@ -2,6 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {DashboardService} from '../../services/dashboard.service';
 import {TestStatusService} from '../../services/test-status.service';
+import {Project} from "../../models/project";
+import {Observable} from "rxjs";
+import {select, Store} from "@ngrx/store";
+import {AppState} from "../../store/app.states";
+import * as DashboardActions from './dashboard.actions';
+import * as fromRoot from "../../store/reducers";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,15 +16,24 @@ import {TestStatusService} from '../../services/test-status.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
+  projects$: Observable<Project[]>;
+
   projectsLoaded = false;
   checked: {[projectId: string]: {total: number, percentage: number} } = {};
 
   constructor(public dashboardService: DashboardService,
               private testStatusService: TestStatusService,
+              private store: Store<AppState>,
               private router: Router) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
+    // this.projects$ = this.store.pipe(select(fromRoot.selectAllProjects));
+    this.store.dispatch(DashboardActions.GET_PROJECTS);
+  }
+
+  /*async ngOnInit() {
+    console.log('init dashboard');
     this.dashboardService.getAllProjects().then(successful => {
       this.dashboardService.project$.subscribe((projects) => {
         const projectIds = projects.map(p => p.id);
@@ -31,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
       this.projectsLoaded = successful;
     });
-  }
+  }*/
 
   onProjectCardClick(projectId: string) {
     localStorage.setItem('activeProjectId', projectId);

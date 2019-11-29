@@ -16,11 +16,22 @@ export class BasicAuthService {
   constructor(private http: HttpClient) {
   }
 
-  login(username: string, password: string): Observable<boolean> {
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  login(username: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + window.btoa(username + ':' + password)
     });
-    return this.http.post<any>(this.BASE_URL + '/login', null, {headers: headers}).pipe(
+    return this.http.post<any>(this.BASE_URL + '/login', null, {headers: headers});
+  }
+
+  /*login(username: string, password: string): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + window.btoa(username + ':' + password)
+    });
+    return this.http.post<any>(this.BASE_URL + '/LOGIN', null, {headers: headers}).pipe(
       map((userDetails: UserDetails) => {
       localStorage.setItem('userDetails', JSON.stringify(userDetails));
       localStorage.setItem('basicAuth', window.btoa(username + ':' + password));
@@ -32,7 +43,7 @@ export class BasicAuthService {
         return of(false);
       })
     );
-  }
+  }*/
 
   logout() {
     console.log('Logging out of Basic Auth ...');
